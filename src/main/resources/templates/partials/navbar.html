@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+</head>
+<body>
+<nav th:fragment="navbar">
+    <a th:href="@{/}">Pantry Chef</a>
+    <div>
+        <ul>
+            <li>
+                <a th:href="@{/index}">Recipes</a>
+            </li>
+            <li>
+                <a th:href="@{/profile}">Profile</a>
+            </li>
+            <li>
+                <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li>
+                <a th:href="@{/logout}">Logout</a>
+            </li>
+            <li>
+                <a class="nav-link" th:href="@{/create}">Create Recipe</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<th:block th:replace="partials/scripts :: scripts" />
+</body>
+</html>
