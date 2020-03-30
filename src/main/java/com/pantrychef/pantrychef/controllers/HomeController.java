@@ -25,6 +25,13 @@ public class HomeController {
     public String welcome() {
         return "home";
     }
+
+    @GetMapping("/profile")
+    @ResponseBody
+    public String profile() {
+        return "profile";
+    }
+
 }
 
 //    @GetMapping("/posts")
