@@ -8,10 +8,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
+
     @GetMapping("/")
     @ResponseBody
     public String landing() {
-        return  "...This is the PantryChef Landing Page!...";
+        return "This is the landing page!";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return  "recipes/index";
     }
 
     @GetMapping("/home")
@@ -20,3 +26,9 @@ public class HomeController {
         return "home";
     }
 }
+
+//    @GetMapping("/posts")
+//    public String getPosts(Model model){
+//        model.addAttribute("posts", postDao.findAll());
+//        return "posts/index";
+//    }
