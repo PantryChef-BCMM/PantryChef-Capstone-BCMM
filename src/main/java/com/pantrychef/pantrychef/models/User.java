@@ -35,14 +35,27 @@ public class User {
     public User() {
     }
 
+//    //Many to many relationship connection to ingredients table
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name="users_ingredients",
+//            joinColumns={@JoinColumn(name="user_id")},
+//            inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
+//    )
+//    private List<Ingredients> ingredients;
 
+
+    //Many to many  relationship connection to recipes table
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="users_ingredients",
-            joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
+            name="users_recipes",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="recipe_id")}
     )
-    private List<Ingredients> ingredients;
+    private List<Recipe> favriotes;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Recipe> recipes;
 
     public long getId() {
         return id;
