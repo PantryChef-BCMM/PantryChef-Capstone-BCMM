@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sign up</title>
+</head>
+<body>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<h1>Create an account</h1>
+<form th:action="@{/sign-up}" method="POST">
+    <label for="username">Username</label>
+    <input/>
+
+    <label for="email">Email</label>
+    <input/>
+
+    <label for="password">Password</label>
+    <input type="password"/>
+
+    <input value="Sign me up!" type="submit" />
+</form>
+</body>
+</html>
