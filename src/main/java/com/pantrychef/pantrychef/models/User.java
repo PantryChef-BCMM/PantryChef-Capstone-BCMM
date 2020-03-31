@@ -3,6 +3,7 @@ package com.pantrychef.pantrychef.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -36,19 +37,19 @@ public class User {
     }
 
 //    //Many to many relationship connection to ingredients table
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="user_shop_list",
-            joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
-    )
-    private List<Ingredients> ingredients;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name="user_shop_list",
+//            joinColumns={@JoinColumn(name="user_id")},
+//            inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
+//    )
+//    private List<Ingredient> ingredients;
 
 
     //Many to many  relationship connection to recipes table
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="users_recipes",
+            name="users_favorites",
             joinColumns = {@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="recipe_id")}
     )
@@ -56,6 +57,9 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recipe> recipes;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    Set<ShoppingList> shoppingLists;
 
     public long getId() {
         return id;
