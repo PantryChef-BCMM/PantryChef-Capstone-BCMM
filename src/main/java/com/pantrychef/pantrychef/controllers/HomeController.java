@@ -31,6 +31,10 @@ public class HomeController {
         return "recipes/profile";
     }
 
+    @GetMapping("/create")
+    public String create() {
+        return "recipes/postRecipe";
+    }
 }
 
 //    @GetMapping("/posts")
