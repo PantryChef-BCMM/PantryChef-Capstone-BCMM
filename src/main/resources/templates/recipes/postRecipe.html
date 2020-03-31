@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<form th:action="@{/create}" method="post" style="text-align: center">
+    <h1>Share a Recipe</h1>
+    <label for="title">Title</label><br>
+    <input id="title" name="title" type="text" style="width: 40%"/><br>
+    <label for="ingredients">Ingredients</label><br>
+    <input id="ingredients" name="ingredients" type="text" style="width: 40%"/><br>
+    <label for="directions">Directions</label><br>
+    <input id="directions" name="directions" type="text" style="width: 40%"/><br>
+    <label for="image">Add an Image</label><br>
+    <input id="image" name="image" type="text" style="width: 40%"/><br>
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>
