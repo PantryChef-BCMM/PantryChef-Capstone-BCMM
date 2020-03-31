@@ -1,6 +1,7 @@
 package com.pantrychef.pantrychef.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="recipe")
@@ -23,6 +24,14 @@ public class Recipe {
     @JoinColumn(name="user_id")
     private User user;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+
+            name = "recipes_categories",
+            joinColumns = {@JoinColumn(name = "recipe_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Categories> categories;
     @Column(nullable = true)
     private String recipe_path;
 
