@@ -27,9 +27,8 @@ public class HomeController {
     }
 
     @GetMapping("/profile")
-    @ResponseBody
     public String profile() {
-        return "profile";
+        return "recipes/profile";
     }
 
 }
