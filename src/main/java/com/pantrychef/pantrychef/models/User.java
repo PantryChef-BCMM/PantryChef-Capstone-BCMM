@@ -52,7 +52,7 @@ public class User {
             joinColumns = {@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="recipe_id")}
     )
-    private List<Recipe> favriotes;
+    private List<Recipe> favorites;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recipe> recipes;
