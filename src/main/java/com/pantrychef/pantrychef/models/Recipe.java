@@ -1,6 +1,7 @@
 package com.pantrychef.pantrychef.models;
 
 import javax.persistence.*;
+import java.net.UnknownServiceException;
 import java.util.List;
 
 @Entity
@@ -32,8 +33,14 @@ public class Recipe {
             inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
     private List<Categories> categories;
+
+    @ManyToMany(mappedBy = "favorites")
+    private List<User> favoritedBy;
+
     @Column(nullable = true)
     private String recipe_path;
+
+
 
 
 //    private List<Recipe> favorites;
