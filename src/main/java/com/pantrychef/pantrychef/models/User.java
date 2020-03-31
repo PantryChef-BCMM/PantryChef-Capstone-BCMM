@@ -36,13 +36,13 @@ public class User {
     }
 
 //    //Many to many relationship connection to ingredients table
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name="users_ingredients",
-//            joinColumns={@JoinColumn(name="user_id")},
-//            inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
-//    )
-//    private List<Ingredients> ingredients;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="user_shop_list",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
+    )
+    private List<Ingredients> ingredients;
 
 
     //Many to many  relationship connection to recipes table
