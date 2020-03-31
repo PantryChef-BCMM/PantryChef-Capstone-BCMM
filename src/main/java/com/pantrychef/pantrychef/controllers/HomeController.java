@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping("/")
-    @ResponseBody
     public String landing() {
-        return "This is the landing page!";
+        return "recipes/landingPage";
     }
 
     @GetMapping("/index")
@@ -31,6 +30,10 @@ public class HomeController {
         return "recipes/profile";
     }
 
+    @GetMapping("/create")
+    public String create() {
+        return "recipes/postRecipe";
+    }
 }
 
 //    @GetMapping("/posts")
