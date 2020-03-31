@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-    @Table(name="categories")
+@Table(name="categories")
 public class Categories {
 
 

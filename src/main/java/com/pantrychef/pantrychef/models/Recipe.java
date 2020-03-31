@@ -3,6 +3,7 @@ package com.pantrychef.pantrychef.models;
 import javax.persistence.*;
 import java.net.UnknownServiceException;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="recipe")
@@ -21,10 +22,19 @@ public class Recipe {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String directions;
 
+    @Column(nullable = true)
+    private String recipe_path;
+
+    public Recipe(){
+
+    }
+
+    //Many to one annotation to User model
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 
+    //Many to many annotation to Recipe model
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
 
@@ -34,13 +44,21 @@ public class Recipe {
     )
     private List<Categories> categories;
 
+    //Many to many annotation to User model for favriotes
     @ManyToMany(mappedBy = "favorites")
     private List<User> favoritedBy;
 
-    @Column(nullable = true)
-    private String recipe_path;
+    //One to many annotation to RecipeIngredients model
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    Set<RecipeIngredients> recipeIngredients;
 
+    //One to many annotation to RecipeImages model
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private List<RecipeImages> images;
 
+    //One to many annotation to Comments model
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private List<Comments> comments;
 
 
 //    private List<Recipe> favorites;
