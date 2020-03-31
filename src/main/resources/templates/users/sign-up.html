@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Sign up</title>
-</head>
+<head th:replace="partials/head :: head('Sign Up')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <h1>Create an account</h1>
@@ -19,5 +16,6 @@
 
     <input value="Sign me up!" type="submit" />
 </form>
+<th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

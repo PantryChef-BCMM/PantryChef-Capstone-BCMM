@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-</head>
+<head th:replace="partials/head :: head('Profile')"></head>
 <body style="margin: auto">
 <nav th:replace="partials/navbar :: navbar"></nav>
 <h1>This is the Index Profile Page!</h1>
 <p>View your saved recipes!</p>
+<th:block th:replace="partials/scripts :: scripts"/>
+<!-- Button calls function 'pickMark()' onclick now -->
+<input type="BUTTON" value="Add Profile Picture" id="pickWatermark" onclick="pickMark()">
+<script>
+    var client = filestack.init("AkmwMYi2RdHJ7ek86PGwiz");
+    //The function pickMark now will open the file picker
+    function pickMark() {
+        console.log("Uploading Photo");
+    //Opening the file picker here
+    client.pick({
+        accept: 'image/*',
+        //Only accepting at most 1 file
+        maxFiles:1
+    }).then(function(result) {
+        // file url (plus mimetype, size and more)
+        // can be found inside the result object
+        console.log(result);
+        console.log("File url: " + result.filesUploaded[0].url);
+    });
+}
+</script>
 </body>
 </html>
