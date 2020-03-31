@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-</head>
+<head th:replace="partials/head :: head('Post Recipe')"></head>
 <body>
 <form th:action="@{/create}" method="post" style="text-align: center">
     <h1>Share a Recipe</h1>
@@ -17,5 +14,6 @@
     <input id="image" name="image" type="text" style="width: 40%"/><br>
     <input type="submit" value="Submit" />
 </form>
+<th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>
