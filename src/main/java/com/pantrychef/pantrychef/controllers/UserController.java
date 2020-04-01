@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private UserRepo users;
 
-    @Value("${filestack.api.key}")
-    private String filestackApiKey;
-
 //============ THIS SECTION SHOULD BE USED ONCE HASHING PASSWORDS WORKS!!! ==========//
 //    private PasswordEncoder passwordEncoder;
 
