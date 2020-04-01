@@ -39,14 +39,9 @@ public class HomeController {
         return "recipes/profile";
     }
 
-    @GetMapping("/create")
-    public String create() {
-        return "recipes/postRecipe";
-    }
+//    @GetMapping("/create")
+//    public String create() {
+//        return "recipes/postRecipe";
+//    }
 }
 
-//    @GetMapping("/posts")
-//    public String getPosts(Model model){
-//        model.addAttribute("posts", postDao.findAll());
-//        return "posts/index";
-//    }
