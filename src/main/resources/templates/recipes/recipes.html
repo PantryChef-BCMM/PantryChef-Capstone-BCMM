@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Index')"></head>
+<head th:replace="partials/head :: head('Recipes')"></head>
 <body style="margin: 0 auto">
 <nav th:replace="partials/navbar :: navbar"></nav>
-    <h1 style="text-decoration: underline;">This is the Index Page!</h1>
-    <p>test 1</p>
-    <p>test 2</p>
+    <h1 style="text-decoration: underline;">Recipes!</h1>
     <p>Recipes coming soon!</p>
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
