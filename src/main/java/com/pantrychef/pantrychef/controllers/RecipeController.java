@@ -54,7 +54,7 @@ public class RecipeController {
     @GetMapping("/recipe/create")
     public String createForm(Model model){
         model.addAttribute("recipe", new Recipe());
-        return "recipe/create";
+        return "recipes/postRecipe";
     }
 
     @PostMapping("/recipe/create")
@@ -66,7 +66,7 @@ public class RecipeController {
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
         recipeDao.save(recipe);
-        return "redirect:/recipes";
+        return "redirect:/recipes/recipes";
     }
 
     //Delete a post
@@ -75,6 +75,6 @@ public class RecipeController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId())
             recipeDao.deleteById(id);
-        return "redirect:/recipes";
+        return "redirect:/recipes/recipes";
     }
 }
