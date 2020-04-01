@@ -3,6 +3,7 @@ package com.pantrychef.pantrychef.controllers;
 import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.UserRepo;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
     private UserRepo users;
+
+    @Value("${filestack.api.key}")
+    private String filestackApiKey;
 
 //============ THIS SECTION SHOULD BE USED ONCE HASHING PASSWORDS WORKS!!! ==========//
 //    private PasswordEncoder passwordEncoder;
