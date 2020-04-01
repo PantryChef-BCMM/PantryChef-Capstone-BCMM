@@ -23,6 +23,9 @@ public class RecipeIngredients {
     //New Entity for Joiner table
     private int quantity;
 
+    public RecipeIngredients() {
+    }
+
     public long getId() {
         return id;
     }

@@ -26,8 +26,8 @@ public class ShoppingList {
     //New Entity for Joiner table
     private int quantity;
 
-
-
+    public ShoppingList() {
+    }
 
     public long getId() {
         return id;

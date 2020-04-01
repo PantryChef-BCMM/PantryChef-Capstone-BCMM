@@ -19,6 +19,9 @@ public class RecipeImages {
     @JoinColumn(name="recipe_id")
     private Recipe recipe;
 
+    public RecipeImages() {
+    }
+
     public long getId() {
         return id;
     }

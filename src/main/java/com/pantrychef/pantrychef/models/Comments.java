@@ -22,6 +22,9 @@ public class Comments {
     @JoinColumn(name="recipe_id")
     private Recipe recipe;
 
+    public Comments() {
+    }
+
     public long getId() {
         return id;
     }
