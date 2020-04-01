@@ -1,15 +1,12 @@
 package com.pantrychef.pantrychef.controllers;
-
-import com.pantrychef.pantrychef.models.Ingredient;
 import com.pantrychef.pantrychef.models.Recipe;
 import com.pantrychef.pantrychef.repositories.RecipeRepo;
+import com.pantrychef.pantrychef.repositories.UserRepo;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 public class RecipeController {
 
