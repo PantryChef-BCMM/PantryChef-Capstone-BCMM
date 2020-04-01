@@ -13,16 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private UserRepo users;
 
-    public UserController(UserRepo users) {
-        this.users = users;
-    }
-
-    //    private PasswordEncoder passwordEncoder;
+//============ THIS SECTION SHOULD BE USED ONCE HASHING PASSWORDS WORKS!!! ==========//
+//    private PasswordEncoder passwordEncoder;
 
 //    public UserController(UserRepo users, PasswordEncoder passwordEncoder) {
 //        this.users = users;
 //        this.passwordEncoder = passwordEncoder;
 //    }
+//===================================================================================//
+
+//    TEMPORARY CONSTRUCTOR - GET RID OF IT ONCE HASHING WORKS!!!
+    public UserController(UserRepo users) {
+        this.users = users;
+    }
 
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
