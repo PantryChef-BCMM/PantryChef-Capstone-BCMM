@@ -103,12 +103,17 @@ public class Recipe {
 //        this.users_id = users_id;
 //    }
 
+    public User getUser() { return user; }
+
     public String getRecipe_path() {
         return recipe_path;
     }
 
     public void setRecipe_path(String recipe_path) {
         this.recipe_path = recipe_path;
+    }
+
+    public void setUser(User user) { this.user = user;
     }
 
 //    public List<Recipe> getFavorites() {
