@@ -1,4 +1,4 @@
-package com.pantrychef.pantrychef;
+package com.pantrychef.pantrychef.controllers;
 
 import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.UserRepo;
