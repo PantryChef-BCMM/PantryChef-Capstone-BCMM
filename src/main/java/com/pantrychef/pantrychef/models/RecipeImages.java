@@ -13,7 +13,7 @@ public class RecipeImages {
     private long id;
 
     @Column(nullable = false)
-    private String path;
+    private String imagePath;
 
     @ManyToOne
     @JoinColumn(name="recipe_id")
@@ -30,12 +30,12 @@ public class RecipeImages {
         this.id = id;
     }
 
-    public String getPath() {
-        return path;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setImagePath(String path) {
+        this.imagePath = path;
     }
 
     public Recipe getRecipe() {
