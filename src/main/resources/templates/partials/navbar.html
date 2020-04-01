@@ -5,10 +5,13 @@
     <title>Navbar</title>
 </head>
 <body>
+
 <nav th:fragment="navbar">
+
     <a th:href="@{/}">Pantry Chef</a>
 
     <div class="navbar-form">
+
         <div sec:authorize="isAuthenticated()">
             <ul>
                 <li>
@@ -21,7 +24,6 @@
                     <a class="nav-link" th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
-
         </div>
 
         <div sec:authorize="isAnonymous()">
@@ -39,7 +41,10 @@
         </div>
 
     </div>
+
 </nav>
+
 <th:block th:replace="partials/scripts :: scripts" />
+
 </body>
 </html>
