@@ -1,6 +1,8 @@
 package com.pantrychef.pantrychef.controllers;
 
+import com.pantrychef.pantrychef.models.User;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,9 @@ public class HomeController {
 
     @GetMapping("/profile")
     public String profile(Model model) {
+        User CurrentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("fsapi", fsapi);
+        model.addAttribute("user", CurrentUser);
         return "recipes/profile";
     }
 
