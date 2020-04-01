@@ -22,6 +22,10 @@ public class Comments {
     @JoinColumn(name="recipe_id")
     private Recipe recipe;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Comments() {
     }
 
