@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
     private UserRepo users;
-
     private PasswordEncoder passwordEncoder;
-
     public UserController(UserRepo users, PasswordEncoder passwordEncoder) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
