@@ -116,6 +116,13 @@ public class Recipe {
     public void setUser(User user) { this.user = user;
     }
 
+    public List<RecipeImages> getImages() {
+        return images;
+    }
+
+    public void setImages(List<RecipeImages> images) {
+        this.images = images;
+    }
 //    public List<Recipe> getFavorites() {
 //        return favorites;
 //    }

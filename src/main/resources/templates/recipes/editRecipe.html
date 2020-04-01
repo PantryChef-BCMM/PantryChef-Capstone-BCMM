@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head('Post Recipe')"></head>
-<body>
-<form th:action="@{/recipe/create}" method="post" th:object="${recipe}" style="text-align: center">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Profile')"></head>
+<body style="margin: auto">
+<nav th:replace="partials/navbar :: navbar"></nav>
+<form th:action="@{/recipe/edit}" method="post" style="text-align: center">
     <h1>Share a Recipe</h1>
     <label for="title">Title</label><br>
     <input id="title" name="title" type="text" style="width: 40%"/><br>

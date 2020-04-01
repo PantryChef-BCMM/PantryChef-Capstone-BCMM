@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/post/create", // only authenticated users can create recipes
+                        "/recipe/create", // only authenticated users can create recipes
                         "/recipe/{id}/edit",
                         "/recipe/{id}"// only authenticated users can edit recipes
                 )
