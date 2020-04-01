@@ -3,6 +3,7 @@ package com.pantrychef.pantrychef.controllers;
 import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.UserRepo;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private UserRepo users;
     private PasswordEncoder passwordEncoder;
+
     public UserController(UserRepo users, PasswordEncoder passwordEncoder) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
