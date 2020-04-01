@@ -19,6 +19,9 @@ public class Categories {
     @ManyToMany(mappedBy = "categories")
     private List <Recipe> recipes;
 
+    public Categories() {
+    }
+
     public long getId() {
         return id;
     }
