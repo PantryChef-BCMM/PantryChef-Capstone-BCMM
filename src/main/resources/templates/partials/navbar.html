@@ -7,27 +7,37 @@
 <body>
 <nav th:fragment="navbar">
     <a th:href="@{/}">Pantry Chef</a>
-    <div>
-        <ul>
-            <li>
-                <a th:href="@{/index}">Recipes</a>
-            </li>
-            <li>
-                <a th:href="@{/sign-up}">Sign-Up</a>
-            </li>
-            <li>
-                <a th:href="@{/profile}">Profile</a>
-            </li>
-            <li>
-                <a class="nav-link" th:href="@{/login}">Login</a>
-            </li>
-            <li>
-                <a th:href="@{/logout}">Logout</a>
-            </li>
-            <li>
-                <a class="nav-link" th:href="@{/create}">Create Recipe</a>
-            </li>
-        </ul>
+
+    <div class="navbar-form">
+        <div sec:authorize="isAuthenticated()">
+            <ul>
+                <li>
+                    <a th:href="@{/profile}">Profile</a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/create}">Create Recipe</a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div sec:authorize="isAnonymous()">
+            <ul>
+                <li>
+                    <a th:href="@{/index}">Recipes</a>
+                </li>
+                <li>
+                    <a th:href="@{/sign-up}">Sign-Up</a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </nav>
 <th:block th:replace="partials/scripts :: scripts" />
