@@ -15,7 +15,7 @@
 <!-- Button calls function 'pickMark()' onclick now -->
 <input type="BUTTON" value="Add Profile Picture" id="pickWatermark" onclick="pickMark()">
 <script>
-    var client = filestack.init(document.querySelector('meta.filestack.api.key').content);
+    var client = filestack.init(document.querySelector('meta.fsapi').content);
     //The function pickMark now will open the file picker
     function pickMark() {
         console.log("Uploading Photo");

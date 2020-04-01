@@ -1,5 +1,6 @@
 package com.pantrychef.pantrychef.controllers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
+
+    @Value("${filestack.api.key}")
+    private String fsapi;
 
     @GetMapping("/")
     public String landing() {
@@ -26,7 +30,8 @@ public class HomeController {
     }
 
     @GetMapping("/profile")
-    public String profile() {
+    public String profile(Model model) {
+        model.addAttribute("fsapi", fsapi);
         return "recipes/profile";
     }
 
