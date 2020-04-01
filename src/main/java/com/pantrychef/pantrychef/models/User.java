@@ -36,15 +36,14 @@ public class User {
     public User() {
     }
 
-//    //Many to many relationship connection to ingredients table
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name="user_shop_list",
-//            joinColumns={@JoinColumn(name="user_id")},
-//            inverseJoinColumns = {@JoinColumn(name="ingredient_id")}
-//    )
-//    private List<Ingredient> ingredients;
 
+    //Copy Constructor
+    public User(User copy){
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
 
     //Many to many  relationship connection to recipes table
     @ManyToMany(cascade = CascadeType.ALL)
