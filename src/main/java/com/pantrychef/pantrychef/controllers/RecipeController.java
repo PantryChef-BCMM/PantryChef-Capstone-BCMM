@@ -35,7 +35,7 @@ public class RecipeController {
     @GetMapping("/recipes")
     public String getPosts(Model model){
         model.addAttribute("recipes", recipeDao.findAll());
-        return "recipes/index";
+        return "recipes/recipes";
     }
 
 
@@ -97,7 +97,7 @@ public class RecipeController {
         ingredient.setIngredient_name(ingredients);
         ingredient.setId(recipe.getId());
 
-        return "redirect:/recipes/profile";
+        return "redirect:/recipes";
     }
 
     //Delete a post

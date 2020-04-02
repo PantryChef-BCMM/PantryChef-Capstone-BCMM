@@ -20,10 +20,10 @@ public class HomeController {
         return "recipes/landingPage";
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return  "recipes/index";
-    }
+//    @GetMapping("/recipes")
+//    public String index() {
+//        return  "recipes/recipes";
+//    }
 
     @GetMapping("/home")
     @ResponseBody
