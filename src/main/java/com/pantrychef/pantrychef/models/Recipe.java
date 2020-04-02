@@ -53,8 +53,8 @@ public class Recipe {
     Set<RecipeIngredients> recipeIngredients;
 
     //One to many annotation to RecipeImages model
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private List<RecipeImages> images;
+    @Column(nullable = false)
+    private String recipeImageUrl;
 
     //One to many annotation to Comments model
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
@@ -95,14 +95,6 @@ public class Recipe {
         this.directions = directions;
     }
 
-//    public long getUsers_id() {
-//        return users_id;
-//    }
-//
-//    public void setUsers_id(long users_id) {
-//        this.users_id = users_id;
-//    }
-
     public User getUser() { return user; }
 
     public String getRecipe_path() {
@@ -116,20 +108,13 @@ public class Recipe {
     public void setUser(User user) { this.user = user;
     }
 
-    public List<RecipeImages> getImages() {
-        return images;
+    public String getRecipeImageUrl() {
+        return recipeImageUrl;
     }
 
-    public void setImages(List<RecipeImages> images) {
-        this.images = images;
+    public void setRecipeImageUrl(String recipeImageUrl) {
+        this.recipeImageUrl = recipeImageUrl;
     }
-//    public List<Recipe> getFavorites() {
-//        return favorites;
-//    }
-//
-//    public void setFavorites(List<Recipe> favorites) {
-//        this.favorites = favorites;
-//    }
 }
 
 
