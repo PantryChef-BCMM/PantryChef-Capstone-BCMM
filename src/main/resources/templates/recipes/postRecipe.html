@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head('Post Recipe')"></head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <form th:action="@{/recipe/create}" method="post" th:object="${recipe}" style="text-align: center">
     <h1>Share a Recipe</h1>
     <label for="title">Title</label><br>

@@ -28,7 +28,7 @@ public class RecipeController {
     @GetMapping("/recipes")
     public String getPosts(Model model){
         model.addAttribute("recipes", recipeDao.findAll());
-        return "recipes/search";
+        return "recipes/index";
     }
 
 
