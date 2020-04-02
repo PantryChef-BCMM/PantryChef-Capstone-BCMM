@@ -14,20 +14,11 @@ public class Ingredient {
     @Column(nullable = false)
     private String ingredient_name;
 
-    // Many to many relationship connection to recipes table
-//    @ManyToMany
-//    @JoinColumn(name = "ingredients")
-//    private List<Recipe> recipe;
-
     @OneToMany(mappedBy = "ingredient")
     Set<ShoppingList> users_ingredient;
 
     @OneToMany(mappedBy = "ingredient")
     Set<RecipeIngredients> recipeIngredients;
-
-    // Many to many relationship connection to recipe table
-//    @ManyToMany
-//    @JoinColumn(name = "recipe_ingredients")
 
     public Ingredient() {
     }
