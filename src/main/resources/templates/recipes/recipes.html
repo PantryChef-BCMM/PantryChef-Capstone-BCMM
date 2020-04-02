@@ -3,11 +3,33 @@
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Recipes')"></head>
 <body style="margin: 0 auto">
-<nav th:replace="partials/navbar :: navbar"></nav>
-    <h1 style="text-decoration: underline;">Recipes!</h1>
-    <p>API Recipes Section</p>
-    <p>Created Recipes Section</p>
-    <p>Recipes coming soon!</p>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<div class="wrapper">
+    <nav th:replace="partials/navbar :: navbar"></nav>
+    <header class="container my-5">
+        <div class="jumbotron">
+            <h1 class="text-center display-1">Recipes</h1>
+        </div>
+    </header>
+    <main class="container">
+        <div th:each="recipe : ${recipes}">
+            <a th:href="@{|/recipes/${recipe.id}|}"><h1 th:text="${recipe.title}"></h1></a>
+            <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
+            <p style="font-weight: bold">Ingredient(s):</p>
+            <p th:text="${recipe.ingredient}"></p>
+            <p style="font-weight: bold">Directions:</p>
+            <p th:text="${recipe.directions}"></p>
+            <a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span></a>
+            <br>
+            <br>
+            <a th:href="@{|/recipes/${recipe.id}/edit|}"><button>Edit Post</button></a>
+            <form th:action="@{|/recipes/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+                <button>Delete Post</button>
+            </form>
+            <hr>
+        </div>
+    </main>
+</div>
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

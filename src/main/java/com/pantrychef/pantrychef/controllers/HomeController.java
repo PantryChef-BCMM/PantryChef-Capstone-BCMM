@@ -20,11 +20,6 @@ public class HomeController {
         return "recipes/landingPage";
     }
 
-//    @GetMapping("/recipes")
-//    public String index() {
-//        return  "recipes/recipes";
-//    }
-
     @GetMapping("/home")
     @ResponseBody
     public String welcome() {
@@ -39,9 +34,5 @@ public class HomeController {
         return "recipes/profile";
     }
 
-//    @GetMapping("/create")
-//    public String create() {
-//        return "recipes/postRecipe";
-//    }
 }
 

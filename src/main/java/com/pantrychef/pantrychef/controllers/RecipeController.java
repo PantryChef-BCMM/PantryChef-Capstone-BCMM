@@ -54,7 +54,7 @@ public class RecipeController {
         return "recipes/editRecipe";
     }
 
-    @PostMapping("/recipe/edit")
+    @PostMapping("/recipe/{id}/edit")
     public String updateRecipe(@ModelAttribute Recipe recipe){
 //        Recipe recipeToEdit = recipeDao.getOne(id);
 //        recipeToEdit.setTitle(recipeToEdit.getTitle());
@@ -100,12 +100,14 @@ public class RecipeController {
         return "redirect:/recipes";
     }
 
-    //Delete a post
-    @PostMapping("/recipes/delete/{id}")
-    public String deleteRecipe(@PathVariable long id){
+    //Delete a recipe post
+    @PostMapping("/recipes/{id}/delete")
+    public String delete(@PathVariable long id){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId())
+            // delete post
             recipeDao.deleteById(id);
-        return "redirect:/recipes/recipes";
+
+        return "redirect:/recipes";
     }
 }
