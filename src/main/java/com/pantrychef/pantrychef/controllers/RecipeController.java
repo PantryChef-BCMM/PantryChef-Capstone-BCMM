@@ -38,7 +38,6 @@ public class RecipeController {
         return "recipes/recipes";
     }
 
-
     @GetMapping("/recipes/{id}")
     public String getPost(@PathVariable long id, Model model){
         model.addAttribute("recipe", recipeDao.findById(id));
@@ -55,7 +54,7 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/{id}/edit")
-    public String updateRecipe(@ModelAttribute Recipe recipe){
+    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id){
 //        Recipe recipeToEdit = recipeDao.getOne(id);
 //        recipeToEdit.setTitle(recipeToEdit.getTitle());
 //        recipeToEdit.setDirections(recipeToEdit.getDirections());
@@ -101,7 +100,7 @@ public class RecipeController {
     }
 
     //Delete a recipe post
-    @PostMapping("/recipes/{id}/delete")
+    @PostMapping("/recipe/{id}/delete")
     public String delete(@PathVariable long id){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId())
