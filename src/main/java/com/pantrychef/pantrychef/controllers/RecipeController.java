@@ -25,9 +25,11 @@ public class RecipeController {
     @Value("${filestack.api.key}")
     private String fsapi;
 
-    public RecipeController(RecipeRepo recipeDao, UserRepo userDao) {
+    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, RecipeIngredientsRepo recipeIngredientsDao, IngredientsRepo ingredientsDao) {
         this.recipeDao = recipeDao;
         this.userDao = userDao;
+        this.recipeIngredientsDao = recipeIngredientsDao;
+        this.ingredientsDao = ingredientsDao;
     }
 
     @GetMapping("/recipes")
