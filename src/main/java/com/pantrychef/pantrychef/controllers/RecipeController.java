@@ -1,6 +1,5 @@
 package com.pantrychef.pantrychef.controllers;
 import com.pantrychef.pantrychef.models.Recipe;
-import com.pantrychef.pantrychef.models.RecipeImages;
 import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.RecipeRepo;
 import com.pantrychef.pantrychef.repositories.UserRepo;
@@ -70,12 +69,12 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/create")
-    public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam List<RecipeImages> path){
+    public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam(name = "recipeImageUrl") String recipeImageUrl){
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
         recipe.setIngredient(ingredients);
         recipe.setDirections(directions);
-        recipe.setImages(path);
+        recipe.setRecipeImageUrl(recipeImageUrl);
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
         recipeDao.save(recipe);

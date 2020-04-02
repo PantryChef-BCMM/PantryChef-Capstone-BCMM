@@ -14,32 +14,13 @@
     <input id="directions" name="directions" type="text" style="width: 40%"/><br><br>
     <!-- Button calls function 'pickMark()' onclick now -->
     <input type="BUTTON" value="Add Recipe Image(s)" id="pickWatermark" onclick="pickMark()"><br><br>
-    <label for="path">Path test</label><br>
-    <input id="path" name="path" type="text" style="width: 40%"/><br><br>
+    <input type="hidden" name="recipeImageUrl" id="recipeImageUrl" th:field="*{recipeImageUrl}">
     <input type="submit" value="Submit" />
 </form>
+
 <th:block th:replace="partials/scripts :: scripts"/>
 
-<!--<script>-->
-
-<!--    var client = filestack.init(document.querySelector('meta.fsapi').content);-->
-<!--    //The function pickMark now will open the file picker-->
-<!--    function pickMark() {-->
-<!--        console.log("Uploading Photo");-->
-<!--        //Opening the file picker here-->
-<!--        client.pick({-->
-<!--            accept: 'image/*',-->
-<!--            maxFiles:3-->
-<!--        }).then(function(result) {-->
-<!--            console.log(result);-->
-<!--            for(var i = 0; i < result.filesUploaded.length; i++){-->
-<!--                console.log("File url: " + result.filesUploaded[i].url);-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
-
-<!--</script>-->
-<script>
+<script th:inline="javascript">
     var client = filestack.init(document.querySelector('meta.fsapi').content);
     //The function pickMark now will open the file picker
     function pickMark() {
@@ -49,24 +30,12 @@
             accept: 'image/*',
             maxFiles:3
         }).then(function(result) {
-            const image_urls = [];
-            for(var i = 0; i < result.filesUploaded.length; i++){
-                image_urls.push("File url: " + result.filesUploaded[i].url);
-            }
-            const url = '/recipies/image_store';
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(image_urls),
-            };
-            fetch(url, options)
-                .then(console.log("filesUploaded"))
-                .catch(console.log("filenotUploaded"));
+                console.log("File url: " + result.filesUploaded[0].url);
+                console.log(pickWatermark);
+                document.getElementById("recipeImageUrl").value = result.filesUploaded[0].url;
         });
     }
-</script>
 
+</script>
 </body>
 </html>
