@@ -3,8 +3,8 @@
 <head th:replace="partials/head :: head('Profile')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<form th:action="@{/recipe/edit}" method="post" style="text-align: center">
-    <h1>Edit a Recipe</h1>
+<form th:action="@{|/recipe/${recipe.id}/edit|}" method="post" style="text-align: center">
+    <h1>Share a Recipe</h1>
     <label for="title">Title</label><br>
     <input id="title" name="title" type="text" style="width: 40%"/><br>
     <label for="ingredients">Ingredients</label><br>
