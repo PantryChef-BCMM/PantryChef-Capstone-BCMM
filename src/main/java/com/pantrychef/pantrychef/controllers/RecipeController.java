@@ -1,6 +1,10 @@
 package com.pantrychef.pantrychef.controllers;
+import com.pantrychef.pantrychef.models.Ingredient;
 import com.pantrychef.pantrychef.models.Recipe;
+import com.pantrychef.pantrychef.models.RecipeIngredients;
 import com.pantrychef.pantrychef.models.User;
+import com.pantrychef.pantrychef.repositories.IngredientsRepo;
+import com.pantrychef.pantrychef.repositories.RecipeIngredientsRepo;
 import com.pantrychef.pantrychef.repositories.RecipeRepo;
 import com.pantrychef.pantrychef.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +20,8 @@ public class RecipeController {
 
     private RecipeRepo recipeDao;
     private UserRepo userDao;
-
+    private RecipeIngredientsRepo recipeIngredientsDao;
+    private IngredientsRepo ingredientsDao;
     @Value("${filestack.api.key}")
     private String fsapi;
 
@@ -69,7 +74,7 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/create")
-    public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam(name = "recipeImageUrl") String recipeImageUrl){
+    public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam int quantity, @RequestParam(name = "recipeImageUrl") String recipeImageUrl){
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
         recipe.setIngredient(ingredients);
@@ -78,7 +83,19 @@ public class RecipeController {
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
         recipeDao.save(recipe);
-        return "redirect:/recipes/recipes";
+
+        RecipeIngredients recipeIngredients = new RecipeIngredients();
+//        recipeIngredients.setIngredient("apple");
+        recipeIngredients.setId(recipe.getId());
+        recipeIngredients.setQuantity(quantity);
+        recipeIngredients.setRecipe(recipe);
+        recipeIngredientsDao.save(recipeIngredients);
+
+        Ingredient ingredient = new Ingredient();
+        ingredient.setIngredient_name(ingredients);
+        ingredient.setId(recipe.getId());
+
+        return "redirect:/recipes/profile";
     }
 
     //Delete a post
