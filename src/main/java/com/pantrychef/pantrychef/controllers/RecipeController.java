@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.List;
+
 @Controller
 public class RecipeController {
 
@@ -39,10 +42,16 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes/{id}")
-    public String getPost(@PathVariable long id, Model model){
-        model.addAttribute("recipe", recipeDao.findById(id));
-        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("userId", u.getId());
+    public String getPost(@PathVariable long id, Model model, Principal principal){
+//        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("userId", u.getId());
+        String userName = "";
+        if (principal != null) {
+            userName = principal.getName();
+//            userDao.findByUsername(userName);
+        }
+        model.addAttribute("userName", userName);
+        model.addAttribute("recipe",recipeDao.getOne(id));
         return "recipes/showRecipe";
     }
 
@@ -60,6 +69,8 @@ public class RecipeController {
         recipeToEdit.setTitle(recipeToEdit.getTitle());
         recipeToEdit.setDirections(recipeToEdit.getDirections());
         recipeToEdit.setIngredient(recipeToEdit.getIngredient());
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        recipe.setUser(u);
         recipeDao.save(recipe);
         return "redirect:/recipes";
     }
