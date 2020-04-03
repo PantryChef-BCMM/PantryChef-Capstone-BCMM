@@ -1,6 +1,37 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
-<!--<head th:replace="partials/head :: head('Profile')"></head>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('View Recipe')"></head>
+<body>
 
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-<!--<h1>Showing your recipe!</h1>-->
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h1 th:text="${recipe.title}"></h1>
+<img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
+<p style="font-weight: bold">Ingredient(s):</p>
+<p th:text="${recipe.ingredient}"></p>
+<p style="font-weight: bold">Directions:</p>
+<p th:text="${recipe.directions}"></p>
+<!--<a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span> </a>-->
+<a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit Post</button></a>
+<form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+    <button>Delete Post</button>
+</form>
+
+<th:block th:replace="partials/scripts :: scripts"/>
+
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--    <div th:if="${userName == recipe.user.username}">-->
+<!--        <a th:href="@{|/recipes/${recipe.id}/edit|}"><button>Edit Post</button></a>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--    <div sec:authorize="isAuthenticated()">-->
+<!--        This content is only shown to authenticated users.-->
+
+<!--        User ID: <span th:text="${#authentication.principal.id}"/>-->
+<!--        Username: <span th:text="${#authentication.principal.username}"/>-->
+<!--        Email: <span th:text="${#authentication.principal.email}"/>-->
+<!--    </div>-->
+
+</body>
+</html>
