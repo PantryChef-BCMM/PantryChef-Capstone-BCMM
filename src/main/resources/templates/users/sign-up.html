@@ -21,8 +21,32 @@
     <label for="password">Password</label>
     <input type="password" th:field="*{password}"/>
 
+    <!-- Button calls function 'pickMark()' onclick now -->
+    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>
+    <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
+
     <input value="Sign me up!" type="submit" />
 </form>
+
 <th:block th:replace="partials/scripts :: scripts"/>
+
+<script th:inline="javascript">
+    var client = filestack.init(document.querySelector('meta.fsapi').content);
+    //The function pickMark now will open the file picker
+    function pickMark() {
+        console.log("Uploading Photo");
+        //Opening the file picker here
+        client.pick({
+            accept: 'image/*',
+            maxFiles:1
+        }).then(function(result) {
+            console.log("File url: " + result.filesUploaded[0].url);
+            console.log(pickWatermark);
+            document.getElementById("profileImageUrl").value = result.filesUploaded[0].url;
+        });
+    }
+
+</script>
+
 </body>
 </html>
