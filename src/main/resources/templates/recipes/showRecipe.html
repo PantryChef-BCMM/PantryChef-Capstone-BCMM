@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>Viewing Post</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('View Recipe')"></head>
 <body>
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <h1 th:text="${recipe.title}"></h1>
 <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
 <p style="font-weight: bold">Ingredient(s):</p>
@@ -18,7 +17,7 @@
     <button>Delete Post</button>
 </form>
 
-<br>
+<th:block th:replace="partials/scripts :: scripts"/>
 
 <!--<div sec:authorize="isAuthenticated()">-->
 <!--    <div th:if="${userName == recipe.user.username}">-->
