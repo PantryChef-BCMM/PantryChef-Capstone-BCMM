@@ -1,9 +1,12 @@
 package com.pantrychef.pantrychef.controllers;
 
+import com.pantrychef.pantrychef.models.Recipe;
 import com.pantrychef.pantrychef.models.User;
+import com.pantrychef.pantrychef.repositories.RecipeRepo;
 import com.pantrychef.pantrychef.repositories.UserRepo;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +14,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 @Controller
 public class UserController {
     private UserRepo users;
+    private RecipeRepo recipeDao;
     private PasswordEncoder passwordEncoder;
     @Value("${filestack.api.key}")
     private String fsapi;
 
-    public UserController(UserRepo users, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepo users, PasswordEncoder passwordEncoder, RecipeRepo recipeDao) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.recipeDao = recipeDao;
     }
 
     @GetMapping("/sign-up")
@@ -36,5 +42,15 @@ public class UserController {
         user.setPassword(hash);
         users.save(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", u);
+        model.addAttribute("recipes", recipeDao.findAll());
+        model.addAttribute("fsapi", fsapi);
+//        model.addAttribute("user", CurrentUser);
+        return "recipes/profile";
     }
 }
