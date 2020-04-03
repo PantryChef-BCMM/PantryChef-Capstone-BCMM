@@ -104,7 +104,6 @@ public class RecipeController {
         recipeDao.save(recipe);
 
         RecipeIngredients recipeIngredients = new RecipeIngredients();
-//        recipeIngredients.setIngredient("apple");
         recipeIngredients.setId(recipe.getId());
         recipeIngredients.setQuantity(quantity);
         recipeIngredients.setRecipe(recipe);
@@ -113,6 +112,7 @@ public class RecipeController {
         Ingredient ingredient = new Ingredient();
         ingredient.setIngredient_name(ingredients);
         ingredient.setId(recipe.getId());
+        ingredientsDao.save(ingredient);
 
         return "redirect:/recipes";
     }
