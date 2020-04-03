@@ -74,6 +74,8 @@ public class RecipeController {
         recipeToEdit.setTitle(recipeToEdit.getTitle());
         recipeToEdit.setDirections(recipeToEdit.getDirections());
         recipeToEdit.setIngredient(recipeToEdit.getIngredient());
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        recipe.setUser(u);
         recipeDao.save(recipe);
         return "redirect:/recipes";
     }
