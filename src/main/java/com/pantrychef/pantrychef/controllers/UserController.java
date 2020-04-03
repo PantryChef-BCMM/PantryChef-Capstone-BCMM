@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private UserRepo users;
     private PasswordEncoder passwordEncoder;
+    @Value("${filestack.api.key}")
+    private String fsapi;
 
     public UserController(UserRepo users, PasswordEncoder passwordEncoder) {
         this.users = users;
@@ -24,6 +26,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("fsapi", fsapi);
         return "users/sign-up";
     }
 

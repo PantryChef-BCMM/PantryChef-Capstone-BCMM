@@ -31,6 +31,8 @@ public class User {
     @Column(nullable = false)
     private boolean isAdmin;
 
+    @Column(nullable = false)
+    private String profileImageUrl;
 
     public User() {
     }
@@ -115,5 +117,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

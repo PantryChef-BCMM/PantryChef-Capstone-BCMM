@@ -3,18 +3,18 @@
 <head th:replace="partials/head :: head('Profile')"></head>
 <body style="margin: auto">
 <nav th:replace="partials/navbar :: navbar"></nav>
-<h1>This is the Index Profile Page!</h1>
-<p>View your saved recipes!</p>
 
 <!--Welcome <span th:text="${#authentication.principal.username}"/>-->
 
 <h1 th:text="'Welcome, ' + ${user.username} + '!'"></h1>
+<h1 th:text="${user.profileImageUrl}"></h1>
+<img alt="" class="profileImage" th:attr="src=@{${user.profileImageUrl}}" style="height: 150px; width: auto" />
 <h1 th:text="${user.email}"></h1>
 
 <th:block th:replace="partials/scripts :: scripts"/>
 
 <!-- Button calls function 'pickMark()' onclick now -->
-<input type="BUTTON" value="Add Profile Picture" id="pickWatermark" onclick="pickMark()">
+<input type="BUTTON" value="Edit Profile Picture" id="pickWatermark" onclick="pickMark()">
 <script>
     var client = filestack.init(document.querySelector('meta.fsapi').content);
     //The function pickMark now will open the file picker
@@ -33,6 +33,8 @@
     });
 }
 </script>
+
+<p>View your saved recipes!</p>
 
 </body>
 </html>

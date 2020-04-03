@@ -47,19 +47,36 @@ public class RecipeController {
     }
 
     //Edit a Recipe
+//    @GetMapping("/recipe/{id}/edit")
+//    public String editRecipeForm(Model model, @PathVariable long id){
+//        model.addAttribute("recipe", recipeDao.getOne(id));
+//        return "recipes/editRecipe";
+//    }
+
     @GetMapping("/recipe/{id}/edit")
-    public String editRecipeForm(Model model, @PathVariable long id){
-        model.addAttribute("recipe", recipeDao.getOne(id));
+    public String editForm(@PathVariable long id, Model model) {
+        Recipe recipeToEdit = recipeDao.getOne(id);
+        model.addAttribute("recipe", recipeToEdit);
         return "recipes/editRecipe";
     }
 
+//    @PostMapping("/recipe/{id}/edit")
+//    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id){
+////        Recipe recipeToEdit = recipeDao.getOne(id);
+////        recipeToEdit.setTitle(recipeToEdit.getTitle());
+////        recipeToEdit.setDirections(recipeToEdit.getDirections());
+////        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
+//        recipeDao.save(recipe);
+//        return "redirect:/recipes";
+//    }
+
     @PostMapping("/recipe/{id}/edit")
-    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id){
-//        Recipe recipeToEdit = recipeDao.getOne(id);
-//        recipeToEdit.setTitle(recipeToEdit.getTitle());
-//        recipeToEdit.setDirections(recipeToEdit.getDirections());
-//        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
-        recipeDao.save(recipe);
+    public String updatePost(@PathVariable long id, @RequestParam String title, @RequestParam String ingredient, @RequestParam String directions) {
+        Recipe r = recipeDao.getOne(id);
+        r.setTitle(title);
+        r.setIngredient(ingredient);
+        r.setDirections(directions);
+        recipeDao.save(r);
         return "redirect:/recipes";
     }
 
