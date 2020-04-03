@@ -36,22 +36,26 @@ public class RecipeController {
 
     @GetMapping("/recipes")
     public String getPosts(Model model){
-        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", u);
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
+            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", u);
+        }else{
+            model.addAttribute("recipes", recipeDao.findAll());
+            return "recipes/recipes";
+        }
         model.addAttribute("recipes", recipeDao.findAll());
         return "recipes/recipes";
     }
 
     @GetMapping("/recipes/{id}")
-    public String getPost(@PathVariable long id, Model model, Principal principal){
-//        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("userId", u.getId());
-        String userName = "";
-        if (principal != null) {
-            userName = principal.getName();
-//            userDao.findByUsername(userName);
+    public String getPost(@PathVariable long id, Model model){
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", u);
+        }else{
+            model.addAttribute("recipe",recipeDao.getOne(id));
+            return "recipes/showRecipe";
         }
-        model.addAttribute("userName", userName);
         model.addAttribute("recipe",recipeDao.getOne(id));
         return "recipes/showRecipe";
     }
