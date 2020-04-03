@@ -3,16 +3,21 @@
 <head th:replace="partials/head :: head('Edit Recipe')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<form th:action="@{|/recipe/${recipe.id}/edit|}" method="post" style="text-align: center">
-    <h1>Edit a Recipe</h1>
+<form th:action="@{|/recipe/${recipe.id}/edit|}" method="post" th:object="${recipe}" style="text-align: center">
+    <h1>Edit Recipe</h1>
     <label for="title">Title</label><br>
-    <input id="title" name="title" type="text" style="width: 40%"/><br>
-    <label for="ingredients">Ingredients</label><br>
-    <input id="ingredients" name="ingredients" type="text" style="width: 40%"/><br>
+    <input th:field="*{title}" style="width: 40%"/><br>
+    <label for="ingredient">Add Ingredient</label>
+    <input th:field="*{ingredient}" style="width: 23%"/>
+    <input type="BUTTON" value="Add" id="addIngredient" onclick="">
+    <!--    <input type="BUTTON" value="Delete" id="deleteIngredient" onclick="">-->
+    <label for="quantity">Quantity</label>
+    <input type="number" id="quantity" name="quantity" min="1" max="25"><br>
     <label for="directions">Directions</label><br>
-    <input id="directions" name="directions" type="text" style="width: 40%"/><br><br>
+    <input th:field="*{directions}" style="width: 40%"/><br><br>
     <!-- Button calls function 'pickMark()' onclick now -->
     <input type="BUTTON" value="Add Recipe Image(s)" id="pickWatermark" onclick="pickMark()"><br><br>
+    <input type="hidden" name="recipeImageUrl" id="recipeImageUrl" th:field="*{recipeImageUrl}">
     <input type="submit" value="Submit" />
 </form>
 <th:block th:replace="partials/scripts :: scripts"/>
@@ -25,12 +30,12 @@
         //Opening the file picker here
         client.pick({
             accept: 'image/*',
-            maxFiles:3
+            maxFiles:1
         }).then(function(result) {
-            console.log(result);
-            for(var i = 0; i < result.filesUploaded.length; i++){
-                console.log("File url: " + result.filesUploaded[i].url);
-            }
+            console.log("File url: " + result.filesUploaded[0].url);
+            console.log(pickWatermark);
+            document.getElementById("recipeImageUrl").value = result.filesUploaded[0].url;
+
         });
     }
 </script>
