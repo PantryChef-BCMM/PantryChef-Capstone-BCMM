@@ -14,6 +14,36 @@
 
 <!-- Button calls function 'pickMark()' onclick now -->
 <input type="BUTTON" value="Edit Profile Picture" id="pickWatermark" onclick="pickMark()">
+
+
+
+<div th:each="recipe : ${recipes}">
+    <div th:if="${user.id} == ${recipe.user.id}">
+        <a th:href="@{|/recipes/${recipe.id}|}"><h1 th:text="${recipe.title}"></h1></a>
+        <a th:href="@{|/recipes/${recipe.id}|}"><h6 th:text="'Posted by: ' + ${recipe.user.username}"></h6></a>
+        <!--            <p th:text="${recipe.user.username}"></p>-->
+        <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
+        <p style="font-weight: bold">Ingredient(s):</p>
+        <p th:text="${recipe.ingredient}"></p>
+        <p style="font-weight: bold">Directions:</p>
+        <p th:text="${recipe.directions}"></p>
+        <!--            <a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span></a>-->
+        <br>
+        <br>
+        <div sec:authorize="isAuthenticated()">
+            <div th:if="${user.id} == ${recipe.user.id}">
+                <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit Post</button></a>
+                <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+                    <button>Delete Post</button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+
+</div>
+
 <script>
     var client = filestack.init(document.querySelector('meta.fsapi').content);
     //The function pickMark now will open the file picker

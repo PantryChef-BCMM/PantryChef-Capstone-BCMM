@@ -26,13 +26,5 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/profile")
-    public String profile(Model model) {
-        User CurrentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("fsapi", fsapi);
-        model.addAttribute("user", CurrentUser);
-        return "recipes/profile";
-    }
-
 }
 
