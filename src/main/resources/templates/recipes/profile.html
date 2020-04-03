@@ -6,7 +6,7 @@
 
 <!--Welcome <span th:text="${#authentication.principal.username}"/>-->
 
-<h1 th:text="'Welcome, ' + ${user.username} + '!'"></h1>
+<h1 th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>
 <h1 th:text="${user.profileImageUrl}"></h1>
 <img alt="" class="profileImage" th:attr="src=@{${user.profileImageUrl}}" style="height: 150px; width: auto" />
 <h1 th:text="${user.email}"></h1>

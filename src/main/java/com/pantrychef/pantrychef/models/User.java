@@ -43,6 +43,9 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        first_name = copy.first_name;
+        last_name = copy.last_name;
+        profileImageUrl = copy.profileImageUrl;
     }
 
     //Many to many  relationship connection to recipes table
