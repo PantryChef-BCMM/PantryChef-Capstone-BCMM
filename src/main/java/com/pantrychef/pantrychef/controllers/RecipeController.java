@@ -13,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 public class RecipeController {
 
@@ -34,6 +32,8 @@ public class RecipeController {
 
     @GetMapping("/recipes")
     public String getPosts(Model model){
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", u);
         model.addAttribute("recipes", recipeDao.findAll());
         return "recipes/recipes";
     }
@@ -45,13 +45,6 @@ public class RecipeController {
         model.addAttribute("userId", u.getId());
         return "recipes/showRecipe";
     }
-
-    //Edit a Recipe
-//    @GetMapping("/recipe/{id}/edit")
-//    public String editRecipeForm(Model model, @PathVariable long id){
-//        model.addAttribute("recipe", recipeDao.getOne(id));
-//        return "recipes/editRecipe";
-//    }
 
     @GetMapping("/recipe/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
@@ -70,17 +63,6 @@ public class RecipeController {
         recipeDao.save(recipe);
         return "redirect:/recipes";
     }
-
-//    @PostMapping("/recipe/{id}/edit")
-//    public String updatePost(@PathVariable long id, @RequestParam String title, @RequestParam String ingredient, @RequestParam String directions) {
-//        Recipe r = recipeDao.getOne(id);
-//        r.setTitle(title);
-//        r.setIngredient(ingredient);
-//        r.setDirections(directions);
-//        recipeDao.save(r);
-//        return "redirect:/recipes";
-//    }
-
 
     //Create a recipe
     @GetMapping("/recipe/create")
@@ -121,10 +103,12 @@ public class RecipeController {
     @PostMapping("/recipe/{id}/delete")
     public String delete(@PathVariable long id){
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId())
+        if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId()){
             // delete post
             recipeDao.deleteById(id);
-
+        }else{
+            return "redirect:/recipes";
+        }
         return "redirect:/recipes";
     }
 }

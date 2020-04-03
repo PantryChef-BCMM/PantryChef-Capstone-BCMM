@@ -1,6 +1,5 @@
-package com.pantrychef.pantrychef.security;
+package com.pantrychef.pantrychef.models;
 
-import com.pantrychef.pantrychef.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
