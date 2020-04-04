@@ -1,12 +1,6 @@
 package com.pantrychef.pantrychef.controllers;
-import com.pantrychef.pantrychef.models.Ingredient;
-import com.pantrychef.pantrychef.models.Recipe;
-import com.pantrychef.pantrychef.models.RecipeIngredients;
-import com.pantrychef.pantrychef.models.User;
-import com.pantrychef.pantrychef.repositories.IngredientsRepo;
-import com.pantrychef.pantrychef.repositories.RecipeIngredientsRepo;
-import com.pantrychef.pantrychef.repositories.RecipeRepo;
-import com.pantrychef.pantrychef.repositories.UserRepo;
+import com.pantrychef.pantrychef.models.*;
+import com.pantrychef.pantrychef.repositories.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,14 +19,16 @@ public class RecipeController {
     private UserRepo userDao;
     private RecipeIngredientsRepo recipeIngredientsDao;
     private IngredientsRepo ingredientsDao;
+    private CategoriesRepo categoriesDao;
     @Value("${filestack.api.key}")
     private String fsapi;
 
-    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, RecipeIngredientsRepo recipeIngredientsDao, IngredientsRepo ingredientsDao) {
+    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, RecipeIngredientsRepo recipeIngredientsDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao) {
         this.recipeDao = recipeDao;
         this.userDao = userDao;
         this.recipeIngredientsDao = recipeIngredientsDao;
         this.ingredientsDao = ingredientsDao;
+        this.categoriesDao = categoriesDao;
     }
 
     @GetMapping("/recipes")
@@ -85,18 +82,21 @@ public class RecipeController {
     public String createForm(Model model){
 //        User CurrentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        model.addAttribute("user", CurrentUser);
+//        List<Categories> categories = new ArrayList<>();
         model.addAttribute("recipe", new Recipe());
         model.addAttribute("fsapi", fsapi);
+//        model.addAttribute("categories", categoriesDao.findAll());
         return "recipes/postRecipe";
     }
 
     @PostMapping("/recipe/create")
-    public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam int quantity, @RequestParam(name = "recipeImageUrl") String recipeImageUrl){
+    public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam int quantity, @RequestParam(name = "recipeImageUrl") String recipeImageUrl, @RequestParam List<Categories> categories){
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
         recipe.setIngredient(ingredients);
         recipe.setDirections(directions);
         recipe.setRecipeImageUrl(recipeImageUrl);
+        recipe.setCategories(categories); //@RequestParam List<Categories> categories
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
         recipeDao.save(recipe);
