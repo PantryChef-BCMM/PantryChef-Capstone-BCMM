@@ -20,6 +20,7 @@ public class UserController {
     private UserRepo users;
     private RecipeRepo recipeDao;
     private PasswordEncoder passwordEncoder;
+    private RecipeRepo recipeDao;
     @Value("${filestack.api.key}")
     private String fsapi;
 
@@ -46,11 +47,18 @@ public class UserController {
 
     @GetMapping("/profile")
     public String profile(Model model) {
+<<<<<<< HEAD
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", u);
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("fsapi", fsapi);
 //        model.addAttribute("user", CurrentUser);
+=======
+        User CurrentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("fsapi", fsapi);
+        model.addAttribute("user", CurrentUser);
+        model.addAttribute("recipes", recipeDao.findAll());
+>>>>>>> 9b08edc2aff19bdc1d0dcb0129cd44b9889c26a4
         return "recipes/profile";
     }
 }

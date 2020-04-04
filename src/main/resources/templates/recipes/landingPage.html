@@ -3,9 +3,15 @@
 <head th:replace="partials/head :: head('Landing Page')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<h1 style="text-decoration: underline;">PantryChef</h1>
-<h2>Introducing a user-friendly cooking aide for users of any culinary skill level.</h2>
-<p>Recipes coming soon!</p>
+<div class="m-5 pt-5">
+    <header>
+        <div class="jumbotron pt-5">
+            <h1 class="text-center" style="text-decoration: underline;">PantryChef</h1>
+        </div>
+            <h2 class="text-center">Introducing a user-friendly cooking aide for users of any culinary skill level.</h2>
+    </header>
+<!--    <h1 style="text-decoration: underline;">PantryChef</h1>-->
+</div>
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>
