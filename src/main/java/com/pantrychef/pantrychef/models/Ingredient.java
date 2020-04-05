@@ -12,13 +12,16 @@ public class Ingredient {
     private long id;
 
     @Column(nullable = false)
-    private String ingredient_name;
+    private String name;
 
-    @OneToMany(mappedBy = "ingredient")
-    Set<ShoppingList> users_ingredient;
+    @ManyToMany(mappedBy = "ingredientList")
+    private List<Recipe> recipeList;
 
-    @OneToMany(mappedBy = "ingredient")
-    Set<RecipeIngredients> recipeIngredients;
+//    @OneToMany(mappedBy = "ingredient")
+//    private Set<ShoppingList> users_ingredient;
+//
+//    @OneToMany(mappedBy = "ingredient")
+//    private List<RecipeIngredients> recipeIngredients;
 
     public Ingredient() {
     }
@@ -27,15 +30,32 @@ public class Ingredient {
         return id;
     }
 
+//    public List<RecipeIngredients> getRecipeIngredients() {
+//        return recipeIngredients;
+//    }
+//
+//    public void setRecipeIngredients(List<RecipeIngredients> recipeIngredients) {
+//        this.recipeIngredients = recipeIngredients;
+//    }
+
+
+    public List<Recipe> getRecipeList() {
+        return recipeList;
+    }
+
+    public void setRecipeList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
 
-    public String getIngredient_name() {
-        return ingredient_name;
+    public String getName() {
+        return name;
     }
 
-    public void setIngredient_name(String ingredient_name) {
-        this.ingredient_name = ingredient_name;
+    public void setName(String name) {
+        this.name = name;
     }
 }

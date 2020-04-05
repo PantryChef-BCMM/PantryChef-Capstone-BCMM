@@ -1,14 +1,26 @@
 package com.pantrychef.pantrychef.controllers;
+<<<<<<< HEAD
+import com.pantrychef.pantrychef.models.Ingredient;
+import com.pantrychef.pantrychef.models.Recipe;
+import com.pantrychef.pantrychef.models.User;
+import com.pantrychef.pantrychef.repositories.IngredientsRepo;
+import com.pantrychef.pantrychef.repositories.RecipeRepo;
+import com.pantrychef.pantrychef.repositories.UserRepo;
+=======
 import com.pantrychef.pantrychef.models.*;
 import com.pantrychef.pantrychef.repositories.*;
+>>>>>>> master
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
+=======
 
 import java.security.Principal;
+>>>>>>> master
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,16 +29,18 @@ public class RecipeController {
 
     private RecipeRepo recipeDao;
     private UserRepo userDao;
-    private RecipeIngredientsRepo recipeIngredientsDao;
     private IngredientsRepo ingredientsDao;
     private CategoriesRepo categoriesDao;
     @Value("${filestack.api.key}")
     private String fsapi;
 
+<<<<<<< HEAD
+    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao) {
+=======
     public RecipeController(RecipeRepo recipeDao, UserRepo userDao, RecipeIngredientsRepo recipeIngredientsDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao) {
+>>>>>>> master
         this.recipeDao = recipeDao;
         this.userDao = userDao;
-        this.recipeIngredientsDao = recipeIngredientsDao;
         this.ingredientsDao = ingredientsDao;
         this.categoriesDao = categoriesDao;
     }
@@ -70,9 +84,13 @@ public class RecipeController {
         Recipe recipeToEdit = recipeDao.getOne(id);
         recipeToEdit.setTitle(recipeToEdit.getTitle());
         recipeToEdit.setDirections(recipeToEdit.getDirections());
+<<<<<<< HEAD
+//        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
+=======
         recipeToEdit.setIngredient(recipeToEdit.getIngredient());
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
+>>>>>>> master
         recipeDao.save(recipe);
         return "redirect:/recipes";
     }
@@ -90,10 +108,14 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/create")
+<<<<<<< HEAD
+    public String createRecipe(@RequestParam(name= "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam(name = "recipeImageUrl") String recipeImageUrl){
+=======
     public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam int quantity, @RequestParam(name = "recipeImageUrl") String recipeImageUrl, @RequestParam List<Categories> categories){
+>>>>>>> master
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
-        recipe.setIngredient(ingredients);
+//        recipe.setIngredient(ingredients);
         recipe.setDirections(directions);
         recipe.setRecipeImageUrl(recipeImageUrl);
         recipe.setCategories(categories); //@RequestParam List<Categories> categories
@@ -101,16 +123,29 @@ public class RecipeController {
         recipe.setUser(u);
         recipeDao.save(recipe);
 
-        RecipeIngredients recipeIngredients = new RecipeIngredients();
-//        recipeIngredients.setIngredient("apple");
-        recipeIngredients.setId(recipe.getId());
-        recipeIngredients.setQuantity(quantity);
-        recipeIngredients.setRecipe(recipe);
-        recipeIngredientsDao.save(recipeIngredients);
+        List<Ingredient> recipeIngredientList = new ArrayList<>();
 
-        Ingredient ingredient = new Ingredient();
-        ingredient.setIngredient_name(ingredients);
-        ingredient.setId(recipe.getId());
+        for(String ingredient : ingredientsStringList){
+            if(ingredient != ""){
+                if(ingredientsDao.findIngredientByname(ingredient) == null) {
+                    Ingredient addIngredient = new Ingredient();
+                    addIngredient.setName(ingredient);
+                    List<Recipe> recipeList = new ArrayList<>();
+                    recipeList.add(recipe);
+                    addIngredient.setRecipeList(recipeList);
+                    recipeIngredientList.add(ingredientsDao.save(addIngredient));
+                }else{
+                    Ingredient updateIngredient = ingredientsDao.findIngredientByname(ingredient);
+                    List<Recipe> recipeList = updateIngredient.getRecipeList();
+                    recipeList.add(recipe);
+                    updateIngredient.setRecipeList(recipeList);
+                    recipeIngredientList.add(ingredientsDao.save(updateIngredient));
+
+                }
+            }
+        }
+        recipe.setIngredientList(recipeIngredientList);
+        recipeDao.save(recipe);
 
         return "redirect:/recipes";
     }

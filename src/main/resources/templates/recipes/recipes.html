@@ -21,7 +21,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--            <p th:text="${recipe.user.username}"></p>-->
             <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
             <p style="font-weight: bold">Ingredient(s):</p>
-            <p th:text="${recipe.ingredient}"></p>
+
+            <div th:each="ingredient : ${recipe.ingredientList}">
+                <p th:text="${ingredient.name}"></p>
+            </div>
+
             <p style="font-weight: bold">Directions:</p>
             <p th:text="${recipe.directions}"></p>
 <!--            <p th:text="${recipe.categories}"></p>-->
