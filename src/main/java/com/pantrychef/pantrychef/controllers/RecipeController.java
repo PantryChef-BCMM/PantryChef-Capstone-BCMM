@@ -86,7 +86,7 @@ public class RecipeController {
         model.addAttribute("recipe", new Recipe());
         model.addAttribute("fsapi", fsapi);
 //        model.addAttribute("categories", categoriesDao.findAll());
-        return "recipes/postRecipe";
+        return "recipes/createRecipe";
     }
 
     @PostMapping("/recipe/create")
