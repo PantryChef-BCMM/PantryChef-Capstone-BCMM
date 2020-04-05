@@ -5,15 +5,29 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container m-5">
     <form th:action="@{/recipe/create}" method="post" th:object="${recipe}" style="text-align: center">
+
         <h1>Share a Recipe</h1>
+
         <label for="title">Title</label><br>
         <input id="title" name="title" type="text" style="width: 40%"/><br>
-        <label for="ingredients">Add Ingredient</label>
-        <input id="ingredients" name="ingredients" type="text" style="width: 23%"/>
-        <input type="BUTTON" value="Add" id="addIngredient" onclick="">
-        <!--    <input type="BUTTON" value="Delete" id="deleteIngredient" onclick="">-->
+
+        <!-- OLD ingredient text input -->
+<!--        <label for="ingredients">Add Ingredient</label>-->
+<!--        <input id="ingredients" name="ingredients" type="text" style="width: 23%"/>-->
+<!--        <input type="BUTTON" value="Add" id="addIngredient" onclick="">-->
+
+        <!-- NEW ingredient text input -->
+        <div class="ingredients-div" id="ingredients-div">
+            <label for="ingredients-param-0">Add Ingredient</label>
+            <input id="ingredients-param-0" name="ingredients" placeholder="Input Ingredient" type="text"
+                   style="width: 23%"/>
+            <input type="BUTTON" value="Add Ingredient" class="add-ingredient-button" id="add-ingredient-button"
+                   onclick="addIngredientEventListener()">
+        </div>
+
         <label for="quantity">Quantity</label>
         <input type="number" id="quantity" name="quantity" min="1" max="25"><br>
+
         <label for="directions">Directions</label><br>
         <input id="directions" name="directions" type="text" style="width: 40%"/><br><br>
 
@@ -48,38 +62,39 @@
             <label class="form-check-label" for="French">French</label>
             <input class="form-check-input" type="checkbox" name="categories" id="Filipino" value="15">
             <label class="form-check-label" for="Filipino">Filipino</label>
-
         </div>
-<!--        <div th:each="category : ${categories}">-->
-<!--            <label for="category">Category</label><br>-->
-<!--            <input type="radio" th:value="*{categories.name}"/><br>-->
-<!--        </div>-->
+
+        <!--        <div th:each="category : ${categories}">-->
+        <!--            <label for="category">Category</label><br>-->
+        <!--            <input type="radio" th:value="*{categories.name}"/><br>-->
+        <!--        </div>-->
+
         <!-- Button calls function 'pickMark()' onclick now -->
         <input type="BUTTON" value="Add Recipe Image(s)" id="pickWatermark" onclick="pickMark()"><br><br>
         <input type="hidden" name="recipeImageUrl" id="recipeImageUrl" th:field="*{recipeImageUrl}">
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit"/>
     </form>
 </div>
-
 
 <th:block th:replace="partials/scripts :: scripts"/>
 
 <script th:inline="javascript">
     var client = filestack.init(document.querySelector('meta.fsapi').content);
+
     //The function pickMark now will open the file picker
     function pickMark() {
         console.log("Uploading Photo");
         //Opening the file picker here
         client.pick({
             accept: 'image/*',
-            maxFiles:1
-        }).then(function(result) {
-                console.log("File url: " + result.filesUploaded[0].url);
-                console.log(pickWatermark);
-                document.getElementById("recipeImageUrl").value = result.filesUploaded[0].url;
+            maxFiles: 1
+        }).then(function (result) {
+            console.log("File url: " + result.filesUploaded[0].url);
+            console.log(pickWatermark);
+            document.getElementById("recipeImageUrl").value = result.filesUploaded[0].url;
         });
     }
-
 </script>
+
 </body>
 </html>
