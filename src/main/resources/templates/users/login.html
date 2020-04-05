@@ -3,22 +3,32 @@
 <head th:replace="partials/head :: head('Login')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="container m-5">
-    <h1>Log In</h1>
-    <div th:if="${param.error}">
-        <p>Invalid Username and Password.</p>
-    </div>
-    <div th:if="${param.logout}">
-        <p>You have been logged out.</p>
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row align-items-center">
+        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
+            <h1>Log In</h1>
+            <div th:if="${param.error}">
+                <p>Invalid Username and Password.</p>
+            </div>
+            <div th:if="${param.logout}">
+                <p>You have been logged out.</p>
+            </div>
+            <form th:action="@{/login}" method="post">
+                <label for="username">Username</label><br>
+                <input id="username" name="username" type="text" class="m-1"/><br>
+                <label for="password">Password</label><br>
+                <input id="password" name="password" type="password" class="m-1"/><br>
+                <input type="submit" value="Log In"/>
+            </form>
+        </div>
     </div>
 
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <input type="submit" value="Log In" />
-    </form>
 </div>
 
 <th:block th:replace="partials/scripts :: scripts"/>
