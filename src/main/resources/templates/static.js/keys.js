@@ -1,1 +1,0 @@
-var filestackAPIKey = "AkmwMYi2RdHJ7ek86PGwiz";

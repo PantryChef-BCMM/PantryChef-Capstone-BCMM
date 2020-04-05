@@ -3,6 +3,8 @@
 <head th:replace="partials/head :: head('Sign Up')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<div class="container m-5">
+
 <h1>Create an account</h1>
 
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
@@ -27,9 +29,8 @@
 
     <input value="Sign me up!" type="submit" />
 </form>
-
+</div>
 <th:block th:replace="partials/scripts :: scripts"/>
-
 <script th:inline="javascript">
     var client = filestack.init(document.querySelector('meta.fsapi').content);
     //The function pickMark now will open the file picker

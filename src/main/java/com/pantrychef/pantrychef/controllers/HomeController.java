@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
-    @Value("${filestack.api.key}")
-    private String fsapi;
-
     @GetMapping("/")
     public String landing() {
         return "recipes/landingPage";
@@ -24,14 +21,6 @@ public class HomeController {
     @ResponseBody
     public String welcome() {
         return "home";
-    }
-
-    @GetMapping("/profile")
-    public String profile(Model model) {
-        User CurrentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("fsapi", fsapi);
-        model.addAttribute("user", CurrentUser);
-        return "recipes/profile";
     }
 
 }

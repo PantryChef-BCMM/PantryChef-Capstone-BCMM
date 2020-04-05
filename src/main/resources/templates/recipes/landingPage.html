@@ -3,9 +3,34 @@
 <head th:replace="partials/head :: head('Landing Page')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<h1 style="text-decoration: underline;">PantryChef</h1>
-<h2>Introducing a user-friendly cooking aide for users of any culinary skill level.</h2>
-<p>Recipes coming soon!</p>
+<br>
+<br>
+<br>
+<br>
+
+<section class="jumbotron mt-5" style="height: 50%">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mt-2">
+                <h1 class="text-center font-weight-bolder display-2" style="text-decoration: underline;">PantryChef</h1>
+                <br>
+                <br>
+                <h2 class="text-center font-italic">Introducing a user-friendly cooking aide for users of any culinary skill level.</h2>
+                <div class="d-inline"><div class="row align-items-center justify-content-center mt-5 text-muted"><a href="/login" style="float: left;" class="p-1">Login</a><p style="float: left;" class="p-1 m-0"> or</p><a href="/sign-up" style="float: left;" class="p-1">Register</a><p style="float: left;" class="p-1 m-0">to submit your recipes today!</p></div></div>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--<div class="m-5 pt-5">-->
+<!--    <header>-->
+<!--        <div class="jumbotron pt-5">-->
+<!--            <h1 class="text-center" style="text-decoration: underline;">PantryChef</h1>-->
+<!--        </div>-->
+<!--            <h2 class="text-center">Introducing a user-friendly cooking aide for users of any culinary skill level.</h2>-->
+<!--    </header>-->
+<!--&lt;!&ndash;    <h1 style="text-decoration: underline;">PantryChef</h1>&ndash;&gt;-->
+<!--</div>-->
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>
