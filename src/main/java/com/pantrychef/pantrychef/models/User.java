@@ -60,8 +60,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comments> comments;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    Set<ShoppingList> shoppingLists;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    Set<ShoppingList> shoppingLists;
 
     public long getId() {
         return id;

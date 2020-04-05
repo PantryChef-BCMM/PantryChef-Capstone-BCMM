@@ -11,13 +11,14 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, columnDefinition = ("INT(11) UNSIGNED"))
     private long id;
 
     @Column(length = 50, nullable = false)
     private String title;
 
-    @Column(length = 25, nullable = false)
-    private String ingredient;
+//    @Column(length = 25, nullable = false)
+//    private String ingredient;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String directions;
@@ -44,13 +45,24 @@ public class Recipe {
     )
     private List<Categories> categories;
 
+    //Many to many annotation to Ingredients model
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+
+            name = "recipe_ingredients",
+            joinColumns = {@JoinColumn(name = "recipe_id")},
+            inverseJoinColumns = {@JoinColumn(name = "ingredient_id")}
+    )
+    private List<Ingredient> ingredientList;
+
     //Many to many annotation to User model for favriotes
     @ManyToMany(mappedBy = "favorites")
     private List<User> favoritedBy;
 
-    //One to many annotation to RecipeIngredients model
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    Set<RecipeIngredients> recipeIngredients;
+//    //One to many annotation to RecipeIngredients model
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+//    List<RecipeIngredients> recipeIngredients;
+
 
     //One to many annotation to RecipeImages model
     @Column(nullable = false)
@@ -60,8 +72,22 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private List<Comments> comments;
 
+//    public List<RecipeIngredients> getRecipeIngredients() {
+//        return recipeIngredients;
+//    }
+//
+//    public void setRecipeIngredients(List<RecipeIngredients> recipeIngredients) {
+//        this.recipeIngredients = recipeIngredients;
+//    }
 
-//    private List<Recipe> favorites;
+
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
+    }
 
     public long getId() {
         return id;
@@ -79,13 +105,13 @@ public class Recipe {
         this.title = title;
     }
 
-    public String getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
-    }
+//    public String getIngredient() {
+//        return ingredient;
+//    }
+//
+//    public void setIngredient(String ingredient) {
+//        this.ingredient = ingredient;
+//    }
 
     public String getDirections() {
         return directions;
