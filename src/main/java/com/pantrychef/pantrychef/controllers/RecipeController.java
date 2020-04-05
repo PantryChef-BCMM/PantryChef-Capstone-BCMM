@@ -1,26 +1,25 @@
 package com.pantrychef.pantrychef.controllers;
-<<<<<<< HEAD
+
 import com.pantrychef.pantrychef.models.Ingredient;
 import com.pantrychef.pantrychef.models.Recipe;
 import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.IngredientsRepo;
 import com.pantrychef.pantrychef.repositories.RecipeRepo;
 import com.pantrychef.pantrychef.repositories.UserRepo;
-=======
+
 import com.pantrychef.pantrychef.models.*;
 import com.pantrychef.pantrychef.repositories.*;
->>>>>>> master
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD
-=======
+
 
 import java.security.Principal;
->>>>>>> master
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +33,9 @@ public class RecipeController {
     @Value("${filestack.api.key}")
     private String fsapi;
 
-<<<<<<< HEAD
-    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao) {
-=======
-    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, RecipeIngredientsRepo recipeIngredientsDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao) {
->>>>>>> master
+
+    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao) {
+
         this.recipeDao = recipeDao;
         this.userDao = userDao;
         this.ingredientsDao = ingredientsDao;
@@ -84,13 +81,11 @@ public class RecipeController {
         Recipe recipeToEdit = recipeDao.getOne(id);
         recipeToEdit.setTitle(recipeToEdit.getTitle());
         recipeToEdit.setDirections(recipeToEdit.getDirections());
-<<<<<<< HEAD
+
 //        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
-=======
-        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
+//        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
->>>>>>> master
         recipeDao.save(recipe);
         return "redirect:/recipes";
     }
@@ -108,11 +103,9 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/create")
-<<<<<<< HEAD
-    public String createRecipe(@RequestParam(name= "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam(name = "recipeImageUrl") String recipeImageUrl){
-=======
-    public String createRecipe(@RequestParam String title, @RequestParam String ingredients, @RequestParam String directions, @RequestParam int quantity, @RequestParam(name = "recipeImageUrl") String recipeImageUrl, @RequestParam List<Categories> categories){
->>>>>>> master
+
+    public String createRecipe(@RequestParam(name= "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam(name = "recipeImageUrl") String recipeImageUrl, @RequestParam List<Categories> categories){
+
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
 //        recipe.setIngredient(ingredients);

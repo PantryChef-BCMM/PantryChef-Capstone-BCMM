@@ -50,9 +50,11 @@
                                          th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
                                     <div class="card-body">
                                         <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title" th:text="${recipe.title}"></h1></a>
-                                        <p class="card-text" th:text="${recipe.ingredient}"></p>
-                                        <p class="card-text">Directions:</p>
-                                        <p class="card-text" th:text="${recipe.directions}"></p>
+                                        <div th:each="ingredient : ${recipe.ingredientList}">
+                                            <p class="card-text" th:text="${ingredient.name}"></p>
+                                        </div>
+                                            <p class="card-text">Directions:</p>
+                                            <p class="card-text" th:text="${recipe.directions}"></p>
 
                                     </div>
                                     <div class="card-footer">
@@ -90,13 +92,13 @@
                                         <img class="card-img-top" style="height: 16em;"
                                              th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
                                         <div class="card-body">
-                                            <a th:href="@{|/recipes/${recipe.id}|}"><h5 class="card-title"
-                                                                                        th:text="${recipe.title}"></h5></a>
-                                            <p class="card-text" th:text="${recipe.ingredient}"></p>
+
+                                            <a th:href="@{|/recipes/${recipe.id}|}"><h5 class="card-title" th:text="${recipe.title}"></h5></a>
+                                            <div th:each="ingredient : ${recipe.ingredientList}">
+                                                <p class="card-text" th:text="${ingredient.name}"></p>
+                                            </div>
                                             <p class="card-text">Directions:</p>
                                             <p class="card-text" th:text="${recipe.directions}"></p>
-
-                                        </div>
                                         <div class="card-footer">
                                             <div sec:authorize="isAuthenticated()">
                                                 <div th:if="${user.id} == ${recipe.user.id}">
