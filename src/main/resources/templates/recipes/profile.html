@@ -22,7 +22,7 @@
                 <div class="row justify-content-center">
                     <div class="col-3 text-center">
                         <img alt="" class="profileImages rounded-circle mb-4" th:attr="src=@{${user.profileImageUrl}}" style="height: 16em; width: auto"/>
-                        <input type="BUTTON" value="Edit Profile Information" id="pickWatermark" onclick="pickMark()">
+                        <a th:href="@{|/edit/${user.id}|}"><button>Edit profile</button></a>
                     </div>
                 </div>
 
@@ -122,6 +122,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -129,25 +130,25 @@
 <br>
 <br>
 <th:block th:replace="partials/scripts :: scripts"/>
-<script>
-    var client = filestack.init(document.querySelector('meta.fsapi').content);
+<!--<script>-->
+<!--    var client = filestack.init(document.querySelector('meta.fsapi').content);-->
 
-    //The function pickMark now will open the file picker
-    function pickMark() {
-        console.log("Uploading Photo");
-        //Opening the file picker here
-        client.pick({
-            accept: 'image/*',
-            //Only accepting at most 1 file
-            maxFiles: 1
-        }).then(function (result) {
-            // file url (plus mimetype, size and more)
-            // can be found inside the result object
-            console.log(result);
-            console.log("File url: " + result.filesUploaded[0].url);
-        });
-    }
-</script>
+<!--    //The function pickMark now will open the file picker-->
+<!--    function pickMark() {-->
+<!--        console.log("Uploading Photo");-->
+<!--        //Opening the file picker here-->
+<!--        client.pick({-->
+<!--            accept: 'image/*',-->
+<!--            //Only accepting at most 1 file-->
+<!--            maxFiles: 1-->
+<!--        }).then(function (result) {-->
+<!--            // file url (plus mimetype, size and more)-->
+<!--            // can be found inside the result object-->
+<!--            console.log(result);-->
+<!--            console.log("File url: " + result.filesUploaded[0].url);-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
 
 </body>
 </html>
