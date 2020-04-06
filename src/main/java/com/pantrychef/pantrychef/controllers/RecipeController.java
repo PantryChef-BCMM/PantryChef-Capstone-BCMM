@@ -46,15 +46,25 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes")
-    public String getPosts(Model model) {
+    public String getPosts(Model model, @RequestParam(required = false) String search) {
+        model.addAttribute("search", search);
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
-        } else {
-            model.addAttribute("recipes", recipeDao.findAll());
-            return "recipes/recipes";
+        } else if (search == null) {
+            List<Recipe> recipes = recipeDao.findAll();
+            model.addAttribute("recipes", recipes);
+        } else if (search.length() != 0) {
+            List<Recipe> recipes = recipeDao.findAll();
+            List<Recipe> searchedRecipes = new ArrayList<>();
+            for (Recipe recipe : recipes) {
+                if (recipe.getTitle().contains(search)) {
+                    searchedRecipes.add(recipe);
+                }
+                model.addAttribute("recipes", searchedRecipes);
+            }
         }
-        model.addAttribute("recipes", recipeDao.findAll());
+        System.out.println(search);
         return "recipes/recipes";
     }
 
