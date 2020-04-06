@@ -11,10 +11,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--        </div>-->
 <!--    </header>-->
     <main class="container m-5">
-        <form class="" action="">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+
+        <form action="#" th:action="@{/recipes}" method="get" class="input-group">
+            <input class="form-control form-control-dark" type="text" th:id="${search}" placeholder="Search" name="search" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-dark">Search</button>
+            </div>
         </form>
+
         <div th:each="recipe : ${recipes}">
             <a th:href="@{|/recipes/${recipe.id}|}"><h1 th:text="${recipe.title}"></h1></a>
             <a th:href="@{|/profile|}"><h6 th:text="'Posted by: ' + ${recipe.user.username}"></h6></a>
