@@ -10,11 +10,11 @@
         <label for="title">Title</label><br>
         <input th:field="*{title}" style="width: 40%"/><br>
         <label for="ingredient">Add Ingredient</label>
-        <div class="ingredient-div" id="ingredient-div" th:field="*{ingredientList}">
+<!--        <div class="ingredient-div" id="ingredient-div" th:field="*{ingredientList}">-->
             <div th:each="ingredient : *{ingredientList}">
-                <input class="form-control" type="text" id="ingredient-param-0" name="ingredient-param" th:placeholder="${ingredient.getName()}">
+                <input class="form-control" id="ingredient-param-0" name="ingredient-param" th:placeholder="${ingredient.getName()}">
             </div>
-        </div>
+<!--        </div>-->
         <button class="btn btn-dark btn-sm form-control" id="add-ingredient-button">Add Another Ingredient</button>
 
 <!--        <input type="BUTTON" value="Add" id="addIngredient" onclick="">-->
