@@ -9,7 +9,9 @@
     <h1 th:text="${recipe.title}"></h1>
     <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
     <p style="font-weight: bold">Ingredient(s):</p>
-    <p th:text="${recipe.ingredient}"></p>
+    <div th:each="ingredient : ${recipe.ingredientList}">
+        <p th:text="${ingredient.name}"></p>
+    </div>
     <p style="font-weight: bold">Directions:</p>
     <p th:text="${recipe.directions}"></p>
     <!--<a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span> </a>-->
