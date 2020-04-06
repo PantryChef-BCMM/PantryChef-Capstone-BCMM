@@ -111,13 +111,13 @@ public class RecipeController {
 
     @PostMapping("/recipe/create")
 
-    public String createRecipe(@RequestParam(name= "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam(name = "recipeImageUrl") String recipeImageUrl, @RequestParam List<Categories> categories){
-
+    public String createRecipe(@RequestParam(name= "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam List<Categories> categories){
+//        @RequestParam(name = "recipeImageUrl") String recipeImageUrl,
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
 //        recipe.setIngredient(ingredients);
         recipe.setDirections(directions);
-        recipe.setRecipeImageUrl(recipeImageUrl);
+        recipe.setRecipeImageUrl("https://picsum.photos/200");
         recipe.setCategories(categories); //@RequestParam List<Categories> categories
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
