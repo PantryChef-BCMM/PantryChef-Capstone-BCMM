@@ -188,7 +188,7 @@ public class RecipeController {
         Recipe recipe = recipeDao.getOne(id);
         model.addAttribute("recipe", recipe);
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
-            return "redirect:/recipes/" + id;
+            return "redirect:/login";
         } else if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
