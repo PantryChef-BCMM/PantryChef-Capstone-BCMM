@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +20,17 @@ public class RecipeController {
     private RecipeIngredientsRepo recipeIngredientsDao;
     private IngredientsRepo ingredientsDao;
     private CategoriesRepo categoriesDao;
+    private CommentsRepo commentsDao;
     @Value("${filestack.api.key}")
     private String fsapi;
 
-    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, RecipeIngredientsRepo recipeIngredientsDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao) {
+    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, RecipeIngredientsRepo recipeIngredientsDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao, CommentsRepo commentsDao) {
         this.recipeDao = recipeDao;
         this.userDao = userDao;
         this.recipeIngredientsDao = recipeIngredientsDao;
         this.ingredientsDao = ingredientsDao;
         this.categoriesDao = categoriesDao;
+        this.commentsDao = commentsDao;
     }
 
     @GetMapping("/recipes")
@@ -53,7 +55,10 @@ public class RecipeController {
             model.addAttribute("recipe",recipeDao.getOne(id));
             return "recipes/showRecipe";
         }
-        model.addAttribute("recipe",recipeDao.getOne(id));
+        Recipe recipe = recipeDao.getOne(id);
+        List comments = recipe.getComments();
+        model.addAttribute("comments", comments);
+        model.addAttribute("recipe",recipe);
         return "recipes/showRecipe";
     }
 
@@ -126,5 +131,35 @@ public class RecipeController {
             return "redirect:/recipes";
         }
         return "redirect:/recipes";
+    }
+
+    @GetMapping("/comments/post/{id}")
+    public String getPostCommentForm(@PathVariable Long id, Model model){
+        Recipe recipe = recipeDao.getOne(id);
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("comment", new Comments());
+        return "recipes/postComment";
+    }
+
+    @PostMapping("comments/post/{id}")
+    public String postComment(@PathVariable long id, @RequestParam String comment, Model model){
+        Recipe recipe = recipeDao.getOne(id);
+        model.addAttribute("recipe", recipe);
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){
+            return "redirect:/recipes/" + id;
+        }
+        else if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
+            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", u);
+            LocalDateTime now = LocalDateTime.now();
+            Comments newComment = new Comments();
+            newComment.setComment(comment);
+            newComment.setCommentedAt(now);
+            newComment.setUser(u);
+            newComment.setRecipe(recipe);
+            commentsDao.save(newComment);
+            model.addAttribute("comment", newComment);
+        }
+        return "redirect:/recipes/" + id;
     }
 }

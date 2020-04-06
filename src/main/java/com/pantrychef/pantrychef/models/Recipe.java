@@ -123,6 +123,14 @@ public class Recipe {
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
 }
 
 
