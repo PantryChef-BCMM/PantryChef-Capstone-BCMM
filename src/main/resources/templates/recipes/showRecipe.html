@@ -13,6 +13,7 @@
     <p style="font-weight: bold">Directions:</p>
     <p th:text="${recipe.directions}"></p>
     <!--<a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span> </a>-->
+    <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>
     <div sec:authorize="isAuthenticated()">
         <div th:if="${user.id} == ${recipe.user.id}">
             <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit Post</button></a>
@@ -20,6 +21,16 @@
                 <button>Delete Post</button>
             </form>
         </div>
+    </div>
+
+
+    <div th:each="comment : ${recipe.comments}">
+        <p th:text = "${comment.commentedAt}"></p>
+        <p th:text = "${comment.getUser().getUsername()}"></p>
+        <p th:text = "${comment.comment}"></p>
+<!--        <div sec:authorize = "isAuthenticated()">-->
+<!--            -->
+<!--        </div>-->
     </div>
 </div>
 
