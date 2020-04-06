@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-
 import java.time.LocalDateTime;
 
 import java.security.Principal;
@@ -47,11 +46,11 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes")
-    public String getPosts(Model model){
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
+    public String getPosts(Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
-        }else{
+        } else {
             model.addAttribute("recipes", recipeDao.findAll());
             return "recipes/recipes";
         }
@@ -60,18 +59,18 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes/{id}")
-    public String getPost(@PathVariable long id, Model model){
-        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+    public String getPost(@PathVariable long id, Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
-        }else{
-            model.addAttribute("recipe",recipeDao.getOne(id));
+        } else {
+            model.addAttribute("recipe", recipeDao.getOne(id));
             return "recipes/showRecipe";
         }
         Recipe recipe = recipeDao.getOne(id);
         List comments = recipe.getComments();
         model.addAttribute("comments", comments);
-        model.addAttribute("recipe",recipe);
+        model.addAttribute("recipe", recipe);
         return "recipes/showRecipe";
     }
 
@@ -84,13 +83,32 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/{id}/edit")
-    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id){
+    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam List<Categories> categories) {
         Recipe recipeToEdit = recipeDao.getOne(id);
         recipeToEdit.setTitle(recipeToEdit.getTitle());
         recipeToEdit.setDirections(recipeToEdit.getDirections());
-
-//        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
-//        recipeToEdit.setIngredient(recipeToEdit.getIngredient());
+        recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
+        recipe.setCategories(categories);
+        List<Ingredient> recipeIngredientList = new ArrayList<>();
+        for (String ingredient : ingredientsStringList) {
+            if (ingredient != "") {
+                if (ingredientsDao.findIngredientByname(ingredient) == null) {
+                    Ingredient addIngredient = new Ingredient();
+                    addIngredient.setName(ingredient);
+                    List<Recipe> recipeList = new ArrayList<>();
+                    recipeList.add(recipe);
+                    addIngredient.setRecipeList(recipeList);
+                    recipeIngredientList.add(ingredientsDao.save(addIngredient));
+                } else {
+                    Ingredient updateIngredient = ingredientsDao.findIngredientByname(ingredient);
+                    List<Recipe> recipeList = updateIngredient.getRecipeList();
+                    recipeList.add(recipe);
+                    updateIngredient.setRecipeList(recipeList);
+                    recipeIngredientList.add(ingredientsDao.save(updateIngredient));
+                }
+            }
+        }
+        recipe.setIngredientList(recipeIngredientList);
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
         recipeDao.save(recipe);
@@ -99,42 +117,36 @@ public class RecipeController {
 
     //Create a recipe
     @GetMapping("/recipe/create")
-    public String createForm(Model model){
-//        User CurrentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", CurrentUser);
-//        List<Categories> categories = new ArrayList<>();
+    public String createForm(Model model) {
         model.addAttribute("recipe", new Recipe());
         model.addAttribute("fsapi", fsapi);
-//        model.addAttribute("categories", categoriesDao.findAll());
         return "recipes/createRecipe";
     }
 
     @PostMapping("/recipe/create")
 
-    public String createRecipe(@RequestParam(name= "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam List<Categories> categories){
-//        @RequestParam(name = "recipeImageUrl") String recipeImageUrl,
+    public String createRecipe(@RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam List<Categories> categories) {
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
-//        recipe.setIngredient(ingredients);
         recipe.setDirections(directions);
-        recipe.setRecipeImageUrl("https://picsum.photos/200");
-        recipe.setCategories(categories); //@RequestParam List<Categories> categories
+        recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
+        recipe.setCategories(categories);
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
         recipeDao.save(recipe);
 
         List<Ingredient> recipeIngredientList = new ArrayList<>();
 
-        for(String ingredient : ingredientsStringList){
-            if(ingredient != ""){
-                if(ingredientsDao.findIngredientByname(ingredient) == null) {
+        for (String ingredient : ingredientsStringList) {
+            if (ingredient != "") {
+                if (ingredientsDao.findIngredientByname(ingredient) == null) {
                     Ingredient addIngredient = new Ingredient();
                     addIngredient.setName(ingredient);
                     List<Recipe> recipeList = new ArrayList<>();
                     recipeList.add(recipe);
                     addIngredient.setRecipeList(recipeList);
                     recipeIngredientList.add(ingredientsDao.save(addIngredient));
-                }else{
+                } else {
                     Ingredient updateIngredient = ingredientsDao.findIngredientByname(ingredient);
                     List<Recipe> recipeList = updateIngredient.getRecipeList();
                     recipeList.add(recipe);
@@ -152,19 +164,19 @@ public class RecipeController {
 
     //Delete a recipe post
     @PostMapping("/recipe/{id}/delete")
-    public String delete(@PathVariable long id){
+    public String delete(@PathVariable long id) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId()){
+        if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId()) {
             // delete post
             recipeDao.deleteById(id);
-        }else{
+        } else {
             return "redirect:/recipes";
         }
         return "redirect:/recipes";
     }
 
     @GetMapping("/comments/post/{id}")
-    public String getPostCommentForm(@PathVariable Long id, Model model){
+    public String getPostCommentForm(@PathVariable Long id, Model model) {
         Recipe recipe = recipeDao.getOne(id);
         model.addAttribute("recipe", recipe);
         model.addAttribute("comment", new Comments());
@@ -172,13 +184,12 @@ public class RecipeController {
     }
 
     @PostMapping("comments/post/{id}")
-    public String postComment(@PathVariable long id, @RequestParam String comment, Model model){
+    public String postComment(@PathVariable long id, @RequestParam String comment, Model model) {
         Recipe recipe = recipeDao.getOne(id);
         model.addAttribute("recipe", recipe);
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
             return "redirect:/recipes/" + id;
-        }
-        else if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser"){
+        } else if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
             LocalDateTime now = LocalDateTime.now();
