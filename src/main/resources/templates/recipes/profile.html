@@ -51,7 +51,7 @@
                                     <div class="card-body">
                                         <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title" th:text="${recipe.title}"></h1></a>
                                         <div th:each="ingredient : ${recipe.ingredientList}">
-                                            <p class="card-text" th:text="${ingredient.name}"></p>
+                                            <p class="card-text" th:text="${inggredient.name}"></p>
                                         </div>
                                             <p class="card-text">Directions:</p>
                                             <p class="card-text" th:text="${recipe.directions}"></p>
