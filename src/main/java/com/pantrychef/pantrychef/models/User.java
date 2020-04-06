@@ -48,6 +48,14 @@ public class User {
         profileImageUrl = copy.profileImageUrl;
     }
 
+    public User(String username, String email, String first_name, String last_name, String password) {
+        this.username = username;
+        this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.password = password;
+    }
+
     //Many to many  relationship connection to recipes table
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -129,4 +137,5 @@ public class User {
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
     }
+
 }
