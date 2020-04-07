@@ -29,7 +29,7 @@ $(document).ready(function () {
 
         var recipeCards = $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + recipeString + "&number=2&apiKey=0be955ec85264c56bd8649c5e1b7a666");
 
-        $.get(recipeCards).done(function (data) {
+        recipeCards.done(function (data) {
             console.log(data)
         })
     });
