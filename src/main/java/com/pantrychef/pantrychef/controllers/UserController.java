@@ -50,7 +50,7 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/profile/home")
+    @GetMapping("/profile")
     public String profile(Model model) {
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", u);
