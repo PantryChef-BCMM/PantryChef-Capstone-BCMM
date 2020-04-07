@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.security.Principal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -62,9 +63,43 @@ public class RecipeController {
                         searchedRecipes.add(recipe);
                     }
                     model.addAttribute("recipes", searchedRecipes);
+                    recipe.getIngredientList().forEach(ingredient -> {
+                        if (ingredient.getName().toLowerCase().contains(search.toLowerCase())) {
+                            searchedRecipes.add(recipe);
+//                        System.out.println(ingredient.getName());
+                        } });
+//                multiple ingredients
+                    if(search.contains(",")){
+                        String[] searchArray = search.replaceAll(", ", ",").split(",");
+                        //System.out.println(Arrays.toString(searchArray));
+                        ArrayList<String> ingredientArray = new ArrayList<>();
+                        recipe.getIngredientList().forEach(ingredient -> {
+                            ingredientArray.add(ingredient.getName());
+                        });
+                        //separate ingredient string into an array
+                        boolean searchFlag = true;
+                        System.out.println("--------------------Next Recipe--------------------");
+                        System.out.println(recipe.getTitle());
+                        for(int i = 0; i < searchArray.length; i++){
+                            System.out.println(searchArray[i] + "-->" + ingredientArray.toString().toLowerCase());
+
+                            if (!ingredientArray.toString().toLowerCase().contains(searchArray[i].toLowerCase())) {
+                                System.out.println("NOPE NOT THIS ONE");
+                                searchFlag = false;
+                                break;
+                            }
+                        }
+                        System.out.println("Flag: " + searchFlag);
+                        if(searchFlag == true){
+                            searchedRecipes.add(recipe);
+                        }
+
+                    }
                 }
+
             }
         }
+
         else if (search == null) {
             List<Recipe> recipes = recipeDao.findAll();
             model.addAttribute("recipes", recipes);
@@ -75,10 +110,43 @@ public class RecipeController {
                 if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())){
                     searchedRecipes.add(recipe);
                 }
+                recipe.getIngredientList().forEach(ingredient -> {
+                    if (ingredient.getName().toLowerCase().contains(search.toLowerCase())) {
+                        searchedRecipes.add(recipe);
+//                        System.out.println(ingredient.getName());
+                    } });
+//                multiple ingredients
+                if(search.contains(",")){
+                    String[] searchArray = search.replaceAll(", ", ",").split(",");
+                    //System.out.println(Arrays.toString(searchArray));
+                    ArrayList<String> ingredientArray = new ArrayList<>();
+                    recipe.getIngredientList().forEach(ingredient -> {
+                        ingredientArray.add(ingredient.getName());
+                    });
+                        //separate ingredient string into an array
+                        boolean searchFlag = true;
+                        System.out.println("--------------------Next Recipe--------------------");
+                        System.out.println(recipe.getTitle());
+                        for(int i = 0; i < searchArray.length; i++){
+                            System.out.println(searchArray[i] + "-->" + ingredientArray.toString().toLowerCase());
+
+                            if (!ingredientArray.toString().toLowerCase().contains(searchArray[i].toLowerCase())) {
+                                System.out.println("NOPE NOT THIS ONE");
+                                searchFlag = false;
+                                break;
+                            }
+                        }
+                        System.out.println("Flag: " + searchFlag);
+                        if(searchFlag == true){
+                            searchedRecipes.add(recipe);
+                        }
+
+                }
+
                 model.addAttribute("recipes", searchedRecipes);
             }
         }
-        System.out.println(search);
+//        System.out.println(search);
         return "recipes/recipes";
     }
 
