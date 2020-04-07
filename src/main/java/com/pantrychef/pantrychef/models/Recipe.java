@@ -55,7 +55,7 @@ public class Recipe {
     )
     private List<Ingredient> ingredientList;
 
-    //Many to many annotation to Ingredients model
+    //Many to many annotation to Instruction model
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
 
@@ -63,7 +63,8 @@ public class Recipe {
             joinColumns = {@JoinColumn(name = "recipe_id")},
             inverseJoinColumns = {@JoinColumn(name = "instruction_id")}
     )
-    private List<Ingredient> instructionList;
+    private List<Instruction> instructionList;
+
 
     //Many to many annotation to User model for favriotes
     @ManyToMany(mappedBy = "favorites")
@@ -81,16 +82,6 @@ public class Recipe {
     //One to many annotation to Comments model
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private List<Comments> comments;
-
-//    public List<RecipeIngredients> getRecipeIngredients() {
-//        return recipeIngredients;
-//    }
-//
-//    public void setRecipeIngredients(List<RecipeIngredients> recipeIngredients) {
-//        this.recipeIngredients = recipeIngredients;
-//    }
-
-
 
     public List<Ingredient> getIngredientList() {
         return ingredientList;
@@ -116,11 +107,11 @@ public class Recipe {
         this.title = title;
     }
 
-    public List<Ingredient> getInstructionList() {
+    public List<Instruction> getInstructionList() {
         return instructionList;
     }
 
-    public void setInstructionList(List<Ingredient> instructionList) {
+    public void setInstructionList(List<Instruction> instructionList) {
         this.instructionList = instructionList;
     }
 

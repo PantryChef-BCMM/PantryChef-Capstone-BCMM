@@ -1,9 +1,8 @@
 package com.pantrychef.pantrychef.models;
 
-
-import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.List;
+
 
 @Entity
 @Table(name="instructions")
@@ -17,6 +16,10 @@ public class Instruction {
 
     @ManyToMany(mappedBy = "instructionList")
     private List<Recipe> recipeList;
+
+    public Instruction(){
+
+    }
 
     public long getId() {
         return id;
