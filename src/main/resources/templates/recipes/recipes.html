@@ -32,17 +32,20 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
             <p style="font-weight: bold">Directions:</p>
             <p th:text="${recipe.directions}"></p>
-<!--            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>-->
-
-            <!--            <p th:text="${recipe.categories}"></p>-->
-<!--            <a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span></a>-->
             <br>
             <br>
             <div sec:authorize="isAuthenticated()">
-                <div th:if="${user.id} == ${recipe.user.id}">
-                    <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit Post</button></a>
+                <div th:if="${user.isAdmin()}">
                     <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
-                        <button>Delete Post</button>
+                        <button>Delete</button>
+                    </form>
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <div th:if="${user.id} == ${recipe.user.id}">
+                    <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit</button></a>
+                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+                        <button>Delete</button>
                     </form>
                 </div>
             </div>
