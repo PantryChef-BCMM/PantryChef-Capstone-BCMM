@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('PantryChefSearch')"></head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="pantry-title mx-auto">
+    <H1>PantryChef Pantry Search</H1>
+</div>
+
+<div class="container d-flex">
+
+    <div class="container">
+        <h2>Current Ingredients</h2>
+    </div>
+    <div class="container">
+        <h2>Enter your available ingredients to find Recipes</h2>
+    </div>
+</div>
+
+<th:block th:replace="partials/scripts :: scripts"/>
+</body>
+</html>

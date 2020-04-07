@@ -16,6 +16,9 @@
 
             <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
                 <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/pantrychef}">Pantry Search</a>
+                </li>
+                <li class="nav-item ">
                     <a class="nav-link" th:href="@{/recipes}">Recipes</a>
                 </li>
                 <li class="nav-item">
@@ -32,6 +35,9 @@
             </ul>
 
             <ul class="navbar-nav ml-auto" sec:authorize="isAnonymous()">
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/pantrychef}">Pantry Search</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/recipes}">Recipes</a>
                 </li>
