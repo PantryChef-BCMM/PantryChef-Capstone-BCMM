@@ -20,8 +20,8 @@ public class Recipe {
 //    @Column(length = 25, nullable = false)
 //    private String ingredient;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String directions;
+//    @Column(nullable = false, columnDefinition = "TEXT")
+//    private String directions;
 
     @Column(nullable = true)
     private String recipe_path;
@@ -55,6 +55,16 @@ public class Recipe {
     )
     private List<Ingredient> ingredientList;
 
+    //Many to many annotation to Ingredients model
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+
+            name = "recipe_instructions",
+            joinColumns = {@JoinColumn(name = "recipe_id")},
+            inverseJoinColumns = {@JoinColumn(name = "instruction_id")}
+    )
+    private List<Ingredient> instructionList;
+
     //Many to many annotation to User model for favriotes
     @ManyToMany(mappedBy = "favorites")
     private List<User> favoritedBy;
@@ -81,6 +91,7 @@ public class Recipe {
 //    }
 
 
+
     public List<Ingredient> getIngredientList() {
         return ingredientList;
     }
@@ -105,20 +116,20 @@ public class Recipe {
         this.title = title;
     }
 
-//    public String getIngredient() {
-//        return ingredient;
-//    }
-//
-//    public void setIngredient(String ingredient) {
-//        this.ingredient = ingredient;
-//    }
-
-    public String getDirections() {
-        return directions;
+    public List<Ingredient> getInstructionList() {
+        return instructionList;
     }
 
-    public void setDirections(String directions) {
-        this.directions = directions;
+    public void setInstructionList(List<Ingredient> instructionList) {
+        this.instructionList = instructionList;
+    }
+
+    public List<User> getFavoritedBy() {
+        return favoritedBy;
+    }
+
+    public void setFavoritedBy(List<User> favoritedBy) {
+        this.favoritedBy = favoritedBy;
     }
 
     public User getUser() { return user; }
