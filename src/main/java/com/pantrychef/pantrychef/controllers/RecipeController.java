@@ -258,7 +258,7 @@ public class RecipeController {
     @PostMapping("/recipe/{id}/delete")
     public String delete(@PathVariable long id) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId()) {
+        if (loggedInUser.getId() == recipeDao.getOne(id).getUser().getId() || loggedInUser.isAdmin()) {
             // delete post
             recipeDao.deleteById(id);
         } else {
@@ -267,32 +267,5 @@ public class RecipeController {
         return "redirect:/recipes";
     }
 
-    @GetMapping("/comments/post/{id}")
-    public String getPostCommentForm(@PathVariable Long id, Model model) {
-        Recipe recipe = recipeDao.getOne(id);
-        model.addAttribute("recipe", recipe);
-        model.addAttribute("comment", new Comments());
-        return "recipes/postComment";
-    }
 
-    @PostMapping("comments/post/{id}")
-    public String postComment(@PathVariable long id, @RequestParam String comment, Model model) {
-        Recipe recipe = recipeDao.getOne(id);
-        model.addAttribute("recipe", recipe);
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
-            return "redirect:/login";
-        } else if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
-            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", u);
-            LocalDateTime now = LocalDateTime.now();
-            Comments newComment = new Comments();
-            newComment.setComment(comment);
-            newComment.setCommentedAt(now);
-            newComment.setUser(u);
-            newComment.setRecipe(recipe);
-            commentsDao.save(newComment);
-            model.addAttribute("comment", newComment);
-        }
-        return "redirect:/recipes/" + id;
-    }
 }

@@ -14,19 +14,18 @@
     </div>
     <p style="font-weight: bold">Directions:</p>
     <p th:text="${recipe.directions}"></p>
-    <!--<a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span> </a>-->
-    <div sec:authorize = "isAuthenticated()">
-        <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>
-    </div>
+
+
     <div sec:authorize = "!isAuthenticated()">
-        <a th:href="@{|/login|}"><button>Post a comment</button></a>
+        <a th:href="@{|/login|}"><button>Comment</button></a>
     </div>
     <div sec:authorize="isAuthenticated()">
         <div th:if="${user.id} == ${recipe.user.id}">
-            <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit Post</button></a>
+            <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit</button></a>
             <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
-                <button>Delete Post</button>
+                <button>Delete</button>
             </form>
+            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Comment</button></a>
         </div>
     </div>
 
@@ -35,9 +34,14 @@
         <p th:text = "${comment.commentedAt}"></p>
         <p th:text = "${comment.getUser().getUsername()}"></p>
         <p th:text = "${comment.comment}"></p>
-<!--        <div sec:authorize = "isAuthenticated()">-->
-<!--            -->
-<!--        </div>-->
+        <div sec:authorize = "isAuthenticated()">
+            <div th:if="${user.id} == ${comment.getUser().getId()}">
+                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
+                    <button>Delete Comment</button>
+                </form>
+                <a th:href="@{|/comment/${comment.id}/edit|}"><button>Edit Comment</button></a>
+            </div>
+        </div>
     </div>
 </div>
 
