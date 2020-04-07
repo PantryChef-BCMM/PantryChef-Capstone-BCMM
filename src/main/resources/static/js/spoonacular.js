@@ -5,9 +5,9 @@
 // var client = spoonacular.init(document.querySelector('meta.sapi').content);
 
 
-
 //function that puts the ingredient items into a array
 $(document).ready(function () {
+
 
     let ingredientArray = [];
 
@@ -22,10 +22,17 @@ $(document).ready(function () {
         //     alert(ingredientArray[i]);
         //     $("#ingredient-list-container").append('<li>' +  ingredientArray[i] + '</li>');
         // }
+
         console.log(ingredientArray);
-        var recipeString = ingredientArray.toString();
+        var recipeString = ingredientArray.join(",+");
         console.log(recipeString);
+
+        var recipeCards = $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + recipeString + "&number=2&apiKey=0be955ec85264c56bd8649c5e1b7a666");
+
+        $.get(recipeCards).done(function (data) {
+            console.log(data)
+        })
     });
 });
 
-// var recipeCards = $.ajax("");
+
