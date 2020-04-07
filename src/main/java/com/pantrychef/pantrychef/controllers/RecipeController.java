@@ -58,7 +58,7 @@ public class RecipeController {
             List<Recipe> recipes = recipeDao.findAll();
             List<Recipe> searchedRecipes = new ArrayList<>();
             for (Recipe recipe : recipes) {
-                if (recipe.getTitle().contains(search)) {
+                if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())){
                     searchedRecipes.add(recipe);
                 }
                 model.addAttribute("recipes", searchedRecipes);
