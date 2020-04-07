@@ -67,6 +67,8 @@ public class UserController {
             User v = usersDao.findByUsername(username);
             long vId = v.getId();
             model.addAttribute("profileId", vId);
+            Recipe recipe = recipeDao.findByUserId(vId);
+            model.addAttribute("recipes", recipe);
             model.addAttribute("user", v);
         }
         return "recipes/profile";
