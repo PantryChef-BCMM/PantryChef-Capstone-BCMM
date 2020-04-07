@@ -4,17 +4,35 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="pantry-title mx-auto">
+<div class="pantry-title text-center">
     <H1>PantryChef Pantry Search</H1>
 </div>
 
 <div class="container d-flex">
 
-    <div class="container">
-        <h2>Current Ingredients</h2>
+    <div class="container text-center">
+        <h5>Current Ingredients</h5>
+        <div class="container shadow-lg border border-dark">
+            <div class="container text-center m-0 p-0" id="menu-heading">Your Ingredients</div>
+            <div class="container-fluid d-flex flex-wrap overflow-auto mt-5" id="ingredint-list-container">
+                <!--Data will be dynamically filled in with Javascript-->
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <h5>Enter your available ingredients to find Recipes</h5>
+        <div class="container shadow-lg border border-dark">
+            <form>
+                <div class="container-fluid d-flex flex-column px-0 my-3">
+                    <label for="ingredient-query-input" id="ingredient-query-label">Ingredient Name</label>
+                    <input type="text" class="form-control" id="ingredient-query-input" placeholder="Enter a Ingredient">
+                    <input class="button my-3" id="query-submit-btn" type="submit"/>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="container">
-        <h2>Enter your available ingredients to find Recipes</h2>
+
     </div>
 </div>
 
