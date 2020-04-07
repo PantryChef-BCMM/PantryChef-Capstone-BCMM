@@ -3,11 +3,12 @@
     margin: 10px auto;
 
 }
+
 .fancy-cards .fancy-card{
     display: inline-block;
     position: relative;
-    top: 130px;
-    left: 15px;
+    top: 115px;
+    left: 45px;
     box-sizing: border-box;
 }
 
@@ -23,7 +24,7 @@
 }
 
 .crystal-pic{
-    background-image: url("/images/imagescontainer/Crystal_Thibodeau.jpg");
+    background-image: url("/images/imagescontainer/Crystal_Thibodeau.png");
 }
 
 .miguel-pic{
