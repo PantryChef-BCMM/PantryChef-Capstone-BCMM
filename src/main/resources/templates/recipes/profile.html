@@ -98,7 +98,7 @@
                                                 <p class="card-text" th:text="${ingredient.name}"></p>
                                             </div>
                                             <p class="card-text">Directions:</p>
-                                            <p class="card-text" th:text="${recipe.directions}"></p>
+<!--                                            <p class="card-text" th:text="${recipe.directions}"></p>-->
                                         <div class="card-footer">
                                             <div sec:authorize="isAuthenticated()">
                                                 <div th:if="${user.id} == ${recipe.user.id}">
