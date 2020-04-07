@@ -51,7 +51,21 @@ public class RecipeController {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
-        } else if (search == null) {
+            if (search == null) {
+                List<Recipe> recipes = recipeDao.findAll();
+                model.addAttribute("recipes", recipes);
+            } else if (search.length() != 0) {
+                List<Recipe> recipes = recipeDao.findAll();
+                List<Recipe> searchedRecipes = new ArrayList<>();
+                for (Recipe recipe : recipes) {
+                    if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())){
+                        searchedRecipes.add(recipe);
+                    }
+                    model.addAttribute("recipes", searchedRecipes);
+                }
+            }
+        }
+        else if (search == null) {
             List<Recipe> recipes = recipeDao.findAll();
             model.addAttribute("recipes", recipes);
         } else if (search.length() != 0) {
