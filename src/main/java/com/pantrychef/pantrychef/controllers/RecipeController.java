@@ -6,23 +6,14 @@ import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.IngredientsRepo;
 import com.pantrychef.pantrychef.repositories.RecipeRepo;
 import com.pantrychef.pantrychef.repositories.UserRepo;
-
 import com.pantrychef.pantrychef.models.*;
 import com.pantrychef.pantrychef.repositories.*;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.time.LocalDateTime;
-
-import java.security.Principal;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -52,6 +43,7 @@ public class RecipeController {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
+        }
             if (search == null) {
                 List<Recipe> recipes = recipeDao.findAll();
                 model.addAttribute("recipes", recipes);
@@ -59,17 +51,13 @@ public class RecipeController {
                 List<Recipe> recipes = recipeDao.findAll();
                 List<Recipe> searchedRecipes = new ArrayList<>();
                 for (Recipe recipe : recipes) {
+
                     if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())){
                         searchedRecipes.add(recipe);
+                        continue;
                     }
                     model.addAttribute("recipes", searchedRecipes);
-                    recipe.getIngredientList().forEach(ingredient -> {
-                        if (ingredient.getName().toLowerCase().contains(search.toLowerCase())) {
-                            searchedRecipes.add(recipe);
-//                        System.out.println(ingredient.getName());
-                        } });
-//                multiple ingredients
-                    if(search.contains(",")){
+
                         String[] searchArray = search.replaceAll(", ", ",").split(",");
                         //System.out.println(Arrays.toString(searchArray));
                         ArrayList<String> ingredientArray = new ArrayList<>();
@@ -78,8 +66,8 @@ public class RecipeController {
                         });
                         //separate ingredient string into an array
                         boolean searchFlag = true;
-                        System.out.println("--------------------Next Recipe--------------------");
-                        System.out.println(recipe.getTitle());
+//                        System.out.println("--------------------Next Recipe--------------------");
+//                        System.out.println(recipe.getTitle());
                         for(int i = 0; i < searchArray.length; i++){
                             System.out.println(searchArray[i] + "-->" + ingredientArray.toString().toLowerCase());
 
@@ -93,60 +81,9 @@ public class RecipeController {
                         if(searchFlag == true){
                             searchedRecipes.add(recipe);
                         }
-
-                    }
                 }
 
             }
-        }
-
-        else if (search == null) {
-            List<Recipe> recipes = recipeDao.findAll();
-            model.addAttribute("recipes", recipes);
-        } else if (search.length() != 0) {
-            List<Recipe> recipes = recipeDao.findAll();
-            List<Recipe> searchedRecipes = new ArrayList<>();
-            for (Recipe recipe : recipes) {
-                if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())){
-                    searchedRecipes.add(recipe);
-                }
-                recipe.getIngredientList().forEach(ingredient -> {
-                    if (ingredient.getName().toLowerCase().contains(search.toLowerCase())) {
-                        searchedRecipes.add(recipe);
-//                        System.out.println(ingredient.getName());
-                    } });
-//                multiple ingredients
-                if(search.contains(",")){
-                    String[] searchArray = search.replaceAll(", ", ",").split(",");
-                    //System.out.println(Arrays.toString(searchArray));
-                    ArrayList<String> ingredientArray = new ArrayList<>();
-                    recipe.getIngredientList().forEach(ingredient -> {
-                        ingredientArray.add(ingredient.getName());
-                    });
-                        //separate ingredient string into an array
-                        boolean searchFlag = true;
-                        System.out.println("--------------------Next Recipe--------------------");
-                        System.out.println(recipe.getTitle());
-                        for(int i = 0; i < searchArray.length; i++){
-                            System.out.println(searchArray[i] + "-->" + ingredientArray.toString().toLowerCase());
-
-                            if (!ingredientArray.toString().toLowerCase().contains(searchArray[i].toLowerCase())) {
-                                System.out.println("NOPE NOT THIS ONE");
-                                searchFlag = false;
-                                break;
-                            }
-                        }
-                        System.out.println("Flag: " + searchFlag);
-                        if(searchFlag == true){
-                            searchedRecipes.add(recipe);
-                        }
-
-                }
-
-                model.addAttribute("recipes", searchedRecipes);
-            }
-        }
-//        System.out.println(search);
         return "recipes/recipes";
     }
 
