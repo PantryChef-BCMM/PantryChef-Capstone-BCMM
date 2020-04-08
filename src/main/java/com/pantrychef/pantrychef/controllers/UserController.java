@@ -61,17 +61,11 @@ public class UserController {
 
     @GetMapping("/profile/{username}")
     public String viewUserProfile(Model model, @PathVariable String username) {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
-            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User u = usersDao.findByUsername(username);
             model.addAttribute("user", u);
-            User v = usersDao.findByUsername(username);
-            long vId = v.getId();
-            model.addAttribute("profileId", vId);
-            Recipe recipe = recipeDao.findByUserId(vId);
+            Recipe recipe = recipeDao.findByUserId(u.getId());
             model.addAttribute("recipes", recipe);
-            model.addAttribute("user", v);
-        }
-        return "recipes/profile";
+        return "recipes/profileFromRecipe";
     }
 
     @GetMapping("/edit/{id}")
