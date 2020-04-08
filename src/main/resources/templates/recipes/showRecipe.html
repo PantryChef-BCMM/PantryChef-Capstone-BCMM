@@ -13,7 +13,7 @@
         <p th:text="${ingredient.name}"></p>
     </div>
     <p style="font-weight: bold">Directions:</p>
-    <p th:text="${recipe.directions}"></p>
+<!--    <p th:text="${recipe.directions}"></p>-->
 
 
     <div sec:authorize = "!isAuthenticated()">
@@ -29,8 +29,9 @@
         </div>
     </div>
 
-
+    <br>
     <div th:each="comment : ${recipe.comments}">
+        <br>
         <p th:text = "${comment.commentedAt}"></p>
         <p th:text = "${comment.getUser().getUsername()}"></p>
         <p th:text = "${comment.comment}"></p>

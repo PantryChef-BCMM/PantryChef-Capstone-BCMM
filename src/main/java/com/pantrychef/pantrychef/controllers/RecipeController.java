@@ -22,6 +22,7 @@ public class RecipeController {
     private RecipeRepo recipeDao;
     private UserRepo userDao;
     private IngredientsRepo ingredientsDao;
+    private InstructionsRepo instructionsDao;
     private CategoriesRepo categoriesDao;
     private CommentsRepo commentsDao;
     @Value("${filestack.api.key}")
@@ -154,7 +155,7 @@ public class RecipeController {
 
     @PostMapping("/recipe/create")
 
-    public String createRecipe(@RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam List<Categories> categories) {
+    public String createRecipe(@RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam(name = "instruction-param") List<String> instructionsStringList, @RequestParam String title, @RequestParam List<Categories> categories) {
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
 //        recipe.setDirections(directions);
@@ -186,6 +187,32 @@ public class RecipeController {
             }
         }
         recipe.setIngredientList(recipeIngredientList);
+        recipeDao.save(recipe);
+
+        ////////////////
+
+        List<Instruction> recipeInstructionList = new ArrayList<>();
+
+        for (String instruction : instructionsStringList) {
+            if (instruction != "") {
+                if (instructionsDao.findInstructionByname(instruction) == null) {
+                    Instruction addInstruction = new Instruction();
+                    addInstruction.setName(instruction);
+                    List<Recipe> recipeList = new ArrayList<>();
+                    recipeList.add(recipe);
+                    addInstruction.setRecipeList(recipeList);
+                    recipeInstructionList.add(instructionsDao.save(addInstruction));
+                } else {
+                    Instruction updateInstruction = instructionsDao.findInstructionByname(instruction);
+                    List<Recipe> recipeList = updateInstruction.getRecipeList();
+                    recipeList.add(recipe);
+                    updateInstruction.setRecipeList(recipeList);
+                    recipeInstructionList.add(instructionsDao.save(updateInstruction));
+
+                }
+            }
+        }
+        recipe.setInstructionList(recipeInstructionList);
         recipeDao.save(recipe);
 
         return "redirect:/recipes";

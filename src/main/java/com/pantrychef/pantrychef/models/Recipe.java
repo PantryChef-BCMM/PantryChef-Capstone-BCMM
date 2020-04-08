@@ -66,7 +66,7 @@ public class Recipe {
     private List<Instruction> instructionList;
 
 
-    //Many to many annotation to User model for favriotes
+    //Many to many annotation to User model for favorites
     @ManyToMany(mappedBy = "favorites")
     private List<User> favoritedBy;
 

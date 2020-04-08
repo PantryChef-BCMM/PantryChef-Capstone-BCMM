@@ -38,15 +38,15 @@
                 <p th:text="${ingredient.name}"></p>
             </div>
 
-            <p style="font-weight: bold">Directions:</p>
+            <p style="font-weight: bold">Instructions:</p>
 
-            <!--            <p th:text="${recipe.directions}"></p>-->
-            <!--            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>-->
+                        <p th:text="${recipe.instructionList}"></p>
+                        <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>
 
-            <!--            <p th:text="${recipe.categories}"></p>-->
-            <!--            <a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span></a>-->
+                        <p th:text="${recipe.categories}"></p>
+                        <a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span></a>
 
-            <!--            <p th:text="${recipe.directions}"></p>-->
+                        <p th:text="${recipe.instructionList}"></p>
 
             <br>
             <br>
