@@ -13,6 +13,7 @@
     <div class="row align-items-center">
         <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
             <h1>Log In</h1>
+            <br>
             <div th:if="${param.error}">
                 <p>Invalid Username and Password.</p>
             </div>
@@ -26,6 +27,8 @@
                 <input id="password" name="password" type="password" class="m-1"/><br>
                 <input type="submit" value="Log In"/>
             </form>
+            <br>
+            <p style="float: left;" class="p-1 m-0">Don't have an account?</p><p style="float: left;" class="p-1 m-0"><a href="/sign-up">Register</a> to submit your recipes today!</p></div></div>
         </div>
     </div>
 

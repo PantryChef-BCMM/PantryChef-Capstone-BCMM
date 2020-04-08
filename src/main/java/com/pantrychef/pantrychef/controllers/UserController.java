@@ -59,6 +59,15 @@ public class UserController {
         return "recipes/profile";
     }
 
+    @GetMapping("/profile/{id}")
+    public String viewUserProfile(Model model, @PathVariable long id) {
+            User u = usersDao.getOne(id);
+            model.addAttribute("user", u);
+            model.addAttribute("recipes", recipeDao.findAll());
+
+        return "recipes/profileFromRecipe";
+    }
+
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable long id) {
         User u = usersDao.getOne(id);

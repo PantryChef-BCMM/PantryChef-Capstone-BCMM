@@ -21,7 +21,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
         <div th:each="recipe : ${recipes}">
             <a th:href="@{|/recipes/${recipe.id}|}"><h1 th:text="${recipe.title}"></h1></a>
-            <a th:href="@{|/profile|}"><h6 th:text="'Posted by: ' + ${recipe.user.username}"></h6></a>
+            <a th:href="@{|/profile/${recipe.user.id}|}"><h6 th:text="'Posted by: ' + ${recipe.user.username}"></h6></a>
 <!--            <p th:text="${recipe.user.username}"></p>-->
             <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
             <p style="font-weight: bold">Ingredient(s):</p>
@@ -31,18 +31,29 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </div>
 
             <p style="font-weight: bold">Directions:</p>
+
 <!--            <p th:text="${recipe.directions}"></p>-->
 <!--            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>-->
 
             <!--            <p th:text="${recipe.categories}"></p>-->
 <!--            <a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span></a>-->
+
+            <p th:text="${recipe.directions}"></p>
+
             <br>
             <br>
             <div sec:authorize="isAuthenticated()">
-                <div th:if="${user.id} == ${recipe.user.id}">
-                    <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit Post</button></a>
+                <div th:if="${user.isAdmin()}">
                     <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
-                        <button>Delete Post</button>
+                        <button>Delete</button>
+                    </form>
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <div th:if="${user.id} == ${recipe.user.id}">
+                    <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit</button></a>
+                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+                        <button>Delete</button>
                     </form>
                 </div>
             </div>
