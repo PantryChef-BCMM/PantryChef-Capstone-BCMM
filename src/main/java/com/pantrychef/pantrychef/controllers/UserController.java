@@ -56,6 +56,10 @@ public class UserController {
         model.addAttribute("user", u);
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("fsapi", fsapi);
+        if (u.isAdmin()){
+            System.out.println("this user is an admin!");
+        }
+        System.out.println("inside profile method!");
         return "recipes/profile";
     }
 
