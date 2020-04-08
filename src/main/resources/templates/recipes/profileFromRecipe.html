@@ -22,7 +22,7 @@
         <div class="row">
             <div class="text-center">
 
-                <h1 class="m-3" th:text="${user.first_name} + ' ' + ${user.last_name}"></h1>
+                <h1 class="m-3" th:text="${user.username}"></h1>
                 <div class="row justify-content-center">
                     <div class="col-3 text-center">
                         <img alt="" class="profileImages rounded-circle mb-4"
@@ -42,7 +42,7 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h1 class="text-center m-3">My Created Recipes</h1>
+                        <h1 class="m-3" th:text="${user.username} + '\'s' + ' Created Recipes'"></h1>
                         <div class="card-columns">
                             <div th:each="recipe : ${recipes}">
                                 <div th:if="${user.id} == ${recipe.user.id}">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="tab-pane fade text-center" id="profile" role="tabpanel"
                          aria-labelledby="profile-tab">
-                        <h1 class="text-center m-3">Saved Recipes</h1>
+                        <h1 class="m-3" th:text="${user.username} + '\'s' + ' Saved Recipes'"></h1>
                         <div class="card-columns">
                             <div th:each="recipe : ${recipes}">
                                 <div th:if="${user.id} == ${recipe.user.id}">
