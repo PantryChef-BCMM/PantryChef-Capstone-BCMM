@@ -4,6 +4,7 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
+
 <div sec:authorize="isAuthenticated()">
     <div class="container">
         <div class="row">
