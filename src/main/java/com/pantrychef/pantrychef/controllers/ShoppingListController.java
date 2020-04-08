@@ -30,8 +30,10 @@ public class ShoppingListController {
     @GetMapping("/list/{id}")
     public String getShoppingList(@PathVariable long id, Model model){
         User user = userDao.getOne(id);
+        ShoppingList shoppingList = new ShoppingList();
+        shoppingList.setUser(user);
         model.addAttribute("user", user);
-        model.addAttribute("shoppingList", new ShoppingList());
+        model.addAttribute("shoppingList", shoppingList);
         return "users/shoppingList";
     }
 }
