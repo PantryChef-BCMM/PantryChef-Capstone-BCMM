@@ -114,6 +114,7 @@ public class RecipeController {
     @PostMapping("/recipe/{id}/edit")
     public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam List<Categories> categories) {
         Recipe recipeToEdit = recipeDao.getOne(id);
+        User user = recipeDao.getOne(id).getUser();
         recipeToEdit.setTitle(recipeToEdit.getTitle());
 //        recipeToEdit.setDirections(recipeToEdit.getDirections());
         recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
@@ -138,8 +139,7 @@ public class RecipeController {
             }
         }
         recipe.setIngredientList(recipeIngredientList);
-        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        recipe.setUser(u);
+        recipe.setUser(user);
         recipeDao.save(recipe);
         return "redirect:/recipes";
     }

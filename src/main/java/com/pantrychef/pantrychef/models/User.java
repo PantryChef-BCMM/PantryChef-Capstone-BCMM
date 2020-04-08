@@ -29,7 +29,7 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private boolean isAdmin;
+    private boolean admin;
 
     @Column(nullable = false)
     private String profileImageUrl;
@@ -46,6 +46,7 @@ public class User {
         first_name = copy.first_name;
         last_name = copy.last_name;
         profileImageUrl = copy.profileImageUrl;
+        admin = copy.admin;
     }
 
     public User(String username, String email, String first_name, String last_name, String password) {
@@ -54,6 +55,7 @@ public class User {
         this.first_name = first_name;
         this.last_name = last_name;
         this.password = password;
+        this.admin = false;
     }
 
     //Many to many  relationship connection to recipes table
@@ -120,11 +122,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        admin = admin;
     }
 
     public String getProfileImageUrl() {
