@@ -21,7 +21,11 @@
     <div class="container">
         <div class="row">
             <div class="text-center">
-
+                <div sec:authorize="isAuthenticated()">
+                    <div th:if="${user.admin}">
+                        <h1>This user is an Admin!!!</h1>
+                    </div>
+                </div>
                     <h1 class="m-3" th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>
                     <div class="row justify-content-center">
                         <div class="col-3 text-center">
@@ -30,6 +34,9 @@
                                  style="height: 16em; width: auto"/>
                             <a th:href="@{|/edit/${user.id}|}">
                                 <button>Edit profile</button>
+                            </a>
+                            <a th:href="@{|/list/${user.id}|}">
+                                <button>View Shopping List</button>
                             </a>
                         </div>
                     </div>
