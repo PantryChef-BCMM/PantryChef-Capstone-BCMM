@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Profile')"></head>
+<style>
+    .card-columns {
+
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+    }
+</style>
 <body>
+
 <nav th:replace="partials/navbar :: navbar"></nav>
+
 <div sec:authorize="isAuthenticated()">
+
     <div class="container">
         <div class="row">
             <div class="text-center">
 
-                <h1 class="m-3" th:text="${user.username}"></h1>
-                <h1 class="m-3" th:text="${user.email}"></h1>
+                <h1 class="m-3" th:text="${user.first_name} + ' ' + ${user.last_name}"></h1>
                 <div class="row justify-content-center">
                     <div class="col-3 text-center">
-                        <img alt="" class="profileImages rounded-circle mb-4" th:attr="src=@{${user.profileImageUrl}}"
+                        <img alt="" class="profileImages rounded-circle mb-4"
+                             th:attr="src=@{${user.profileImageUrl}}"
                              style="height: 16em; width: auto"/>
                     </div>
                 </div>
@@ -32,7 +46,6 @@
                         <div class="card-columns">
                             <div th:each="recipe : ${recipes}">
                                 <div th:if="${user.id} == ${recipe.user.id}">
-
                                     <div class="card shadow-lg rounded">
                                         <img class="card-img-top" style="height: 16em;"
                                              th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
@@ -44,7 +57,7 @@
                                                 <p class="card-text" th:text="${ingredient.name}"></p>
                                             </div>
                                             <p class="card-text">Directions:</p>
-                                            <p class="card-text" th:text="${recipe.directions}"></p>
+                                            <!--                                                <p class="card-text" th:text="${recipe.directions}"></p>-->
                                         </div>
                                         <div class="card-footer">
                                             <div sec:authorize="isAuthenticated()">
@@ -53,7 +66,8 @@
                                                             th:href="@{|/recipe/${recipe.id}/edit|}">
                                                         <button>Edit Post</button>
                                                     </a></small>
-                                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"
+                                                    <form th:action="@{|/recipe/${recipe.id}/delete|}"
+                                                          th:method="POST"
                                                           style="display:inline">
                                                         <small class="text-muted">
                                                             <button>Delete Post</button>
@@ -67,9 +81,75 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane fade text-center" id="profile" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <h1 class="text-center m-3">Saved Recipes</h1>
+                        <div class="card-columns">
+                            <div th:each="recipe : ${recipes}">
+                                <div th:if="${user.id} == ${recipe.user.id}">
+                                    <div class="card">
+                                        <img class="card-img-top" style="height: 16em;"
+                                             th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                        <div class="card-body">
+                                            <a th:href="@{|/recipes/${recipe.id}|}"><h5 class="card-title"
+                                                                                        th:text="${recipe.title}"></h5>
+                                            </a>
+                                            <div th:each="ingredient : ${recipe.ingredientList}">
+                                                <p class="card-text" th:text="${ingredient.name}"></p>
+                                            </div>
+                                            <p class="card-text">Directions:</p>
+                                            <!--                                                <p class="card-text" th:text="${recipe.directions}"></p>-->
+                                            <div class="card-footer">
+                                                <div sec:authorize="isAuthenticated()">
+                                                    <div th:if="${user.id} == ${recipe.user.id}">
+                                                        <small class="text-muted"><a
+                                                                th:href="@{|/recipe/${recipe.id}/edit|}">
+                                                            <button>Edit Post</button>
+                                                        </a></small>
+                                                        <form th:action="@{|/recipe/${recipe.id}/delete|}"
+                                                              th:method="POST"
+                                                              style="display:inline">
+                                                            <small class="text-muted">
+                                                                <button>Delete Post</button>
+                                                            </small>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+<br>
+<br>
+<th:block th:replace="partials/scripts :: scripts"/>
+<!--<script>-->
+<!--    var client = filestack.init(document.querySelector('meta.fsapi').content);-->
+
+<!--    //The function pickMark now will open the file picker-->
+<!--    function pickMark() {-->
+<!--        console.log("Uploading Photo");-->
+<!--        //Opening the file picker here-->
+<!--        client.pick({-->
+<!--            accept: 'image/*',-->
+<!--            //Only accepting at most 1 file-->
+<!--            maxFiles: 1-->
+<!--        }).then(function (result) {-->
+<!--            // file url (plus mimetype, size and more)-->
+<!--            // can be found inside the result object-->
+<!--            console.log(result);-->
+<!--            console.log("File url: " + result.filesUploaded[0].url);-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+
 </body>
+</html>

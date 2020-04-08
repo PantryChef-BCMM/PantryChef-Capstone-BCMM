@@ -68,6 +68,22 @@ public class UserController {
         return "recipes/profileFromRecipe";
     }
 
+///////////    REFERENCE GET MAPPING    /////////////
+//    @GetMapping("/profile/{username}")
+//    public String viewUserProfile(Model model, @PathVariable String username) {
+//        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+//            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            model.addAttribute("user", u);
+//            User v = usersDao.findByUsername(username);
+//            long vId = v.getId();
+//            model.addAttribute("profileId", vId);
+//            Recipe recipe = recipeDao.findByUserId(vId);
+//            model.addAttribute("recipes", recipe);
+//            model.addAttribute("user", v);
+//        }
+//        return "recipes/profile";
+//    }
+
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable long id) {
         User u = usersDao.getOne(id);
