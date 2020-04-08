@@ -63,11 +63,14 @@
                                                 <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"
                                                                                             th:text="${recipe.title}"></h1>
                                                 </a>
+                                                <p style="font-weight: bold">Ingredient(s):</p>
                                                 <div th:each="ingredient : ${recipe.ingredientList}">
-                                                    <p class="card-text" th:text="${ingredient.name}"></p>
+                                                    <p th:text="${ingredient.name}"></p>
                                                 </div>
-                                                <p class="card-text">Directions:</p>
-<!--                                                <p class="card-text" th:text="${recipe.directions}"></p>-->
+                                                <p style="font-weight: bold">Instructions:</p>
+                                                <div th:each="instruction : ${recipe.instructionList}">
+                                                    <p th:text="${instruction.name}"></p>
+                                                </div>
                                             </div>
                                             <div class="card-footer">
                                                 <div sec:authorize="isAuthenticated()">
@@ -104,11 +107,14 @@
                                                 <a th:href="@{|/recipes/${recipe.id}|}"><h5 class="card-title"
                                                                                             th:text="${recipe.title}"></h5>
                                                 </a>
+                                                <p style="font-weight: bold">Ingredient(s):</p>
                                                 <div th:each="ingredient : ${recipe.ingredientList}">
-                                                    <p class="card-text" th:text="${ingredient.name}"></p>
+                                                    <p th:text="${ingredient.name}"></p>
                                                 </div>
-                                                <p class="card-text">Directions:</p>
-<!--                                                <p class="card-text" th:text="${recipe.directions}"></p>-->
+                                                <p style="font-weight: bold">Instructions:</p>
+                                                <div th:each="instruction : ${recipe.instructionList}">
+                                                    <p th:text="${instruction.name}"></p>
+                                                </div>
                                                 <div class="card-footer">
                                                     <div sec:authorize="isAuthenticated()">
                                                         <div th:if="${user.id} == ${recipe.user.id}">

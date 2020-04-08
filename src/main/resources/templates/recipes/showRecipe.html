@@ -2,20 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('View Recipe')"></head>
 <body>
-
 <nav th:replace="partials/navbar :: navbar"></nav>
-
 <div class="container m-5">
     <h1 th:text="${recipe.title}"></h1>
+    <a th:href="@{|/profile/${recipe.user.id}|}"><h6 th:text="'Posted by: ' + ${recipe.user.username}"></h6></a>
     <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
     <p style="font-weight: bold">Ingredient(s):</p>
     <div th:each="ingredient : ${recipe.ingredientList}">
         <p th:text="${ingredient.name}"></p>
     </div>
-    <p style="font-weight: bold">Directions:</p>
-    <p th:text="${recipe.directions}"></p>
-
-
+    <p style="font-weight: bold">Instructions:</p>
+    <div th:each="instruction : ${recipe.instructionList}">
+        <p th:text="${instruction.name}"></p>
+    </div>
     <div sec:authorize = "!isAuthenticated()">
         <a th:href="@{|/login|}"><button>Comment</button></a>
     </div>
@@ -27,10 +26,14 @@
             </form>
             <a th:href="@{|/comments/post/${recipe.id}|}"><button>Comment</button></a>
         </div>
+        <br>
+        <div th:if="${user.id} != ${recipe.user.id}">
+            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Comment</button></a>
+        </div>
+        <br>
     </div>
-
-
     <div th:each="comment : ${recipe.comments}">
+        <br>
         <p th:text = "${comment.commentedAt}"></p>
         <p th:text = "${comment.getUser().getUsername()}"></p>
         <p th:text = "${comment.comment}"></p>
@@ -44,9 +47,6 @@
         </div>
     </div>
 </div>
-
-
 <th:block th:replace="partials/scripts :: scripts"/>
-
 </body>
 </html>
