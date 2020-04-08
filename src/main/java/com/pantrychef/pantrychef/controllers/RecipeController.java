@@ -29,11 +29,12 @@ public class RecipeController {
     private String fsapi;
 
 
-    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao, CommentsRepo commentsDao) {
+    public RecipeController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao, InstructionsRepo instructionsDao, CategoriesRepo categoriesDao, CommentsRepo commentsDao) {
 
         this.recipeDao = recipeDao;
         this.userDao = userDao;
         this.ingredientsDao = ingredientsDao;
+        this.instructionsDao = instructionsDao;
         this.categoriesDao = categoriesDao;
         this.commentsDao = commentsDao;
     }
@@ -113,12 +114,16 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/{id}/edit")
-    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam List<Categories> categories) {
+    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam(name = "instruction-param") List<String> instructionsStringList, @RequestParam List<Categories> categories) {
         Recipe recipeToEdit = recipeDao.getOne(id);
+        User user = recipeDao.getOne(id).getUser();
         recipeToEdit.setTitle(recipeToEdit.getTitle());
 //        recipeToEdit.setDirections(recipeToEdit.getDirections());
         recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
         recipe.setCategories(categories);
+
+        //////////////// Instructions ////////////////
+
         List<Ingredient> recipeIngredientList = new ArrayList<>();
         for (String ingredient : ingredientsStringList) {
             if (ingredient != "") {
@@ -139,9 +144,38 @@ public class RecipeController {
             }
         }
         recipe.setIngredientList(recipeIngredientList);
-        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        recipe.setUser(u);
+        recipe.setUser(user);
         recipeDao.save(recipe);
+
+        //////////////// Instructions ////////////////
+
+        List<Instruction> recipeInstructionList = new ArrayList<>();
+
+        for (String instruction : instructionsStringList) {
+            if (instruction != "") {
+                if (instructionsDao.findInstructionByname(instruction) == null) {
+                    Instruction addInstruction = new Instruction();
+                    addInstruction.setName(instruction);
+                    List<Recipe> recipeList = new ArrayList<>();
+                    recipeList.add(recipe);
+                    addInstruction.setRecipeList(recipeList);
+                    recipeInstructionList.add(instructionsDao.save(addInstruction));
+                } else {
+                    Instruction updateInstruction = instructionsDao.findInstructionByname(instruction);
+                    List<Recipe> recipeList = updateInstruction.getRecipeList();
+                    recipeList.add(recipe);
+                    updateInstruction.setRecipeList(recipeList);
+                    recipeInstructionList.add(instructionsDao.save(updateInstruction));
+
+                }
+            }
+        }
+        recipe.setInstructionList(recipeInstructionList);
+        recipe.setUser(user);
+        recipeDao.save(recipe);
+
+        ////////////////////////////////////////
+
         return "redirect:/recipes";
     }
 
@@ -165,6 +199,8 @@ public class RecipeController {
         recipe.setUser(u);
         recipeDao.save(recipe);
 
+        //////////////// Ingredients ////////////////
+
         List<Ingredient> recipeIngredientList = new ArrayList<>();
 
         for (String ingredient : ingredientsStringList) {
@@ -189,7 +225,7 @@ public class RecipeController {
         recipe.setIngredientList(recipeIngredientList);
         recipeDao.save(recipe);
 
-        ////////////////
+        //////////////// Instructions ////////////////
 
         List<Instruction> recipeInstructionList = new ArrayList<>();
 
@@ -214,6 +250,8 @@ public class RecipeController {
         }
         recipe.setInstructionList(recipeInstructionList);
         recipeDao.save(recipe);
+
+        ////////////////////////////////////////
 
         return "redirect:/recipes";
     }
