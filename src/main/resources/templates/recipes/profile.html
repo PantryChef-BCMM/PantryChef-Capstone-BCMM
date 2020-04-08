@@ -1,156 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Profile')"></head>
+<style>
+    .card-columns {
+
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+    }
+</style>
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div sec:authorize="isAuthenticated()">
+
     <div class="container">
         <div class="row">
             <div class="text-center">
-                <h1 class="m-3" th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>
-                <div class="row justify-content-center">
-                    <div class="col-3 text-center">
 
-                        <img alt="" class="profileImages rounded-circle mb-4" th:attr="src=@{${user.profileImageUrl}}" style="height: 16em; width: auto"/>
-                        <a th:href="@{|/edit/${user.id}|}"><button>Edit profile</button></a>
-                    </div>
-                </div>
-
-
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                       aria-controls="home" aria-selected="true">Uploaded Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                       aria-controls="profile" aria-selected="false">Saved Recipes</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h1 class="text-center m-3">My Created Recipes</h1>
-                    <div class="card-columns">
-
-                        <div th:each="recipe : ${recipes}">
-                            <div th:if="${user.id} == ${recipe.user.id}">
-
-                                <div class="card shadow-lg rounded">
-                                    <img class="card-img-top" style="height: 16em;"
-                                         th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
-                                    <div class="card-body">
-                                        <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title" th:text="${recipe.title}"></h1></a>
-                                        <div th:each="ingredient : ${recipe.ingredientList}">
-                                            <p class="card-text" th:text="${ingredient.name}"></p>
-                                        </div>
-                                            <p class="card-text">Directions:</p>
-<!--                                            <p class="card-text" th:text="${recipe.directions}"></p>-->
-
-                                    </div>
-                                    <div class="card-footer">
-                                        <div sec:authorize="isAuthenticated()">
-                                            <div th:if="${user.id} == ${recipe.user.id}">
-                                                <small class="text-muted"><a th:href="@{|/recipe/${recipe.id}/edit|}">
-                                                    <button>Edit Post</button>
-                                                </a></small>
-
-                                                <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"
-                                                      style="display:inline">
-                                                    <small class="text-muted">
-                                                        <button>Delete Post</button>
-                                                    </small>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
+                    <h1 class="m-3" th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>
+                    <div class="row justify-content-center">
+                        <div class="col-3 text-center">
+                            <img alt="" class="profileImages rounded-circle mb-4"
+                                 th:attr="src=@{${user.profileImageUrl}}"
+                                 style="height: 16em; width: auto"/>
+                            <a th:href="@{|/edit/${user.id}|}">
+                                <button>Edit profile</button>
+                            </a>
                         </div>
-
-
-                        <img alt="" class="profileImages rounded-circle mb-4" th:attr="src=@{${user.profileImageUrl}}"
-                             style="height: 16em; width: auto"/>
-                        <a th:href="@{|/edit/${user.id}|}">
-                            <button>Edit profile</button>
-                        </a>
-
                     </div>
-                </div>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                           aria-controls="home" aria-selected="true">Uploaded Recipes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                           aria-controls="profile" aria-selected="false">Saved Recipes</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h1 class="text-center m-3">My Created Recipes</h1>
-                        <div class="card-columns">
-                            <div th:each="recipe : ${recipes}">
-                                <div th:if="${user.id} == ${recipe.user.id}">
-                                    <div class="card shadow-lg rounded">
-                                        <img class="card-img-top" style="height: 16em;"
-                                             th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
-                                        <div class="card-body">
-                                            <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"
-                                                                                        th:text="${recipe.title}"></h1>
-                                            </a>
-                                            <div th:each="ingredient : ${recipe.ingredientList}">
-                                                <p class="card-text" th:text="${ingredient.name}"></p>
-                                            </div>
-                                            <p class="card-text">Directions:</p>
-
-<!--                                            <p class="card-text" th:text="${recipe.directions}"></p>-->
-
-<!--                                            <p class="card-text" th:text="${recipe.directions}"></p>-->
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <div sec:authorize="isAuthenticated()">
-                                                <div th:if="${user.id} == ${recipe.user.id}">
-                                                    <small class="text-muted"><a
-                                                            th:href="@{|/recipe/${recipe.id}/edit|}">
-                                                        <button>Edit Post</button>
-                                                    </a></small>
-                                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"
-                                                          style="display:inline">
-                                                        <small class="text-muted">
-                                                            <button>Delete Post</button>
-                                                        </small>
-                                                    </form>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                               aria-controls="home" aria-selected="true">Uploaded Recipes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="false">Saved Recipes</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h1 class="text-center m-3">My Created Recipes</h1>
+                            <div class="card-columns">
+                                <div th:each="recipe : ${recipes}">
+                                    <div th:if="${user.id} == ${recipe.user.id}">
+                                        <div class="card shadow-lg rounded">
+                                            <img class="card-img-top" style="height: 16em;"
+                                                 th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                            <div class="card-body">
+                                                <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"
+                                                                                            th:text="${recipe.title}"></h1>
+                                                </a>
+                                                <div th:each="ingredient : ${recipe.ingredientList}">
+                                                    <p class="card-text" th:text="${ingredient.name}"></p>
                                                 </div>
+                                                <p class="card-text">Directions:</p>
+<!--                                                <p class="card-text" th:text="${recipe.directions}"></p>-->
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade text-center" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h1 class="text-center m-3">Saved Recipes</h1>
-                        <div class="card-columns">
-                            <div th:each="recipe : ${recipes}">
-                                <div th:if="${user.id} == ${recipe.user.id}">
-                                    <div class="card">
-                                        <img class="card-img-top" style="height: 16em;"
-                                             th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
-                                        <div class="card-body">
-                                            <a th:href="@{|/recipes/${recipe.id}|}"><h5 class="card-title"
-                                                                                        th:text="${recipe.title}"></h5>
-                                            </a>
-                                            <div th:each="ingredient : ${recipe.ingredientList}">
-                                                <p class="card-text" th:text="${ingredient.name}"></p>
-                                            </div>
-                                            <p class="card-text">Directions:</p>
-<!--                                            <p class="card-text" th:text="${recipe.directions}"></p>-->
                                             <div class="card-footer">
                                                 <div sec:authorize="isAuthenticated()">
                                                     <div th:if="${user.id} == ${recipe.user.id}">
@@ -173,12 +84,50 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade text-center" id="profile" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <h1 class="text-center m-3">Saved Recipes</h1>
+                            <div class="card-columns">
+                                <div th:each="recipe : ${recipes}">
+                                    <div th:if="${user.id} == ${recipe.user.id}">
+                                        <div class="card">
+                                            <img class="card-img-top" style="height: 16em;"
+                                                 th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                            <div class="card-body">
+                                                <a th:href="@{|/recipes/${recipe.id}|}"><h5 class="card-title"
+                                                                                            th:text="${recipe.title}"></h5>
+                                                </a>
+                                                <div th:each="ingredient : ${recipe.ingredientList}">
+                                                    <p class="card-text" th:text="${ingredient.name}"></p>
+                                                </div>
+                                                <p class="card-text">Directions:</p>
+<!--                                                <p class="card-text" th:text="${recipe.directions}"></p>-->
+                                                <div class="card-footer">
+                                                    <div sec:authorize="isAuthenticated()">
+                                                        <div th:if="${user.id} == ${recipe.user.id}">
+                                                            <small class="text-muted"><a
+                                                                    th:href="@{|/recipe/${recipe.id}/edit|}">
+                                                                <button>Edit Post</button>
+                                                            </a></small>
+                                                            <form th:action="@{|/recipe/${recipe.id}/delete|}"
+                                                                  th:method="POST"
+                                                                  style="display:inline">
+                                                                <small class="text-muted">
+                                                                    <button>Delete Post</button>
+                                                                </small>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
             </div>
-
-
         </div>
     </div>
 </div>
