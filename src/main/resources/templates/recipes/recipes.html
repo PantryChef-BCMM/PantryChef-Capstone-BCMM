@@ -31,7 +31,15 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </div>
 
             <p style="font-weight: bold">Directions:</p>
+
+<!--            <p th:text="${recipe.directions}"></p>-->
+<!--            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>-->
+
+            <!--            <p th:text="${recipe.categories}"></p>-->
+<!--            <a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span></a>-->
+
             <p th:text="${recipe.directions}"></p>
+
             <br>
             <br>
             <div sec:authorize="isAuthenticated()">

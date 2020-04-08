@@ -2,11 +2,11 @@ package com.pantrychef.pantrychef.models;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
-@Table(name="ingredients")
-public class Ingredient {
+@Table(name="instructions")
+public class Instruction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, columnDefinition = ("INT(11) UNSIGNED"))
     private long id;
@@ -14,10 +14,11 @@ public class Ingredient {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "ingredientList")
+    @ManyToMany(mappedBy = "instructionList")
     private List<Recipe> recipeList;
 
-    public Ingredient() {
+    public Instruction(){
+
     }
 
     public long getId() {

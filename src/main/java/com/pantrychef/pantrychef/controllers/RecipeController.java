@@ -115,7 +115,7 @@ public class RecipeController {
     public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam List<Categories> categories) {
         Recipe recipeToEdit = recipeDao.getOne(id);
         recipeToEdit.setTitle(recipeToEdit.getTitle());
-        recipeToEdit.setDirections(recipeToEdit.getDirections());
+//        recipeToEdit.setDirections(recipeToEdit.getDirections());
         recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
         recipe.setCategories(categories);
         List<Ingredient> recipeIngredientList = new ArrayList<>();
@@ -154,10 +154,10 @@ public class RecipeController {
 
     @PostMapping("/recipe/create")
 
-    public String createRecipe(@RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam String directions, @RequestParam List<Categories> categories) {
+    public String createRecipe(@RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam String title, @RequestParam List<Categories> categories) {
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
-        recipe.setDirections(directions);
+//        recipe.setDirections(directions);
         recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
         recipe.setCategories(categories);
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
