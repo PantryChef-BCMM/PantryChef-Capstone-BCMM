@@ -88,8 +88,8 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         updatedUser.setPassword(hash);
         usersDao.save(updatedUser);
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(updatedUser, updatedUser.getPassword());
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(updatedUser, updatedUser.getPassword());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/profile";
     }
 
