@@ -23,7 +23,7 @@
             <div class="text-center">
                 <div sec:authorize="isAuthenticated()">
                     <div th:if="${user.admin}">
-                        <h1>This user is an Admin!!!</h1>
+                        <h1>This user is an admin</h1>
                     </div>
                 </div>
                     <h1 class="m-3" th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>

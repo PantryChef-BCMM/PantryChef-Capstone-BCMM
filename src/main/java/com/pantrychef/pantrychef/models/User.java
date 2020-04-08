@@ -126,7 +126,7 @@ public class User {
     }
 
     public void setAdmin(boolean admin) {
-        admin = admin;
+        this.admin = admin;
     }
 
     public String getProfileImageUrl() {
@@ -136,5 +136,6 @@ public class User {
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
     }
+
 
 }

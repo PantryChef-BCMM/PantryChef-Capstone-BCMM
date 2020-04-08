@@ -6,7 +6,11 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div sec:authorize="isAuthenticated()">
-
+    <h1>Shopping Cart List!!</h1>
+    <h3 th:text="${shoppingList.user} + '\'s list'"></h3>
+<!--    <div th:each="shoppingListItem : ${shoppingList}">-->
+<!--        <p th:text="${shoppingListItem.name}"></p>-->
+<!--    </div>-->
 </div>
 <br>
 <br>
