@@ -1,0 +1,14 @@
+/*#860806*/
+/*#0E3E4F*/
+/*#676672*/
+/*#2BA4B9*/
+
+.navbar-nav{
+    background-color:#0E3E4F;
+}
+.navbar-a-links{
+    color: white !important;
+}
+.navbar-a-links:hover {
+    color:#2BA4B9 !important;
+}
