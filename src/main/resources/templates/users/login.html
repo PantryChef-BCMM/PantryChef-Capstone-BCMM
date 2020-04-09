@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head('Login')"></head>
-<body>
+<body class="login-background-image">
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container">
     <br>
@@ -11,8 +11,8 @@
     <br>
     <br>
     <div class="row align-items-center">
-        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
-            <h1>Log In</h1>
+        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg login-box-image">
+            <h1 class="login-text">Login</h1>
             <br>
             <div th:if="${param.error}">
                 <p>Invalid Username and Password.</p>
@@ -22,12 +22,12 @@
             </div>
             <form th:action="@{/login}" method="post">
                 <label for="username">Username</label><br>
-                <input id="username" name="username" type="text" class="m-1"/><br>
+                <input id="username" name="username" type="text" class="m-1 shadow-sm"/><br>
                 <label for="password">Password</label><br>
-                <input id="password" name="password" type="password" class="m-1"/><br>
-                <input type="submit" value="Log In"/>
+                <input id="password" name="password" type="password" class="m-1 shadow-sm"/><br>
+                <br>
+                <input class="shadow-sm login-button" type="submit" value="Login"/>
             </form>
-            <br>
             <p style="float: left;" class="p-1 m-0">Don't have an account?</p><p style="float: left;" class="p-1 m-0"><a href="/sign-up">Register</a> to submit your recipes today!</p></div></div>
         </div>
     </div>
