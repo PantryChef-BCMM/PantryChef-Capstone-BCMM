@@ -13,11 +13,11 @@
     <div class="navbar-form collapse navbar-collapse" id="navbarNav">
 
             <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
-                <li class="nav-item navbar-a-links">
-                    <a class="nav-link" th:href="@{/recipes}">Recipes</a>
+                <li class="nav-item">
+                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
                 </li>
-                <li class="nav-item navbar-a-links">
-                    <a class="nav-link" th:href="@{/recipe/create}">Create Recipe</a>
+                <li class="nav-item">
+                    <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>
@@ -27,7 +27,7 @@
                 </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-link btn-link btn navbar-a-links">Logout</button>
+                        <button class="nav-link navbar-a-links btn">Logout</button>
                     </form>
                 </li>
             </ul>
