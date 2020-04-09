@@ -91,13 +91,15 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable long id) {
         User u = usersDao.getOne(id);
+//        User admin = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("user", admin);
         model.addAttribute("user", u);
         model.addAttribute("fsapi", fsapi);
         return "users/editProfile";
     }
 
     @PostMapping("/edit/{id}")
-    public String updateUser(@ModelAttribute User user, @PathVariable long id) {
+    public String updateUser(@ModelAttribute User user, @PathVariable long id, Model model) {
         User updatedUser = usersDao.getOne(id);
         updatedUser.setEmail(user.getEmail());
         updatedUser.setFirst_name(user.getFirst_name());
@@ -105,8 +107,10 @@ public class UserController {
         updatedUser.setUsername(user.getUsername());
 //        updatedUser.setProfileImageUrl(u.getProfileImageUrl());
         updatedUser.setProfileImageUrl("https://picsum.photos/200");
-        String hash = passwordEncoder.encode(user.getPassword());
-        updatedUser.setPassword(hash);
+//        String hash = passwordEncoder.encode(user.getPassword());
+        User admin = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", admin);
+        updatedUser.setPassword(updatedUser.getPassword());
         usersDao.save(updatedUser);
         Authentication authentication = new UsernamePasswordAuthenticationToken(updatedUser, updatedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);

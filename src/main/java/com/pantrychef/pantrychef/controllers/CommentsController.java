@@ -72,6 +72,7 @@ public class CommentsController {
     @GetMapping("/comment/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
         Comments commentToEdit = commentsDao.getOne(id);
+        model.addAttribute("user", commentToEdit.getUser());
         model.addAttribute("comment", commentToEdit);
         return "recipes/editComment";
     }
@@ -82,14 +83,14 @@ public class CommentsController {
         model.addAttribute("comment", commentToEdit);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
-        if (user.getId() == commentToEdit.getUser().getId()) {
+//        if (user.getId() == commentToEdit.getUser().getId()) {
             commentToEdit.setComment(comment);
             LocalDateTime now = LocalDateTime.now();
             commentToEdit.setCommentedAt(now);
             commentToEdit.setUser(user);
             commentToEdit.setRecipe(commentToEdit.getRecipe());
             commentsDao.save(commentToEdit);
-        }
+//        }
         return "redirect:/recipes/" + commentToEdit.getRecipe().getId();
     }
 }

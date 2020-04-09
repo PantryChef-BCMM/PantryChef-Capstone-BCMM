@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="partials/head :: head('View Recipe')"></head>
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-<form th:action="@{|/comment/${comment.getId()}/edit|}" th:method="post">
-    Description:
-    <input th:field="*{comment.comment}" />
-    <br />
-    <input type="submit" />
-</form>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{|/comment/${comment.getId()}/edit|}" th:method="post">
+
+            Description:
+            <input th:field="*{comment.comment}"/>
+            <br/>
+            <input type="submit"/>
+<!--        <div th:if="${user.id} == ${comment.getUser().getId()}">-->
+<!--            Description:-->
+<!--            <input th:field="*{comment.comment}"/>-->
+<!--            <br/>-->
+<!--            <input type="submit"/>-->
+<!--        </div>-->
+        </form>
+    </div>
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>
