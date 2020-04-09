@@ -5,7 +5,8 @@
 
 <nav th:fragment="navbar" class="navbar navbar-nav navbar-expand-lg navbar-dark w-100 p-0 m-0">
 
-    <a th:href="@{/}" class="navbar-a-links navbar-brand">PantryChef</a>
+    <a th:href="@{/}" class="pull-left"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>
+    <a th:href="@{/}" class="navbar-brand-text">PantryChef</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,7 +27,7 @@
                 </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-link btn-link btn">Logout</button>
+                        <button class="nav-link btn-link btn navbar-a-links">Logout</button>
                     </form>
                 </li>
             </ul>
