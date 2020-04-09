@@ -1,0 +1,20 @@
+.recipe-button{
+    background-color:#2BA4B9 !important;
+    border-radius: 6px;
+    font-size: 1.5em;
+    color: white;
+}
+.recipe-button:hover{
+    color:black;
+}
+.recipe-button-search{
+    background-color:#2BA4B9 !important;
+    color: white;
+}
+/*.test-color{*/
+/*color: #676672;*/
+/*#860806*/
+/*#0E3E4F*/
+/*#676672*/
+/*#2BA4B9*/
+/*}*/
