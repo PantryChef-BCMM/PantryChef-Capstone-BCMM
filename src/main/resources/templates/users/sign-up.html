@@ -3,32 +3,41 @@
 <head th:replace="partials/head :: head('Sign Up')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="container m-5">
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row align-items-center">
+        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
+            <h1>Create an account</h1>
+            <br>
+            <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+                <label for="firstName">First Name</label>
+                <input th:field="*{first_name}">
 
-<h1>Create an account</h1>
+                <label for="lastName">Last Name</label>
+                <input th:field="*{last_name}">
 
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="firstName">First Name</label>
-    <input th:field="*{first_name}">
+                <label for="username">Username</label>
+                <input th:field="*{username}"/>
 
-    <label for="lastName">Last Name</label>
-    <input th:field="*{last_name}">
+                <label for="email">Email</label>
+                <input th:field="*{email}"/>
 
-    <label for="username">Username</label>
-    <input th:field="*{username}"/>
+                <label for="password">Password</label>
+                <input type="password" th:field="*{password}"/>
 
-    <label for="email">Email</label>
-    <input th:field="*{email}"/>
+                <!-- Button calls function 'pickMark()' onclick now -->
+                <!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
+                <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
 
-    <label for="password">Password</label>
-    <input type="password" th:field="*{password}"/>
-
-    <!-- Button calls function 'pickMark()' onclick now -->
-<!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
-    <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
-
-    <input value="Sign me up!" type="submit" />
-</form>
+                <input value="Sign me up!" type="submit"/>
+            </form>
+        </div>
+    </div>
 </div>
 <th:block th:replace="partials/scripts :: scripts"/>
 <!--<script th:inline="javascript">-->
