@@ -17,34 +17,11 @@ public class Ingredient {
     @ManyToMany(mappedBy = "ingredientList")
     private List<Recipe> recipeList;
 
-//    @OneToMany(mappedBy = "ingredient")
-//    private Set<ShoppingList> users_ingredient;
-//
-//    @OneToMany(mappedBy = "ingredient")
-//    private List<RecipeIngredients> recipeIngredients;
-
     public Ingredient() {
     }
 
     public long getId() {
         return id;
-    }
-
-//    public List<RecipeIngredients> getRecipeIngredients() {
-//        return recipeIngredients;
-//    }
-//
-//    public void setRecipeIngredients(List<RecipeIngredients> recipeIngredients) {
-//        this.recipeIngredients = recipeIngredients;
-//    }
-
-
-    public List<Recipe> getRecipeList() {
-        return recipeList;
-    }
-
-    public void setRecipeList(List<Recipe> recipeList) {
-        this.recipeList = recipeList;
     }
 
     public void setId(long id) {
@@ -57,5 +34,13 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Recipe> getRecipeList() {
+        return recipeList;
+    }
+
+    public void setRecipeList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
     }
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Profile')"></head>
+<body>
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div sec:authorize="isAuthenticated()">
+    <h1>Shopping Cart List!!</h1>
+    <h3 th:text="${shoppingList.user.username} + '\'s list'"></h3>
+<!--    <div th:each="shoppingListItem : ${shoppingList}">-->
+<!--        <p th:text="${shoppingListItem.name}"></p>-->
+<!--    </div>-->
+</div>
+<br>
+<br>
+<th:block th:replace="partials/scripts :: scripts"/>
+</body>
+</html>

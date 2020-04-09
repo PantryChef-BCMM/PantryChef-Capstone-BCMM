@@ -29,7 +29,7 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private boolean isAdmin;
+    private boolean admin;
 
     @Column(nullable = false)
     private String profileImageUrl;
@@ -46,6 +46,16 @@ public class User {
         first_name = copy.first_name;
         last_name = copy.last_name;
         profileImageUrl = copy.profileImageUrl;
+        admin = copy.admin;
+    }
+
+    public User(String username, String email, String first_name, String last_name, String password) {
+        this.username = username;
+        this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.password = password;
+        this.admin = false;
     }
 
     //Many to many  relationship connection to recipes table
@@ -58,13 +68,15 @@ public class User {
     private List<Recipe> favorites;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    //Many to one annotation to Shopping list model
+     private List<ShoppingList> usershoppingList;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recipe> recipes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comments> comments;
-
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    Set<ShoppingList> shoppingLists;
 
     public long getId() {
         return id;
@@ -115,11 +127,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public String getProfileImageUrl() {
