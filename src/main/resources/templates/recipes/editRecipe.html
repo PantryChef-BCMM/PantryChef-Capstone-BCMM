@@ -9,18 +9,71 @@
         <h1>Edit Recipe</h1>
         <label for="title">Title</label><br>
         <input th:field="*{title}" style="width: 40%"/><br>
-        <label for="ingredient">Add Ingredient</label>
-        <input th:field="*{ingredient}" style="width: 23%"/>
-        <input type="BUTTON" value="Add" id="addIngredient" onclick="">
+
+        <!-- Ingredients -->
+        <label for="ingredient-div">Ingredients</label>
+        <div class="ingredient-div" id="ingredient-div" th:field="*{ingredientList}">
+            <div th:each="ingredient : *{ingredientList}">
+                <input class="form-control" id="ingredient-param-0" name="ingredient-param"
+                       th:value="${ingredient.getName()}">
+            </div>
+        </div>
+        <button class="btn btn-dark btn-sm form-control" id="add-ingredient-button">Add Another Ingredient</button>
+        <br>
+
+        <!-- Instructions -->
+        <label for="instructions-div">Instructions</label>
+        <div class="instructions-div" id="instructions-div" th:field="*{instructionList}">
+            <div th:each="instruction : *{instructionList}">
+                <input class="form-control" type="text" id="instruction-param-0" name="instruction-param"
+                       th:value="${instruction.getName()}">
+            </div>
+        </div>
+        <button class="btn btn-dark btn-sm form-control" id="add-instruction-button">Add Another Instruction</button>
+        <br>
+
+        <!--        <input type="BUTTON" value="Add" id="addIngredient" onclick="">-->
         <!--    <input type="BUTTON" value="Delete" id="deleteIngredient" onclick="">-->
         <label for="quantity">Quantity</label>
         <input type="number" id="quantity" name="quantity" min="1" max="25"><br>
         <label for="directions">Directions</label><br>
-        <input th:field="*{directions}" style="width: 40%"/><br><br>
+        <!--        <input th:field="*{directions}" style="width: 40%"/><br><br>-->
         <!-- Button calls function 'pickMark()' onclick now -->
         <input type="BUTTON" value="Add Recipe Image(s)" id="pickWatermark" onclick="pickMark()"><br><br>
         <input type="hidden" name="recipeImageUrl" id="recipeImageUrl" th:field="*{recipeImageUrl}">
-        <input type="submit" value="Submit" />
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="categories" id="American" value="1">
+            <label class="form-check-label" for="American">American</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Chinese" value="2">
+            <label class="form-check-label" for="Chinese">Chinese</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Italian" value="3">
+            <label class="form-check-label" for="Italian">Italian</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Vegetarian" value="4">
+            <label class="form-check-label" for="Vegetarian">Vegetarian</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Vegan" value="5">
+            <label class="form-check-label" for="Vegan">Vegan</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Thai" value="6">
+            <label class="form-check-label" for="Thai">Thai</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Indian" value="7">
+            <label class="form-check-label" for="Indian">Indian</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Mexican" value="8">
+            <label class="form-check-label" for="Mexican">Mexican</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="German" value="9">
+            <label class="form-check-label" for="German">German</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Greek" value="10">
+            <label class="form-check-label" for="Greek">Greek</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Mediterranean" value="11">
+            <label class="form-check-label" for="Mediterranean">Mediterranean</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Cajun" value="12">
+            <label class="form-check-label" for="Cajun">Cajun</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Latin" value="13">
+            <label class="form-check-label" for="Latin">Latin</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="French" value="14">
+            <label class="form-check-label" for="French">French</label>
+            <input class="form-check-input" type="checkbox" name="categories" id="Filipino" value="15">
+            <label class="form-check-label" for="Filipino">Filipino</label>
+        </div>
+        <input type="submit" value="Submit"/>
     </form>
 </div>
 
@@ -28,14 +81,15 @@
 
 <script>
     var client = filestack.init(document.querySelector('meta.fsapi').content);
+
     //The function pickMark now will open the file picker
     function pickMark() {
         console.log("Uploading Photo");
         //Opening the file picker here
         client.pick({
             accept: 'image/*',
-            maxFiles:1
-        }).then(function(result) {
+            maxFiles: 1
+        }).then(function (result) {
             console.log("File url: " + result.filesUploaded[0].url);
             console.log(pickWatermark);
             document.getElementById("recipeImageUrl").value = result.filesUploaded[0].url;

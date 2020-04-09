@@ -2,42 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('View Recipe')"></head>
 <body>
-
 <nav th:replace="partials/navbar :: navbar"></nav>
-
 <div class="container m-5">
     <h1 th:text="${recipe.title}"></h1>
+<!--    <div sec:authorize="isAuthenticated()">-->
+<!--        <div th:if="">-->
+
+<!--        </div>-->
+<!--    </div>-->
+
+    <a th:href="@{|/profile/${recipe.user.id}|}"><h6 th:text="'Posted by: ' + ${recipe.user.username}"></h6></a>
     <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
     <p style="font-weight: bold">Ingredient(s):</p>
     <div th:each="ingredient : ${recipe.ingredientList}">
         <p th:text="${ingredient.name}"></p>
     </div>
-    <p style="font-weight: bold">Directions:</p>
-    <p th:text="${recipe.directions}"></p>
-    <!--<a th:href="'mailto:'+${recipe.user.email}"><span th:text="${recipe.user.email}"></span> </a>-->
-    <a th:href="@{|/comments/post/${recipe.id}|}"><button>Post a comment</button></a>
-    <div sec:authorize="isAuthenticated()">
-        <div th:if="${user.id} == ${recipe.user.id}">
-            <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit Post</button></a>
-            <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
-                <button>Delete Post</button>
-            </form>
-        </div>
+    <p style="font-weight: bold">Instructions:</p>
+    <div th:each="instruction : ${recipe.instructionList}">
+        <p th:text="${instruction.name}"></p>
     </div>
-
-
+    <div sec:authorize = "!isAuthenticated()">
+        <a th:href="@{|/login|}"><button>Comment</button></a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <div th:if="${user.id} == ${recipe.user.id} OR ${user.admin}">
+            <a th:href="@{|/recipe/${recipe.id}/edit|}"><button>Edit</button></a>
+            <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+                <button>Delete</button>
+            </form>
+            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Comment</button></a>
+        </div>
+        <br>
+        <div th:if="${user.id} != ${recipe.user.id}">
+            <a th:href="@{|/comments/post/${recipe.id}|}"><button>Comment</button></a>
+        </div>
+        <br>
+    </div>
     <div th:each="comment : ${recipe.comments}">
+        <br>
         <p th:text = "${comment.commentedAt}"></p>
         <p th:text = "${comment.getUser().getUsername()}"></p>
         <p th:text = "${comment.comment}"></p>
-<!--        <div sec:authorize = "isAuthenticated()">-->
-<!--            -->
-<!--        </div>-->
+        <div sec:authorize = "isAuthenticated()">
+            <div th:if="${user.id} == ${comment.getUser().getId()} OR ${user.admin}">
+                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
+                    <button>Delete Comment</button>
+                </form>
+                <a th:href="@{|/comment/${comment.id}/edit|}"><button>Edit Comment</button></a>
+            </div>
+        </div>
     </div>
 </div>
-
-
 <th:block th:replace="partials/scripts :: scripts"/>
-
 </body>
 </html>
