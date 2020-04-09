@@ -7,7 +7,7 @@
 
 <div sec:authorize="isAuthenticated()">
     <h1>Shopping Cart List!!</h1>
-    <h3 th:text="${shoppingList.user} + '\'s list'"></h3>
+    <h3 th:text="${shoppingList.user.username} + '\'s list'"></h3>
 <!--    <div th:each="shoppingListItem : ${shoppingList}">-->
 <!--        <p th:text="${shoppingListItem.name}"></p>-->
 <!--    </div>-->

@@ -2,15 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Profile')"></head>
 <style>
-    .card-columns {
 
-    @include media-breakpoint-only(lg) {
-        column-count: 4;
-    }
-    @include media-breakpoint-only(xl) {
-        column-count: 5;
-    }
-    }
 </style>
 <body>
 
@@ -25,9 +17,12 @@
                 <h1 class="m-3" th:text="${user.username}"></h1>
                 <div class="row justify-content-center">
                     <div class="col-3 text-center">
-                        <img alt="" class="profileImages rounded-circle mb-4"
-                             th:attr="src=@{${user.profileImageUrl}}"
-                             style="height: 16em; width: auto"/>
+                        <img alt="" class="profileImages rounded-circle mb-4" th:attr="src=@{${user.profileImageUrl}}" style="height: 16em; width: auto"/>
+<!--                        <div th:if="${user.admin}">-->
+<!--                            <a th:href="@{|/edit/${user.id}|}">-->
+<!--                                <button>Edit profile</button>-->
+<!--                            </a>-->
+<!--                        </div>-->
                     </div>
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -47,8 +42,7 @@
                             <div th:each="recipe : ${recipes}">
                                 <div th:if="${user.id} == ${recipe.user.id}">
                                     <div class="card shadow-lg rounded">
-                                        <img class="card-img-top" style="height: 16em;"
-                                             th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                        <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
                                         <div class="card-body">
                                             <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"
                                                                                         th:text="${recipe.title}"></h1>
