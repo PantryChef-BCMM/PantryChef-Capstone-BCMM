@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/head :: head('Navbar')"></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+</head>
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-nav navbar-expand-lg navbar-dark w-100 p-0 m-0">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a th:href="@{/}" class="pull-left"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>
-    <a th:href="@{/}" class="navbar-brand-text">PantryChef</a>
+    <a th:href="@{/}" class="navbar-brand">PantryChef</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-form collapse navbar-collapse" id="navbarNav">
 
             <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
-
                 <li class="nav-item ">
                     <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
+                <li class="nav-item ">
+                    <a class="nav-link" th:href="@{/recipes}">Recipes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>
-
+                    <a class="nav-link" th:href="@{/recipe/create}">Create Recipe</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
+                    <a class="nav-link" th:href="@{/profile}">Profile</a>
                 </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-link navbar-a-links btn">Logout</button>
+                        <button class="nav-link btn-link btn">Logout</button>
                     </form>
                 </li>
             </ul>
@@ -42,16 +39,13 @@
                     <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
+                    <a class="nav-link" th:href="@{/recipes}">Recipes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/login}">Login</a>
+                    <a class="nav-link" th:href="@{/login}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/sign-up}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
+                    <a class="nav-link" th:href="@{/sign-up}">Register</a>
                 </li>
             </ul>
 

@@ -68,6 +68,11 @@ public class User {
     private List<Recipe> favorites;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    //Many to one annotation to Shopping list model
+     private List<ShoppingList> usershoppingList;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Recipe> recipes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -136,6 +141,4 @@ public class User {
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
     }
-
-
 }
