@@ -1,0 +1,34 @@
+.login-background-image {
+    background: url("https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?cs=srgb&dl=assorted-salads-on-bowls-1640773.jpg&fm=jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login-text {
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+.login-button {
+    background: #2BA4B9;
+    color: white;
+    border-radius: 4px;
+    width: 8em;
+    height: auto;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-button:hover {opacity: 1}
+
+.login-box-image {
+    /*background: url("https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?cs=srgb&dl=fruit-salads-in-plate-1640774.jpg&fm=jpg") no-repeat center center fixed;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
+}

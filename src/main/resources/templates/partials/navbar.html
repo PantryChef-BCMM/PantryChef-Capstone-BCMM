@@ -13,11 +13,16 @@
     <div class="navbar-form collapse navbar-collapse" id="navbarNav">
 
             <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+
+                <li class="nav-item ">
+                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>
@@ -33,6 +38,9 @@
             </ul>
 
             <ul class="navbar-nav ml-auto" sec:authorize="isAnonymous()">
+                <li class="nav-item ">
+                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
                 </li>
