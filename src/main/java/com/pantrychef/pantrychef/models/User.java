@@ -37,27 +37,6 @@ public class User {
     public User() {
     }
 
-    //Copy Constructor
-    public User(User copy){
-        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-        email = copy.email;
-        username = copy.username;
-        password = copy.password;
-        first_name = copy.first_name;
-        last_name = copy.last_name;
-        profileImageUrl = copy.profileImageUrl;
-        admin = copy.admin;
-    }
-
-    public User(String username, String email, String first_name, String last_name, String password) {
-        this.username = username;
-        this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.password = password;
-        this.admin = false;
-    }
-
     //Many to many  relationship connection to recipes table
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -69,7 +48,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     //Many to one annotation to Shopping list model
-     private List<ShoppingList> usershoppingList;
+     private List<ShoppingList> userShoppingList;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -77,6 +56,30 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comments> comments;
+
+    //Copy Constructor
+    public User(User copy){
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+        first_name = copy.first_name;
+        last_name = copy.last_name;
+        profileImageUrl = copy.profileImageUrl;
+        admin = copy.admin;
+        userShoppingList = copy.userShoppingList;
+    }
+
+    public User(String username, String email, String first_name, String last_name, String password, List<ShoppingList> userShoppingList) {
+        this.username = username;
+        this.email = email;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.password = password;
+        this.admin = false;
+        this.userShoppingList = userShoppingList;
+    }
+
 
     public long getId() {
         return id;
@@ -140,5 +143,17 @@ public class User {
 
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
+    }
+
+    public List<ShoppingList> getUserShoppingList() {
+        return userShoppingList;
+    }
+
+    public void setUserShoppingList(List<ShoppingList> userShoppingList) {
+        this.userShoppingList = userShoppingList;
+    }
+
+    public void setShoppingListItem(ShoppingList item){
+        userShoppingList.add(item);
     }
 }
