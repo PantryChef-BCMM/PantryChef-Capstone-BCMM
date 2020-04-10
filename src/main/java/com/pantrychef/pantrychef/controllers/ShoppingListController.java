@@ -4,10 +4,10 @@ import com.pantrychef.pantrychef.models.ShoppingList;
 import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ShoppingListController {
@@ -16,24 +16,47 @@ public class ShoppingListController {
     private IngredientsRepo ingredientsDao;
     private CategoriesRepo categoriesDao;
     private CommentsRepo commentsDao;
+    private ShoppingListRepo shoppingListDao;
     @Value("${filestack.api.key}")
     private String fsapi;
 
-    public ShoppingListController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao, CommentsRepo commentsDao) {
+    public ShoppingListController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao, CategoriesRepo categoriesDao, CommentsRepo commentsDao, ShoppingListRepo shoppingListDao) {
         this.recipeDao = recipeDao;
         this.userDao = userDao;
         this.ingredientsDao = ingredientsDao;
         this.categoriesDao = categoriesDao;
         this.commentsDao = commentsDao;
+        this.shoppingListDao = shoppingListDao;
     }
 
-    @GetMapping("/list/{id}")
-    public String getShoppingList(@PathVariable long id, Model model){
-        User user = userDao.getOne(id);
+    @GetMapping("/list")
+    public String getShoppingList(Model model){
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getUserById(loggedIn.getId());
+        ShoppingList shoppingList = shoppingListDao.getShoppingListByUserId(user.getId());
+        model.addAttribute("user", user);
+        return "users/shoppingList";
+    }
+
+    @GetMapping("/list/addItem")
+    public String getAddItem(Model model){
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getUserById(loggedIn.getId());
         ShoppingList shoppingList = new ShoppingList();
-        shoppingList.setUser(user);
         model.addAttribute("user", user);
         model.addAttribute("shoppingList", shoppingList);
-        return "users/shoppingList";
+        return "users/editShoppingList";
+    }
+
+    @PostMapping("/list/addItem")
+    public String postAddItem(@ModelAttribute ShoppingList shoppingList, Model model, @RequestParam String shoppingListItem){
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getUserById(loggedIn.getId());
+        shoppingList.setUser(user);
+        shoppingList.setShoppingListItem(shoppingListItem);
+        model.addAttribute("user", user);
+        model.addAttribute("shoppingList", shoppingList);
+        shoppingListDao.save(shoppingList);
+        return "redirect:/list";
     }
 }
