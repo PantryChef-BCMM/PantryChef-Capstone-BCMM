@@ -1,8 +1,10 @@
 package com.pantrychef.pantrychef.controllers;
 
 import com.pantrychef.pantrychef.models.Recipe;
+//import com.pantrychef.pantrychef.models.ShoppingList;
 import com.pantrychef.pantrychef.models.User;
 import com.pantrychef.pantrychef.repositories.RecipeRepo;
+//import com.pantrychef.pantrychef.repositories.ShoppingListRepo;
 import com.pantrychef.pantrychef.repositories.UserRepo;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,14 +26,16 @@ public class UserController {
     private UserRepo usersDao;
     private RecipeRepo recipeDao;
     private PasswordEncoder passwordEncoder;
+//    private ShoppingListRepo shoppingListDao;
 
     @Value("${filestack.api.key}")
     private String fsapi;
 
-    public UserController(UserRepo usersDao, PasswordEncoder passwordEncoder, RecipeRepo recipeDao) {
+    public UserController(UserRepo usersDao, PasswordEncoder passwordEncoder, RecipeRepo recipeDao) {//, ShoppingListRepo shoppingListDao
         this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
         this.recipeDao = recipeDao;
+//        this.shoppingListDao = shoppingListDao;
     }
 
     @GetMapping("/sign-up")
@@ -47,6 +51,9 @@ public class UserController {
         user.setPassword(hash);
         user.setProfileImageUrl("https://picsum.photos/200");
         usersDao.save(user);
+//        ShoppingList myShoppingList = new ShoppingList();
+//        myShoppingList.setUser(user);
+//        shoppingListDao.save(myShoppingList);
         return "redirect:/login";
     }
 
