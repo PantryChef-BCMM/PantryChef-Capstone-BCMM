@@ -1,0 +1,25 @@
+.signup-background {
+    background: url("https://images.pexels.com/photos/3026802/pexels-photo-3026802.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.signup-text {
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+.submit-button {
+    background: #2BA4B9;
+    color: white;
+    border-radius: 4px;
+    width: 8em;
+    height: auto;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.submit-button:hover {opacity: 1}

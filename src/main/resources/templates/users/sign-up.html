@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head('Sign Up')"></head>
-<body>
+<body class="signup-background">
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="container m-5">
-
-<h1>Create an account</h1>
-
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="firstName">First Name</label>
-    <input th:field="*{first_name}">
-
-    <label for="lastName">Last Name</label>
-    <input th:field="*{last_name}">
-
-    <label for="username">Username</label>
-    <input th:field="*{username}"/>
-
-    <label for="email">Email</label>
-    <input th:field="*{email}"/>
-
-    <label for="password">Password</label>
-    <input type="password" th:field="*{password}"/>
-
-    <!-- Button calls function 'pickMark()' onclick now -->
-<!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
-    <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
-
-    <input value="Sign me up!" type="submit" />
-</form>
+<div class="container">
+    <br>
+    <br>
+    <div class="row align-items-center">
+        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
+            <h1 class="signup-text">Create an account</h1>
+            <br>
+            <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+                <label for="firstName">First Name</label>
+                <br>
+                <input th:field="*{first_name}">
+                <br>
+                <label for="lastName">Last Name</label>
+                <br>
+                <input th:field="*{last_name}">
+                <br>
+                <label for="username">Username</label>
+                <br>
+                <input th:field="*{username}"/>
+                <br>
+                <label for="email">Email</label>
+                <br>
+                <input th:field="*{email}"/>
+                <br>
+                <label for="password">Password</label>
+                <br>
+                <input type="password" th:field="*{password}"/>
+                <br>
+                <!-- Button calls function 'pickMark()' onclick now -->
+                <!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
+                <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
+                <br>
+                <!--                <input value="Sign me up!" type="submit"/>-->
+                <input class="shadow-sm submit-button" type="submit" value="Sign me up!"/>
+            </form>
+        </div>
+    </div>
 </div>
 <th:block th:replace="partials/scripts :: scripts"/>
 <!--<script th:inline="javascript">-->
