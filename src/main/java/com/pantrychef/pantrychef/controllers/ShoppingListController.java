@@ -59,4 +59,41 @@ public class ShoppingListController {
         shoppingListDao.save(shoppingList);
         return "redirect:/list";
     }
+
+    @PostMapping("/list/deleteItem/{id}")
+    public String deleteListItem(@PathVariable long id){
+        ShoppingList listToDelete = shoppingListDao.getOne(id);
+        shoppingListDao.delete(listToDelete);
+        return "redirect:/list";
+    }
+
+//    @GetMapping("list/edit/{id}")
+//    public String getEdit(Model model, @PathVariable long id){
+//        ShoppingList shoppingList = shoppingListDao.getOne(id);
+//        model.addAttribute("shoppingList", shoppingList);
+//        return "users/editListItem";
+//    }
+
+    @GetMapping("/list/edit/{id}")
+    public String getEditItem(Model model, @PathVariable long id){
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getUserById(loggedIn.getId());
+        ShoppingList listToEdit = shoppingListDao.getOne(id);
+        model.addAttribute("shoppingList", listToEdit);
+        model.addAttribute("user", user);
+        return "users/editListItem";
+    }
+
+    @PostMapping("/list/edit/{id}")
+    public String postEditItem(@ModelAttribute ShoppingList shoppingList, Model model, @RequestParam String shoppingListItem, @PathVariable long id){
+        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getUserById(loggedIn.getId());
+        shoppingList.setShoppingListItem(shoppingListItem);
+        shoppingList.setUser(user);
+        model.addAttribute("user", user);
+        shoppingListDao.save(shoppingList);
+        return "redirect:/list";
+    }
+
+
 }
