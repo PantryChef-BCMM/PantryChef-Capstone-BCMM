@@ -11,16 +11,42 @@
     <!--        </div>-->
     <!--    </header>-->
     <main class="container">
-    <div class="row">
-        <div class="col">
-            <form action="#" th:action="@{/recipes}" method="get" class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
-                <input class="form-control" type="text" th:id="${search}" placeholder="Search" name="search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn recipe-button-search">Search</button>
-                </div>
-            </form>
+        <div class="row">
+            <div class="col">
+                <form action="#" th:action="@{/recipes}" method="get"
+                      class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
+                    <input class="form-control" type="text" th:id="${search}" placeholder="Search" name="search"
+                           aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn recipe-button-search">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+
+        <form action="#" th:action="@{/recipes}" method="get">
+        <label for="categories">Categories:</label>
+        <select th:id="${value}" id="categories" name="categories" class="selectpicker" multiple data-live-search="true"
+                data-flip="false">
+            <option name="categories" id="American" value="1">American</option>
+            <option name="categories" id="Chinese" value="2">Chinese</option>
+            <option name="categories" id="Italian" value="3">Italian</option>
+            <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
+            <option name="categories" id="Vegan" value="5">Vegan</option>
+            <option name="categories" id="Thai" value="6">Thai</option>
+            <option name="categories" id="Indian" value="7">Indian</option>
+            <option name="categories" id="Mexican" value="8">Mexican</option>
+            <option name="categories" id="German" value="9">German</option>
+            <option name="categories" id="Greek" value="10">Greek</option>
+            <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
+            <option name="categories" id="Cajun" value="12">Cajun</option>
+            <option name="categories" id="Latin" value="13">Latin</option>
+            <option name="categories" id="French" value="14">French</option>
+            <option name="categories" id="Filipino" value="15">Filipino</option>
+        </select>
+            <button class="btn" type="submit">Search</button>
+        </form>
+
         <div class="row row-cols-1 row-cols-md-3 mt-4">
             <div th:each="recipe : ${recipes}">
                 <div class="col">
@@ -31,33 +57,33 @@
                             <h3 class="card-title text-center" th:text="${recipe.title}"></h3>
                         </div>
                         <div class="card-footer">
-<!--                            <div sec:authorize="isAuthenticated()">-->
-<!--                                <div th:if="${user.id} == ${recipe.user.id}">-->
-<!--                                    <small class="text-muted"><a-->
-<!--                                            th:href="@{|/recipe/${recipe.id}/edit|}">-->
-<!--                                        <button>Edit Post</button>-->
-<!--                                    </a></small>-->
-<!--                                    <form th:action="@{|/recipe/${recipe.id}/delete|}"-->
-<!--                                          th:method="POST"-->
-<!--                                          style="display:inline">-->
-<!--                                        <small class="text-muted">-->
-<!--                                            <button>Delete Post</button>-->
-<!--                                        </small>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                                <small class="text-muted">-->
-<!--                                    <a th:href="@{|/recipes/${recipe.id}|}">-->
-<!--                                        <button>View Details</button>-->
-<!--                                    </a>-->
-<!--                                </small>-->
-<!--                            </div>-->
-<!--                            <div sec:authorize="isAnonymous()">-->
-                                <small class="text-muted d-flex justify-content-center align-items-center">
-                                    <a th:href="@{|/recipes/${recipe.id}|}">
-                                        <button class="recipe-button">View Details</button>
-                                    </a>
-                                </small>
-<!--                            </div>-->
+                            <!--                            <div sec:authorize="isAuthenticated()">-->
+                            <!--                                <div th:if="${user.id} == ${recipe.user.id}">-->
+                            <!--                                    <small class="text-muted"><a-->
+                            <!--                                            th:href="@{|/recipe/${recipe.id}/edit|}">-->
+                            <!--                                        <button>Edit Post</button>-->
+                            <!--                                    </a></small>-->
+                            <!--                                    <form th:action="@{|/recipe/${recipe.id}/delete|}"-->
+                            <!--                                          th:method="POST"-->
+                            <!--                                          style="display:inline">-->
+                            <!--                                        <small class="text-muted">-->
+                            <!--                                            <button>Delete Post</button>-->
+                            <!--                                        </small>-->
+                            <!--                                    </form>-->
+                            <!--                                </div>-->
+                            <!--                                <small class="text-muted">-->
+                            <!--                                    <a th:href="@{|/recipes/${recipe.id}|}">-->
+                            <!--                                        <button>View Details</button>-->
+                            <!--                                    </a>-->
+                            <!--                                </small>-->
+                            <!--                            </div>-->
+                            <!--                            <div sec:authorize="isAnonymous()">-->
+                            <small class="text-muted d-flex justify-content-center align-items-center">
+                                <a th:href="@{|/recipes/${recipe.id}|}">
+                                    <button class="recipe-button">View Details</button>
+                                </a>
+                            </small>
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>
