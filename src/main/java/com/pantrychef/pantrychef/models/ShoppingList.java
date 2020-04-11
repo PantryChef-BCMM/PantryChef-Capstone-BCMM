@@ -11,13 +11,8 @@ public class ShoppingList {
     @Column(nullable = false, columnDefinition = ("INT(11) UNSIGNED"))
     private long id;
 
-
     //New Entity for Joiner table
     private String shoppingListItem;
-
-    //New Entity for Joiner table
-    private int quantity;
-
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -55,11 +50,4 @@ public class ShoppingList {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }
