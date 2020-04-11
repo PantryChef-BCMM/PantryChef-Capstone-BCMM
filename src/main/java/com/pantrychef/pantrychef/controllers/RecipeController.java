@@ -42,74 +42,64 @@ public class RecipeController {
 
     @GetMapping("/recipes")
     public String getPosts(Model model, @RequestParam(required = false) String search, @RequestParam(required = false, name = "categories") Long value) {
-
         //=== SEARCH BAR ===//
         model.addAttribute("search", search);
+        model.addAttribute("value", value);
 
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
         }
-        if (search == null) {
+        if (search == null && value == null) {
             List<Recipe> recipes = recipeDao.findAll();
             model.addAttribute("recipes", recipes);
-
-        } else if (search.length() != 0) {
+        } else {
             List<Recipe> recipes = recipeDao.findAll();
             List<Recipe> searchedRecipes = new ArrayList<>();
 
             for (Recipe recipe : recipes) {
+                if (value != null) {
+                    boolean valueFlag = false;
+                    for (Categories category : recipe.getCategories()) {
+                        if (category.getId() == value) {
+                            System.out.println(value + " --> =? " + category.getId());
 
-                System.out.println(search +  " inside of for loop");
-                if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())) {
-                    System.out.println(search +  " inside of if title");
-                    searchedRecipes.add(recipe);
-                    continue;
-                }
-
-                String[] searchArray = search.replaceAll(", ", ",").split(",");
-                ArrayList<String> ingredientArray = new ArrayList<>();
-
-                recipe.getIngredientList().forEach(ingredient -> {
-                    ingredientArray.add(ingredient.getName());
-                });
-                //separate ingredient string into an array
-                boolean searchFlag = true;
-//                        System.out.println("--------------------Next Recipe--------------------");
-
-                for (int i = 0; i < searchArray.length; i++) {
-//                    System.out.println(searchArray[i] + "-->" + ingredientArray.toString().toLowerCase());
-
-                    if (!ingredientArray.toString().toLowerCase().contains(searchArray[i].toLowerCase())) {
-                        System.out.println("NOPE NOT THIS ONE");
-                        searchFlag = false;
-                        break;
+                            searchedRecipes.add(recipe);
+                            valueFlag = true;
+                            break;
+                        }
+                    }
+                    if (valueFlag) {
+                        continue;
                     }
                 }
+                if (search != null) {
+                    if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())) {
+                        searchedRecipes.add(recipe);
+                        continue;
+                    }
+                    String[] searchArray = search.replaceAll(", ", ",").split(",");
+                    ArrayList<String> ingredientArray = new ArrayList<>();
 
-//                System.out.println("Flag: " + searchFlag);
-
-                if (searchFlag == true) {
-                    searchedRecipes.add(recipe);
-                }
-                //=== CATEGORIES DROPDOWN FILTER ===//
-                model.addAttribute("value", value);
-                if (value != null) {
-                        for (Categories category : recipe.getCategories()) {
-                            if (category.getId() == value) {
-                                searchedRecipes.add(recipe);
-
-                            }
+                    recipe.getIngredientList().forEach(ingredient -> {
+                        ingredientArray.add(ingredient.getName());
+                    });
+                    //separate ingredient string into an array
+                    boolean searchFlag = true;
+                    for (String s : searchArray) {
+                        if (!ingredientArray.toString().toLowerCase().contains(s.toLowerCase())) {
+                            searchFlag = false;
+                            break;
                         }
+                    }
+                    if (searchFlag) {
+                        searchedRecipes.add(recipe);
+                    }
                 }
             }
             model.addAttribute("recipes", searchedRecipes);
 
         }
-
-
-
-
         return "recipes/recipes";
     }
 
@@ -212,7 +202,6 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/create")
-
     public String createRecipe(@RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam(name = "instruction-param") List<String> instructionsStringList, @RequestParam String title, @RequestParam List<Categories> categories) {
         Recipe recipe = new Recipe();
         recipe.setTitle(title);

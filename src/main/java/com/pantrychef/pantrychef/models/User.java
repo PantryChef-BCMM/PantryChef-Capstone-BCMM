@@ -38,13 +38,13 @@ public class User {
     }
 
     //Many to many  relationship connection to recipes table
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="users_favorites",
-            joinColumns = {@JoinColumn(name="user_id")},
-            inverseJoinColumns = {@JoinColumn(name="recipe_id")}
-    )
-    private List<Recipe> favorites;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name="users_favorites",
+//            joinColumns = {@JoinColumn(name="user_id")},
+//            inverseJoinColumns = {@JoinColumn(name="recipe_id")}
+//    )
+//    private List<Recipe> favorites;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     //Many to one annotation to Shopping list model

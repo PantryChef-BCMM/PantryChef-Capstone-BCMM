@@ -17,12 +17,6 @@ public class Recipe {
     @Column(length = 50, nullable = false)
     private String title;
 
-//    @Column(length = 25, nullable = false)
-//    private String ingredient;
-
-//    @Column(nullable = false, columnDefinition = "TEXT")
-//    private String directions;
-
     @Column(nullable = true)
     private String recipe_path;
 
@@ -67,13 +61,8 @@ public class Recipe {
 
 
     //Many to many annotation to User model for favorites
-    @ManyToMany(mappedBy = "favorites")
-    private List<User> favoritedBy;
-
-//    //One to many annotation to RecipeIngredients model
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-//    List<RecipeIngredients> recipeIngredients;
-
+//    @ManyToMany(mappedBy = "favorites")
+//    private List<User> favoritedBy;
 
     //One to many annotation to RecipeImages model
     @Column(nullable = false)
@@ -115,23 +104,23 @@ public class Recipe {
         this.instructionList = instructionList;
     }
 
-    public List<User> getFavoritedBy() {
-        return favoritedBy;
-    }
+//    public List<User> getFavoritedBy() {
+//        return favoritedBy;
+//    }
 
-    public void setFavoritedBy(List<User> favoritedBy) {
-        this.favoritedBy = favoritedBy;
-    }
+//    public void setFavoritedBy(List<User> favoritedBy) {
+//        this.favoritedBy = favoritedBy;
+//    }
 
     public User getUser() { return user; }
 
-    public String getRecipe_path() {
-        return recipe_path;
-    }
-
-    public void setRecipe_path(String recipe_path) {
-        this.recipe_path = recipe_path;
-    }
+//    public String getRecipe_path() {
+//        return recipe_path;
+//    }
+//
+//    public void setRecipe_path(String recipe_path) {
+//        this.recipe_path = recipe_path;
+//    }
 
     public void setUser(User user) { this.user = user;
     }
