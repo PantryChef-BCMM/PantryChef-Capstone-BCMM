@@ -13,23 +13,23 @@
             <form th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <label for="firstName">First Name</label>
                 <br>
-                <input th:field="*{first_name}">
+                <input th:field="*{first_name}" class="mx-auto w-50 shadow-sm form-control">
                 <br>
                 <label for="lastName">Last Name</label>
                 <br>
-                <input th:field="*{last_name}">
+                <input th:field="*{last_name}" class="mx-auto w-50 shadow-sm form-control">
                 <br>
                 <label for="username">Username</label>
                 <br>
-                <input th:field="*{username}"/>
+                <input th:field="*{username}" class="mx-auto w-50 shadow-sm form-control"/>
                 <br>
                 <label for="email">Email</label>
                 <br>
-                <input th:field="*{email}"/>
+                <input th:field="*{email}" class="mx-auto w-50 shadow-sm form-control"/>
                 <br>
                 <label for="password">Password</label>
                 <br>
-                <input type="password" th:field="*{password}"/>
+                <input type="password" th:field="*{password}" class="mx-auto w-50 shadow-sm form-control"/>
                 <br>
                 <!-- Button calls function 'pickMark()' onclick now -->
                 <!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
