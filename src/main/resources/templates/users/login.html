@@ -20,7 +20,7 @@
             <div th:if="${param.logout}">
                 <p>You have been logged out.</p>
             </div>
-            <form th:action="@{/login}" method="post" class="mx-auto">
+            <form th:action="@{/login}" method="post">
                 <label for="username">Username</label><br>
                 <input id="username" name="username" type="text" class="mx-auto w-50 shadow-sm form-control"/><br>
                 <label for="password">Password</label><br>
