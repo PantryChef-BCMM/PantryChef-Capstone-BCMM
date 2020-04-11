@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,67 +45,66 @@ public class RecipeController {
 
         //=== SEARCH BAR ===//
         model.addAttribute("search", search);
+
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
         }
-            if (search == null) {
-                List<Recipe> recipes = recipeDao.findAll();
-                model.addAttribute("recipes", recipes);
-            } else if (search.length() != 0) {
-                List<Recipe> recipes = recipeDao.findAll();
-                List<Recipe> searchedRecipes = new ArrayList<>();
-                for (Recipe recipe : recipes) {
+        if (search == null) {
+            List<Recipe> recipes = recipeDao.findAll();
+            model.addAttribute("recipes", recipes);
 
-                    if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())){
-                        searchedRecipes.add(recipe);
-                        continue;
-                    }
-                    model.addAttribute("recipes", searchedRecipes);
+        } else if (search.length() != 0) {
+            List<Recipe> recipes = recipeDao.findAll();
+            List<Recipe> searchedRecipes = new ArrayList<>();
 
-                        String[] searchArray = search.replaceAll(", ", ",").split(",");
-                        //System.out.println(Arrays.toString(searchArray));
-                        ArrayList<String> ingredientArray = new ArrayList<>();
-                        recipe.getIngredientList().forEach(ingredient -> {
-                            ingredientArray.add(ingredient.getName());
-                        });
-                        //separate ingredient string into an array
-                        boolean searchFlag = true;
+            for (Recipe recipe : recipes) {
+
+                System.out.println(search +  " inside of for loop");
+                if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())) {
+                    System.out.println(search +  " inside of if title");
+                    searchedRecipes.add(recipe);
+                    continue;
+                }
+
+                String[] searchArray = search.replaceAll(", ", ",").split(",");
+                ArrayList<String> ingredientArray = new ArrayList<>();
+
+                recipe.getIngredientList().forEach(ingredient -> {
+                    ingredientArray.add(ingredient.getName());
+                });
+                //separate ingredient string into an array
+                boolean searchFlag = true;
 //                        System.out.println("--------------------Next Recipe--------------------");
-//                        System.out.println(recipe.getTitle());
-                        for(int i = 0; i < searchArray.length; i++){
-                            System.out.println(searchArray[i] + "-->" + ingredientArray.toString().toLowerCase());
 
-                            if (!ingredientArray.toString().toLowerCase().contains(searchArray[i].toLowerCase())) {
-                                System.out.println("NOPE NOT THIS ONE");
-                                searchFlag = false;
-                                break;
+                for (int i = 0; i < searchArray.length; i++) {
+//                    System.out.println(searchArray[i] + "-->" + ingredientArray.toString().toLowerCase());
+
+                    if (!ingredientArray.toString().toLowerCase().contains(searchArray[i].toLowerCase())) {
+                        System.out.println("NOPE NOT THIS ONE");
+                        searchFlag = false;
+                        break;
+                    }
+                }
+
+//                System.out.println("Flag: " + searchFlag);
+
+                if (searchFlag == true) {
+                    searchedRecipes.add(recipe);
+                }
+                //=== CATEGORIES DROPDOWN FILTER ===//
+                model.addAttribute("value", value);
+                if (value != null) {
+                        for (Categories category : recipe.getCategories()) {
+                            if (category.getId() == value) {
+                                searchedRecipes.add(recipe);
+
                             }
                         }
-                        System.out.println("Flag: " + searchFlag);
-                        if(searchFlag == true){
-                            searchedRecipes.add(recipe);
-                        }
-                }
-
-            }
-
-        //=== CATEGORIES DROPDOWN FILTER ===//
-        model.addAttribute("value", value);
-        System.out.println(value);
-        if (value != null) {
-            List<Recipe> recipes = recipeDao.findAll();
-            List<Recipe> dropdownSearchedRecipes = new ArrayList<>();
-            for (Recipe recipe : recipes) {
-                for(Categories category : recipe.getCategories()) {
-                    if (category.getId() == value) {
-                        dropdownSearchedRecipes.add(recipe);
-                        System.out.println(category.getId());
-                        System.out.println(value);
-                    }
                 }
             }
-            model.addAttribute("recipes", dropdownSearchedRecipes);
+            model.addAttribute("recipes", searchedRecipes);
+
         }
 
 
