@@ -1,0 +1,28 @@
+.create-recipe-background{
+    background: url("https://images.pexels.com/photos/1458694/pexels-photo-1458694.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.create-recipe-button {
+    background: #2BA4B9;
+    color: white;
+    border-radius: 4px;
+    transition: 0.4s;
+    display: inline-block;
+    font-weight: bold;
+    /*text-decoration: none;*/
+    cursor: pointer;
+}
+.create-recipe-button:hover {
+    font-weight: bold;
+    color: #0E3E4F;
+    /*border: #860806 2px solid;*/
+}
+
+.create-recipe-select{
+    border: slategrey solid 1px;
+    border-radius: 5px;
+}

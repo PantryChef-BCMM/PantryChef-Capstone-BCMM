@@ -6,7 +6,7 @@ const attachAddSkillEventListener = function() {
             e.preventDefault();
             let newDiv = document.createElement("div");
             // and give it some content
-            newDiv.innerHTML = `<input class = "form-control" type="text" id="ingredients-param-${i}" name="ingredient-param" placeholder="Please enter an ingredient.">`
+            newDiv.innerHTML = `<input class="m-1 shadow-sm form-control" type="text" id="ingredients-param-${i}" name="ingredient-param" placeholder="Please enter ingredient.">`
             // add the text node to the newly created div
             document.querySelector("#ingredient-div").appendChild(newDiv);
             i++;
@@ -24,7 +24,7 @@ const attachAddDirectionEventListener = function() {
             e.preventDefault();
             let newDiv = document.createElement("div");
             // and give it some content
-            newDiv.innerHTML = `<input class = "form-control" type="text" id="instruction-param-${i}" name="instruction-param" placeholder="Please enter a cooking step.">`
+            newDiv.innerHTML = `<input class="m-1 shadow-sm form-control" type="text" id="instruction-param-${i}" name="instruction-param" placeholder="Please enter cooking step.">`
             // add the text node to the newly created div
             document.querySelector("#instructions-div").appendChild(newDiv);
             i++;
