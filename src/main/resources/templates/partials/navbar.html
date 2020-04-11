@@ -12,48 +12,48 @@
     </button>
     <div class="navbar-form collapse navbar-collapse" id="navbarNav">
 
-            <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+        <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
 
-                <li class="nav-item ">
-                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>
+            <li class="nav-item ">
+                <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>
 
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-link navbar-a-links btn">Logout</button>
-                    </form>
-                </li>
-            </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="nav-link navbar-a-links btn">Logout</button>
+                </form>
+            </li>
+        </ul>
 
-            <ul class="navbar-nav ml-auto" sec:authorize="isAnonymous()">
-                <li class="nav-item ">
-                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/login}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/sign-up}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
-                </li>
-            </ul>
+        <ul class="navbar-nav ml-auto" sec:authorize="isAnonymous()">
+            <li class="nav-item ">
+                <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/sign-up}">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
+            </li>
+        </ul>
 
     </div>
 

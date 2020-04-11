@@ -40,7 +40,9 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes")
-    public String getPosts(Model model, @RequestParam(required = false) String search) {
+    public String getPosts(Model model, @RequestParam(required = false) String search, @RequestParam(required = false, name = "categories") Long value) {
+
+        //=== SEARCH BAR ===//
         model.addAttribute("search", search);
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -86,6 +88,28 @@ public class RecipeController {
                 }
 
             }
+
+        //=== CATEGORIES DROPDOWN FILTER ===//
+        model.addAttribute("value", value);
+        System.out.println(value);
+        if (value != null) {
+            List<Recipe> recipes = recipeDao.findAll();
+            List<Recipe> dropdownSearchedRecipes = new ArrayList<>();
+            for (Recipe recipe : recipes) {
+                for(Categories category : recipe.getCategories()) {
+                    if (category.getId() == value) {
+                        dropdownSearchedRecipes.add(recipe);
+                        System.out.println(category.getId());
+                        System.out.println(value);
+                    }
+                }
+            }
+            model.addAttribute("recipes", dropdownSearchedRecipes);
+        }
+
+
+
+
         return "recipes/recipes";
     }
 
