@@ -63,7 +63,7 @@
                                                 <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"
                                                                                             th:text="${recipe.title}"></h1>
                                                 </a>
-                                                <p style="font-weight: bold">Ingredient(s):</p>
+                                                <p style="font-weight: bold">Ingredients:</p>
                                                 <div th:each="ingredient : ${recipe.ingredientList}">
                                                     <p th:text="${ingredient.name}"></p>
                                                 </div>
@@ -107,7 +107,7 @@
                                                 <a th:href="@{|/recipes/${recipe.id}|}"><h5 class="card-title"
                                                                                             th:text="${recipe.title}"></h5>
                                                 </a>
-                                                <p style="font-weight: bold">Ingredient(s):</p>
+                                                <p style="font-weight: bold">Ingredients:</p>
                                                 <div th:each="ingredient : ${recipe.ingredientList}">
                                                     <p th:text="${ingredient.name}"></p>
                                                 </div>

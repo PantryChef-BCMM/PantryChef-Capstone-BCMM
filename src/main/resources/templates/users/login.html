@@ -20,13 +20,13 @@
             <div th:if="${param.logout}">
                 <p>You have been logged out.</p>
             </div>
-            <form th:action="@{/login}" method="post">
+            <form th:action="@{/login}" method="post" class="mx-auto">
                 <label for="username">Username</label><br>
                 <input id="username" name="username" type="text" class="m-1 shadow-sm"/><br>
                 <label for="password">Password</label><br>
                 <input id="password" name="password" type="password" class="m-1 shadow-sm"/><br>
                 <br>
-                <input class="shadow-sm login-button" type="submit" value="Login"/>
+                <input class="shadow login-button" type="submit" value="Login"/>
             </form>
             <p style="float: left;" class="p-1 m-0">Don't have an account?</p><p style="float: left;" class="p-1 m-0"><a href="/sign-up">Register</a> to submit your recipes today!</p></div></div>
         </div>

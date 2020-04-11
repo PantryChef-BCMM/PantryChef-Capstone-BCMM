@@ -1,3 +1,11 @@
+.aboutUs-background-image {
+    background: url("https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fa7%2Fb0%2F10%2Fa7b0100015174e1697396fd5a3484b4c.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .fancy-cards{
     text-align: center;
     margin: 10px auto;
@@ -50,7 +58,7 @@
 }
 .fancy-card .middle{
     position: absolute;
-    background: #aaa;
+    background: #2BA4B9;
     top: 0;
     z-index: 2;
     transform: rotate(0deg);
@@ -58,7 +66,7 @@
 }
 .fancy-card .bottom{
     position: absolute;
-    background: #ccc;
+    background: #860806;
     top: 0;
     z-index: 1;
     transform: rotate(0deg);
@@ -114,15 +122,17 @@
     border: 0px;
 }
 
+.hover-blue {
+    color: #2BA4B9;
+}
 
 .hover-blue:hover{
-    color: #6096B4;
+    color: #860806;
 }
 
 .aboutusRow{
     margin-left: -3.5% !important;
 }
-
 
 /*.aboutus-header{*/
 /*    margin-top: 4%;*/

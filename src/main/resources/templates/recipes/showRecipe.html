@@ -13,7 +13,7 @@
 
     <a th:href="@{|/profile/${recipe.user.id}|}"><h6 th:text="'Posted by: ' + ${recipe.user.username}"></h6></a>
     <img alt="" class="recipeImages" th:attr="src=@{${recipe.recipeImageUrl}}" style="height: 250px; width: auto" />
-    <p style="font-weight: bold">Ingredient(s):</p>
+    <p style="font-weight: bold">Ingredients:</p>
     <div th:each="ingredient : ${recipe.ingredientList}">
         <p th:text="${ingredient.name}"></p>
     </div>
