@@ -23,6 +23,13 @@ public class ShoppingList {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public ShoppingList() {
+    }
+
+    public ShoppingList(String shoppingListItem, User user) {
+        this.shoppingListItem = shoppingListItem;
+        this.user = user;
+    }
 
     public String getShoppingListItem() {
         return shoppingListItem;
@@ -38,9 +45,6 @@ public class ShoppingList {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public ShoppingList() {
     }
 
     public long getId() {

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="partials/head :: head('Profile')"></head>
+<body>
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+<form th:action="@{|/list/edit/${shoppingList.getId()}|}" th:method="post" >
+    Description:
+    <input th:field="*{shoppingList.shoppingListItem}" />
+    <br />
+    <input type="submit" />
+</form>
+
+
+</body>
+</html>
