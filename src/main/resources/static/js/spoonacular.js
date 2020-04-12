@@ -4,7 +4,7 @@
 
 let ingredientArray = [];
 let recipeString;
-let recipeId;
+
 
 
 function recipeSubmitEventListener() {
@@ -19,19 +19,18 @@ function recipeSubmitEventListener() {
 
 const searchRecipeEventListener = function () {
 
-    // console.log(recipeString);
+
 
     var recipeCards = $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + recipeString + "&number=100&apiKey=0be955ec85264c56bd8649c5e1b7a666");
 
     recipeCards.done(function (data) {
-        // console.log(data);
+
 
 
         //Create the cards to hold the data for the recipe
 
         var recipe = "";
 
-        // console.log(data[0].title);
 
         for (var i = 0; i < data.length; i++) {
 
@@ -40,7 +39,7 @@ const searchRecipeEventListener = function () {
             recipe += '<img class="card-img-top img-fluid" src="' + data[i].image + '" alt="" />';
             recipe += '<div class=card-body >';
             recipe += '<h5 class=card-title>' + data[i].title + '</h5>';
-            recipe += '<button type="button" class="btn btn-primary recipe" data-toggle="modal" data-target="#recipeModalLong" id="' + data[i].id + '\">\n' + '  See Recipe Details\n' + '</button>'
+            recipe += '<button type="button" class="btn-navbar btn-primary recipe" data-toggle="modal" data-target="#recipeModalLong" id="' + data[i].id + '\">\n' + '  See Recipe Details\n' + '</button>'
             recipe += "</div>";
             recipe += "</div>";
 
@@ -119,7 +118,6 @@ const searchRecipeEventListener = function () {
 
 
                 //External link for further recipe details
-                // recipeSource += '<a href="'+ data.sourceUrl + '"target=_blank>' + 'See Recipe Source' + '</a>';
 
                 recipeSource += '<p>' +'Click on who its by in title to see more recipe details'+ '</p>';
 
