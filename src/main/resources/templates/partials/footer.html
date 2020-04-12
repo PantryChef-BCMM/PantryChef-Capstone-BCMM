@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/footer :: footer('Footer')"></head>
+<meta charset="UTF-8">
+</head>
+<style>
+    .card-columns {
+
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+    }
+</style>
+<body>
+<div class="card">
+    <div class="card-footer">
+        Quote
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Pantry Chef <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
+    </div>
+</div>
+<th:block th:replace="partials/scripts :: scripts"/>
+</body>
+</html>
