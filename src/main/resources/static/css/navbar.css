@@ -1,43 +1,43 @@
-/*.test-color{*/
-/*    !*color: #676672;*!*/
-/*            #860806*/
-/*            #0E3E4F*/
-/*            #676672*/
-/*            #2BA4B9*/
+/*!*.test-color{*!*/
+/*!*    !*color: #676672;*!*!*/
+/*!*            #860806*!*/
+/*!*            #0E3E4F*!*/
+/*!*            #676672*!*/
+/*!*            #2BA4B9*!*/
+/*!*}*!*/
+
+/*!* Adjust nav links to be dynamically centered and add hover color to brand text. *!*/
+
+/*.navbar-nav{*/
+/*    background-color:#0E3E4F;*/
+/*    height: 3.3em;*/
 /*}*/
 
-/* Adjust nav links to be dynamically centered and add hover color to brand text. */
+/*.navbar-a-links{*/
+/*    color: white !important;*/
+/*    margin-top: .3em;*/
+/*}*/
 
-.navbar-nav{
-    background-color:#0E3E4F;
-    height: 3.3em;
-}
+/*.navbar-a-links:hover {*/
+/*    color:#2BA4B9 !important;*/
+/*}*/
 
-.navbar-a-links{
-    color: white !important;
-    margin-top: .3em;
-}
+/*.navbar-brand-text {*/
+/*    font-family: 'Oleo Script Swash Caps', cursive;*/
+/*    color: white !important;*/
+/*    font-size: 25px;*/
+/*    margin-left: 10px;*/
+/*}*/
 
-.navbar-a-links:hover {
-    color:#2BA4B9 !important;
-}
+/*.nav-logo {*/
+/*    height: 2.5em;*/
+/*    width: auto;*/
+/*    margin-left: 5px;*/
+/*}*/
 
-.navbar-brand-text {
-    font-family: 'Oleo Script Swash Caps', cursive;
-    color: white !important;
-    font-size: 25px;
-    margin-left: 10px;
-}
-
-.nav-logo {
-    height: 2.5em;
-    width: auto;
-    margin-left: 5px;
-}
-
-.navbar-btn {
-    outline: none;
-    border: 0px;
-    box-sizing: none;
-    background: #0E3E4F;
-}
+/*.navbar-btn {*/
+/*    outline: none;*/
+/*    border: 0px;*/
+/*    box-sizing: none;*/
+/*    background: #0E3E4F;*/
+/*}*/
