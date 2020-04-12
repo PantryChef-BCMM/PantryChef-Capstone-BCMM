@@ -1,9 +1,41 @@
 .landingPage-PantryChef-text {
     font-family: 'Oleo Script Swash Caps', cursive;
+    color: black;
+    /*opacity: 1;*/
     /*-webkit-text-stroke-width: 1px;*/
     /*-webkit-text-stroke-color: black;*/
 }
 
 .landingPage-slogan-text {
-    color: white;
+    color: black;
+}
+
+.carousel-caption {
+    position: center!important;
+    top: 30% !important;
+    /*right: 15%;*/
+    /*bottom: 20px;*/
+    /*left: 15%;*/
+    z-index: 10;
+    /*padding-top: 20px;*/
+    /*padding-bottom: 7em;*/
+    /*color: #fff;*/
+    text-align: center!important;
+}
+
+.landing-page-img-opacity{
+    opacity: 0.9;
+}
+
+.outlined{
+    /*text-shadow:*/
+    /*        2px   0  0   #000,*/
+    /*        -2px   0  0   #000,*/
+    /*        0    2px 0   #000,*/
+    /*        0   -2px 0   #000,*/
+    /*        1px  1px 0   #000,*/
+    /*        -1px -1px 0   #000,*/
+    /*        1px -1px 0   #000,*/
+    /*        -1px  1px 0   #000,*/
+    /*        1px  1px 5px #000;*/
 }

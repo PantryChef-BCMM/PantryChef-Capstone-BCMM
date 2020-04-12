@@ -1,75 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head('Post Recipe')"></head>
-<body>
+<body class="create-recipe-background">
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="container m-5">
-    <form th:action="@{/recipe/create}" method="post" th:object="${recipe}" style="text-align: center">
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row align-items-center">
+        <div class="col-8 mx-auto text-center p-3 card card-block shadow-lg">
+            <form th:action="@{/recipe/create}" method="post" th:object="${recipe}">
 
-        <h1>Share a Recipe</h1>
+                <h1 class="text-center login-text">Share a Recipe</h1>
 
-        <label for="title">Title</label><br>
-        <input id="title" name="title" type="text" style="width: 40%"/><br>
 
-        <!-- OLD ingredient text input -->
-<!--        <label for="ingredients">Add Ingredient</label>-->
-<!--        <input id="ingredients" name="ingredients" type="text" style="width: 23%"/>-->
-<!--        <input type="BUTTON" value="Add" id="addIngredient" onclick="">-->
+                <label for="title" class="font-weight-bold">Title</label>
+                <input id="title" placeholder="Please enter title.." class="mx-auto m-1 shadow-sm form-control" name="title" type="text"/>
 
-        <!-- NEW ingredient text input -->
-<!--        <div class="ingredients-div" id="ingredients-div">-->
-<!--            <label for="ingredients-param-0">Add Ingredient</label>-->
-<!--            <input id="ingredients-param-0" name="ingredients" placeholder="Input Ingredient" type="text"-->
-<!--                   style="width: 23%"/>-->
-<!--            <input type="BUTTON" value="Add Ingredient" class="add-ingredient-button" id="add-ingredient-button"-->
-<!--                   onclick="addIngredientEventListener()">-->
-<!--        </div>-->
+                <!-- Ingredients -->
+                <label for="ingredient-div" class="m-1 font-weight-bold">Add Ingredient</label>
+                <div class="ingredient-div" id="ingredient-div">
+                    <input class="mx-auto m-1 shadow-sm form-control" type="text" id="ingredient-param-0" name="ingredient-param"
+                           placeholder="Please enter ingredient..">
+                </div>
+                <button class="mx-auto m-1 form-control create-recipe-button" id="add-ingredient-button"> Add </button><br>
 
-        <!-- Ingredients -->
-        <label for="ingredient-div">Add Ingredient</label>
-        <div class="ingredient-div" id="ingredient-div">
-            <input class="form-control" type="text" id="ingredient-param-0" name="ingredient-param"
-                   placeholder="Please enter an ingredient.">
+                <!-- Instructions -->
+                <label for="instructions-div" class="m-1 font-weight-bold">Add Directions</label>
+                <div class="instructions-div" id="instructions-div">
+                    <input class="mx-auto m-1 shadow-sm form-control" type="text" id="instruction-param-0" name="instruction-param"
+                           placeholder="Please enter cooking step..">
+                </div>
+
+                <button class="mx-auto m-1 form-control create-recipe-button" id="add-instruction-button"> Add </button>
+
+                <label for="categories" class="m-1 font-weight-bold">Select Categories</label><br>
+                <select class="m-1 create-recipe-select selectpicker text-center" id="categories" name="categories" multiple data-live-search="true"
+                        data-flip="false">
+<!--                    <option selected>Select Category</option>-->
+                    <option name="categories" id="American" value="1">American</option>
+                    <option name="categories" id="Chinese" value="2">Chinese</option>
+                    <option name="categories" id="Italian" value="3">Italian</option>
+                    <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
+                    <option name="categories" id="Vegan" value="5">Vegan</option>
+                    <option name="categories" id="Thai" value="6">Thai</option>
+                    <option name="categories" id="Indian" value="7">Indian</option>
+                    <option name="categories" id="Mexican" value="8">Mexican</option>
+                    <option name="categories" id="German" value="9">German</option>
+                    <option name="categories" id="Greek" value="10">Greek</option>
+                    <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
+                    <option name="categories" id="Cajun" value="12">Cajun</option>
+                    <option name="categories" id="Latin" value="13">Latin</option>
+                    <option name="categories" id="French" value="14">French</option>
+                    <option name="categories" id="Filipino" value="15">Filipino</option>
+                </select>
+
+                <!-- Button calls function 'pickMark()' onclick now -->
+                <input type="BUTTON" value=" Add Image " id="pickWatermark" class="mx-auto m-1 form-control create-recipe-button" onclick="pickMark()"><br><br>
+                <input type="hidden" name="recipeImageUrl" id="recipeImageUrl" th:field="*{recipeImageUrl}">
+                <input type="submit" class="create-recipe-button" value="Submit"/>
+
+            </form>
         </div>
-        <button class="btn btn-dark btn-sm form-control" id="add-ingredient-button">Add Another Ingredient</button>
-
-        <!-- Instructions -->
-        <div class="instructions-div" id="instructions-div">
-            <input class="form-control" type="text" id="instruction-param-0" name="instruction-param"
-                   placeholder="Please enter a cooking step.">
-        </div>
-
-        <button class="btn btn-dark btn-sm form-control" id="add-instruction-button">Add Another Instruction</button>
-
-        <label for="categories">Categories:</label>
-        <select id="categories" name="categories" class="selectpicker" multiple data-live-search="true" data-flip="false">
-            <option name="categories" id="American" value="1">American</option>
-            <option name="categories" id="Chinese" value="2">Chinese</option>
-            <option name="categories" id="Italian" value="3">Italian</option>
-            <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
-            <option name="categories" id="Vegan" value="5">Vegan</option>
-            <option name="categories" id="Thai" value="6">Thai</option>
-            <option name="categories" id="Indian" value="7">Indian</option>
-            <option name="categories" id="Mexican" value="8">Mexican</option>
-            <option name="categories" id="German" value="9">German</option>
-            <option name="categories" id="Greek" value="10">Greek</option>
-            <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
-            <option name="categories" id="Cajun" value="12">Cajun</option>
-            <option name="categories" id="Latin" value="13">Latin</option>
-            <option name="categories" id="French" value="14">French</option>
-            <option name="categories" id="Filipino" value="15">Filipino</option>
-        </select>
-
-        <!--        <div th:each="category : ${categories}">-->
-        <!--            <label for="category">Category</label><br>-->
-        <!--            <input type="radio" th:value="*{categories.name}"/><br>-->
-        <!--        </div>-->
-
-        <!-- Button calls function 'pickMark()' onclick now -->
-        <input type="BUTTON" value="Add Recipe Image(s)" id="pickWatermark" onclick="pickMark()"><br><br>
-        <input type="hidden" name="recipeImageUrl" id="recipeImageUrl" th:field="*{recipeImageUrl}">
-        <input type="submit" value="Submit"/>
-    </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
 
 <th:block th:replace="partials/scripts :: scripts"/>

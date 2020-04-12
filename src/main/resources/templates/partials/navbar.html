@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Navbar')"></head>
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-nav navbar-expand-lg navbar-dark w-100 p-0 m-0">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
 
-    <a th:href="@{/}" class="pull-left"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>
-    <a th:href="@{/}" class="navbar-brand-text">PantryChef</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-form collapse navbar-collapse" id="navbarNav">
+
+    <div class="collapse navbar-collapse" id="collapse_target">
+
+        <a href="#" class="navbar-brand"><img class="nav-logo nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>
+        <span class="navbar-text">PantryChef</span>
 
         <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
 
@@ -32,7 +36,7 @@
             </li>
             <li class="nav-item">
                 <form th:action="@{/logout}" th:method="post">
-                    <button class="nav-link navbar-a-links btn">Logout</button>
+                    <button class="nav-link navbar-a-links navbar-btn">Logout</button>
                 </form>
             </li>
         </ul>
@@ -56,10 +60,66 @@
         </ul>
 
     </div>
-
-
 </nav>
 
+
+<!--<nav th:fragment="navbar" class="navbar navbar-nav navbar-expand-lg navbar-dark w-100 p-0 m-0">-->
+
+<!--    <a th:href="@{/}" class="pull-left"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>-->
+<!--    <a th:href="@{/}" class="navbar-brand-text">PantryChef</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="navbar-form collapse navbar-collapse" id="navbarNav">-->
+
+<!--        <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">-->
+
+<!--            <li class="nav-item ">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>-->
+
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <form th:action="@{/logout}" th:method="post">-->
+<!--                    <button class="nav-link navbar-a-links navbar-btn">Logout</button>-->
+<!--                </form>-->
+<!--            </li>-->
+<!--        </ul>-->
+
+<!--        <ul class="navbar-nav ml-auto" sec:authorize="isAnonymous()">-->
+<!--            <li class="nav-item ">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/login}">Login</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/sign-up}">Register</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+
+<!--    </div>-->
+
+
+<!--</nav>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
 <th:block th:replace="partials/scripts :: scripts" />
 
 </body>
