@@ -11,25 +11,25 @@
             <h1 class="signup-text">Create an account</h1>
             <br>
             <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-                <label for="firstName">First Name</label>
+                <label for="firstName" class="font-weight-bold">First Name</label>
                 <br>
-                <input th:field="*{first_name}" class="mx-auto w-50 shadow-sm form-control">
+                <input placeholder="Enter your first name here..." th:field="*{first_name}" class="mx-auto w-50 shadow-sm form-control">
                 <br>
-                <label for="lastName">Last Name</label>
+                <label for="lastName" class="font-weight-bold">Last Name</label>
                 <br>
-                <input th:field="*{last_name}" class="mx-auto w-50 shadow-sm form-control">
+                <input placeholder="Enter your last name here..." th:field="*{last_name}" class="mx-auto w-50 shadow-sm form-control">
                 <br>
-                <label for="username">Username</label>
+                <label for="username" class="font-weight-bold">Username</label>
                 <br>
-                <input th:field="*{username}" class="mx-auto w-50 shadow-sm form-control"/>
+                <input placeholder="Enter your username here..." th:field="*{username}" class="mx-auto w-50 shadow-sm form-control"/>
                 <br>
-                <label for="email">Email</label>
+                <label for="email" class="font-weight-bold">E-mail</label>
                 <br>
-                <input th:field="*{email}" class="mx-auto w-50 shadow-sm form-control"/>
+                <input placeholder="Enter your e-mail here..." th:field="*{email}" class="mx-auto w-50 shadow-sm form-control"/>
                 <br>
-                <label for="password">Password</label>
+                <label for="password" class="font-weight-bold">Password</label>
                 <br>
-                <input type="password" th:field="*{password}" class="mx-auto w-50 shadow-sm form-control"/>
+                <input type="password" placeholder="Enter your password here..." th:field="*{password}" class="mx-auto w-50 shadow-sm form-control"/>
                 <br>
                 <!-- Button calls function 'pickMark()' onclick now -->
                 <!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
