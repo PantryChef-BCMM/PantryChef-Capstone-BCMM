@@ -53,9 +53,9 @@ public class UserController {
         user.setPassword(hash);
         user.setProfileImageUrl("https://picsum.photos/200");
         usersDao.save(user);
-        ShoppingList myShoppingList = new ShoppingList();
-        myShoppingList.setUser(user);
-        shoppingListDao.save(myShoppingList);
+//        ShoppingList myShoppingList = new ShoppingList();
+//        myShoppingList.setUser(user);
+//        shoppingListDao.save(myShoppingList);
         return "redirect:/login";
     }
 
