@@ -13,6 +13,9 @@
     color: white;
     font-weight: bold;
 }
+.card{
+    height: 30em;
+}
 /*.test-color{*/
 /*color: #676672;*/
 /*#860806*/
