@@ -11,15 +11,21 @@
 
 .submit-button {
     background: #2BA4B9;
-    color: white;
+    color: #0E3E4F;
     border-radius: 4px;
+    border-color: #860806;
     width: 8em;
     height: auto;
-    opacity: 0.6;
+    /*opacity: 0.6;*/
     transition: 0.3s;
     display: inline-block;
-    text-decoration: none;
+    font-weight:bold;
+    /*text-decoration: none;*/
     cursor: pointer;
 }
 
-.submit-button:hover {opacity: 1}
+.submit-button:hover {
+    font-weight: bold;
+    color: white;
+    opacity: 3;
+}
