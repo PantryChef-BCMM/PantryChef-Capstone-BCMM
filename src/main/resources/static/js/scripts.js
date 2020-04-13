@@ -24,7 +24,7 @@ const attachAddDirectionEventListener = function() {
             e.preventDefault();
             let newDiv = document.createElement("div");
             // and give it some content
-            newDiv.innerHTML = `<input class="m-1 shadow-sm form-control" type="text" id="instruction-param-${i}" name="instruction-param" placeholder="Please enter cooking step.">`
+            newDiv.innerHTML = `<input class="mx-auto m-1 shadow-sm form-control" type="text" id="instruction-param-${i}" name="instruction-param" placeholder="Please enter cooking step.">`
             // add the text node to the newly created div
             document.querySelector("#instructions-div").appendChild(newDiv);
             i++;
