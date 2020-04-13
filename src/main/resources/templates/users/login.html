@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head th:replace="partials/head :: head('Login')"></head>
-<body class="login-background-image">
+<body class="login-background-image h-100">
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="row align-items-center">
-        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg login-box-image">
+
+<div class="container d-flex h-100">
+        <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
             <h1 class="login-text">Login</h1>
             <br>
             <div th:if="${param.error}">
@@ -28,9 +22,10 @@
                 <br>
                 <input class="shadow login-button" type="submit" value="Login"/>
             </form>
-            <p style="float: left;" class="p-1 m-0">Don't have an account?</p><p style="float: left;" class="p-1 m-0"><a href="/sign-up">Register</a> to submit your recipes today!</p></div></div>
+            <p style="float: left;" class="p-1 m-0">Don't have an account?</p>
+            <p style="float: left;" class="p-1 m-0"><a href="/sign-up">Register</a> to submit your recipes today!</p>
         </div>
-
+</div>
 
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
