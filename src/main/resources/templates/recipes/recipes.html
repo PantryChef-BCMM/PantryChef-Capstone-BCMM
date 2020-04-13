@@ -95,12 +95,12 @@
                                 <img style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
                             </div>
                             <div class="modal-body">
-<!--                                &lt;!&ndash;    Display the recipes cuisines    &ndash;&gt;-->
-<!--                                <ul class="modal-cuisine">-->
-<!--                                    <div th:each="category : ${recipe.categories}">-->
-<!--                                        <li th:text="${category.name}"></li>-->
-<!--                                    </div>-->
-<!--                                </ul>-->
+                                <!--    Display the recipes cuisines    -->
+                                <ul class="modal-cuisine">
+                                    <div th:each="category : ${recipe.categories}">
+                                        <li th:text="${category.name}"></li>
+                                    </div>
+                                </ul>
 <!--                                &lt;!&ndash;      Display Ingredients title         &ndash;&gt;-->
 <!--                                <h5 class="modal-instructions-title">Ingredients</h5>-->
 <!--                                &lt;!&ndash;    List displaying the ingredients    &ndash;&gt;-->
