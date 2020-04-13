@@ -123,16 +123,16 @@
                                     <p class="sourceUrl">Click on the title to see recipe owner.</p>
                                 </div>
                             </div>
-                            <div sec:authorize="isAuthenticated()">
-                                <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
-                                    <a th:href="@{|/recipe/${recipe.id}/edit|}">
-                                        <button>Edit</button>
-                                    </a>
-                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
-                                        <button>Delete</button>
-                                    </form>
-                                </div>
-                            </div>
+<!--                            <div sec:authorize="isAuthenticated()">-->
+<!--                                <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">-->
+<!--                                    <a th:href="@{|/recipe/${recipe.id}/edit|}">-->
+<!--                                        <button>Edit</button>-->
+<!--                                    </a>-->
+<!--                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">-->
+<!--                                        <button>Delete</button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
