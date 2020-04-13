@@ -14,30 +14,42 @@
 <!--</style>-->
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row align-items-center">
+        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
+            <h1 class="editprofile-text">Edit your profile</h1>
+            <br>
+            <form th:action="@{|/edit/${user.id}|}" method="POST" th:object="${user}">
+                <label for="firstName">First Name</label>
+                <input th:field="*{first_name}">
+                <br>
+                <label for="lastName">Last Name</label>
+                <input th:field="*{last_name}">
+                <br>
+                <label for="username">Username</label>
+                <input th:field="*{username}"/>
+                <br>
+                <label for="email">Email</label>
+                <input th:field="*{email}"/>
 
-<form th:action="@{|/edit/${user.id}|}" method="POST" th:object="${user}">
-    <label for="firstName">First Name</label>
-    <input th:field="*{first_name}">
+                <!--    <label for="password">Password</label>-->
+                <!--    <input type="password" th:field="*{password}"/>-->
 
-    <label for="lastName">Last Name</label>
-    <input th:field="*{last_name}">
+                <!-- Button calls function 'pickMark()' onclick now -->
+                <!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
+                <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
 
-    <label for="username">Username</label>
-    <input th:field="*{username}"/>
-
-    <label for="email">Email</label>
-    <input th:field="*{email}"/>
-
-<!--    <label for="password">Password</label>-->
-<!--    <input type="password" th:field="*{password}"/>-->
-
-    <!-- Button calls function 'pickMark()' onclick now -->
-<!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
-        <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
-
-    <input value="Save Changes" type="submit" />
-</form>
-
+                <input value="Save Changes" type="submit"/>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
 <th:block th:replace="partials/scripts :: scripts"/>
 
 </body>
