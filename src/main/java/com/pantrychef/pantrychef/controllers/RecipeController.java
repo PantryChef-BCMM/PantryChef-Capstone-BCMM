@@ -28,6 +28,8 @@ public class RecipeController {
     private CommentsRepo commentsDao;
     @Value("${filestack.api.key}")
     private String fsapi;
+    @Value("${spoonacular.api.key}")
+    private String sapi;
 
 
     public RecipeController(RecipeRepo recipeDao, UserRepo userDao, IngredientsRepo ingredientsDao, InstructionsRepo instructionsDao, CategoriesRepo categoriesDao, CommentsRepo commentsDao) {
@@ -45,6 +47,7 @@ public class RecipeController {
         //=== SEARCH BAR ===//
         model.addAttribute("search", search);
         model.addAttribute("value", value);
+        model.addAttribute("sapi", sapi);
 
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

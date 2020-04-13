@@ -199,6 +199,9 @@
 <th:block th:replace="partials/scripts :: scripts"/>
 <script th:inline="javascript">
 
+            let spoon = document.querySelector('meta.sapi').content;
+
+
             if(document.getElementById("search") == null){
                 console.log("oops, null");
             }else {
@@ -211,7 +214,7 @@
                 searchString = searchParam.replace(/,|,\s/g, ",+");
 
 
-                $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=4&apiKey=e9608a54e1b84126a1ede60dbb7e7c28").done(function (data) {
+                $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=4&apiKey=" + spoon + "").done(function (data) {
 
                     console.log("inside ajax");
                     // console.log(JSON.stringify(data));
