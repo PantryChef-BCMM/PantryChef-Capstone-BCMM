@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="partials/head :: head('Profile')"></head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="h-100">
+<head th:replace="partials/head :: head('Add to Shopping List')"></head>
+<body class="shoppingList-background h-100">
+
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div sec:authorize="isAuthenticated()">
-<form th:action="@{|/list/addItem|}" th:method="post" >
-    Description:
-    <input th:field="*{shoppingList.shoppingListItem}" />
-    <br />
-    <input type="submit" />
-</form>
+<div class="container d-flex h-100">
+    <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg mh-75 mw-75">
+
+        <div sec:authorize="isAuthenticated()">
+
+            <h1 th:text="${user.first_name} + '\'s Shopping List'" class="login-text"></h1>
+            <hr class="shoppingList-hr">
+
+            <form th:action="@{|/list/addItem|}" th:method="post">
+                <label for="shoppingList">Add Item</label><br>
+                <input id="shoppingList" class="mx-auto w-50 shadow-sm form-control" th:field="*{shoppingList.shoppingListItem}"/>
+
+                <br/>
+                <hr class="shoppingList-hr">
+                <input type="submit"/>
+            </form>
+
+        </div>
+    </div>
 </div>
+
+
 </body>
+</html>

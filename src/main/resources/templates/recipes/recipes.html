@@ -21,7 +21,7 @@
                     <input class="form-control" type="text" id="search" placeholder="Search" name="search"
                            aria-label="Search"/>
                     <div class="input-group-append">
-<!--                        <button class="recipe-button-search">Search</button>-->
+                        <!--                        <button class="recipe-button-search">Search</button>-->
                         <label for="ingredient-query-input"></label>
                         <input class="recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
                     </div>
@@ -76,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!--      Modal that will hold recipe details       -->
                 <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
 
@@ -142,219 +143,209 @@
                     </div>
                 </div>
             </div>
-
-
-<!--            </div>-->
-<!--======== end of database modal ========-->
-
-<!--        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">-->
-            <div class="col mb-4" id="recipeCards">
-
-            </div>
         </div>
 
-        <!--Modal that shows the specific information of a recipe-->
-        <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
+
+
+        <!--        -->
+
+
+        <div class="recipeCards">
+
+        </div>
+
+
+        <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="recipeModalLongTitle">Modal title</h5>
+                        <h5 class="api-modal-title" id="recipeApiModalLongTitle">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-image mx-auto">
+                    <div class="api-modal-image mx-auto">
 
                     </div>
                     <div class="modal-body">
                         <!--    Display the recipes cuisines    -->
-                        <ul class="modal-cuisine">
+                        <ul class="api-modal-cuisine">
 
                         </ul>
                         <!--      Display Ingredients title         -->
                         <h5 class="modal-instructions-title">Ingredients</h5>
                         <!--    List displaying the ingredients    -->
-                        <ul class="ingredient-list-group">
+                        <ul class="api-ingredient-list-group">
                             <!--      Ingredients will display here dynamically      -->
                         </ul>
 
                         <!--      Display Instructions-->
                         <h5 class="modal-instructions-title">Instructions</h5>
-                        <ul class="instruction-list-group">
-                            <!--      Instructions will display here dynamically      -->
+                        <ul class="api-instruction-list-group">
+                                <!--      Instructions will display here dynamically      -->
                         </ul>
-                        <div class="modal-recipeSource">
+                            <div class="api-modal-recipeSource">
 
+                            </div>
                         </div>
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
 </div>
+
+
 <th:block th:replace="partials/scripts :: scripts"/>
 <script th:inline="javascript">
-    // $(document).ready(function() {
-    // $(function () {
-
-        // $('#ingredient-query-input').click(function(){
-            if(document.getElementById("search") == null){
-                console.log("oops, null");
-            }else {
-                // Selecting the input element and get its value
-                // var inputVal = document.getElementById("search").value;
-                // console.log(inputVal);
-                // Displaying the value
-
-                var searchString;
-                // console.log(searchString);
-                var urlSearchString = window.location.href;
-                var url = new URL(urlSearchString);
-                var searchParam = url.searchParams.get("search");
-                searchString = searchParam.replace(/,|,\s/g, ",+");
-                // console.log("url string" + searchString);
 
 
-                $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=100&apiKey=0be955ec85264c56bd8649c5e1b7a666").done(function (data) {
+    // $('#ingredient-query-input').click(function(){
+    if(document.getElementById("search") == null){
+        console.log("oops, null");
+    }else {
+        // Selecting the input element and get its value
+        // var inputVal = document.getElementById("search").value;
+        // console.log(inputVal);
+        // Displaying the value
 
-                    console.log("inside ajax");
-                    // console.log(JSON.stringify(data));
+        var searchString;
+        // console.log(searchString);
+        var urlSearchString = window.location.href;
+        var url = new URL(urlSearchString);
+        var searchParam = url.searchParams.get("search");
+        searchString = searchParam.replace(/,|,\s/g, ",+");
+        // console.log("url string" + searchString);
+
+
+        $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=100&apiKey=0be955ec85264c56bd8649c5e1b7a666").done(function (data) {
+
+
+            console.log("inside ajax");
+            // console.log(JSON.stringify(data));
+
+
 
                     //Create the cards to hold the data for the recipe
 
                     var recipe = "";
-                    // style="min-width: 18rem;
+
+
+
                     for (var i = 0; i < data.length; i++) {
 
-
-
-
-
-
-                    //         <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
-                    //         <!--                                    <button class="recipe-button">View Details</button>-->
-                    //     <!--                                </a>-->
-                    //     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
-                    //         See Recipe Details
-                    //     </button>
-
-                        recipe += '<div class="card shadow bg-white rounded">';  // <div class="card shadow bg-white rounded">
-                        recipe += '<img class="card-img-top" style="height: 16em;" src="' + data[i].image + '" alt="Recipe image" />'; //         <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
-                        recipe += '<div class=card-body >';  //         <div class="card-body">
-                        recipe += '<h4 class="card-title text-center">' + data[i].title + '</h4>';  //         <h4 class="card-title text-center" th:text="${recipe.title}"></h4>
-                        recipe += '</div>';   //         </div>
-                        recipe += '<div class="card-footer">';    //         <div class="card-footer">
-                        recipe += '<small class="text-muted d-flex justify-content-center align-items-center">';       //         <small class="text-muted d-flex justify-content-center align-items-center">
-                        recipe += '<button class="btn-navbar btn-primary recipe" data-toggle="modal" data-target="#recipeModalLong" id="' + data[i].id + '\">\n' + '  See Recipe Details\n' + '</button>';  //         <!--      <button class="recipe-button">View Details</button>-->
-                        recipe += '</small>';        //     </small>
-                        recipe += "</div>";     //     </div>
-                        recipe += "</div>";                           //     </div>
-                        // recipe += "</div>";
+                        recipe += '<div class="col mb-4">';
+                        recipe += '<div class="card shadow bg-white rounded">';
+                        recipe += '<img class="card-img-top" style="height: 16em;" src="' + data[i].image + '" alt="Recipe image" />';
+                        recipe += '<div class=card-body>';
+                        recipe += '<h4 class="card-title text-center">' + data[i].title + '</h4>';
+                        recipe += '</div>';
+                        recipe += '<div class="card-footer">';
+                        recipe += '<small class="text-muted d-flex justify-content-center align-items-center">';
+                        recipe += '<button class="btn btn-primary recipe" data-toggle="modal" data-target="#recipeApiModalLong" id="' + data[i].id + '\">\n' + '  See Recipe Details\n' + '</button>';
+                        recipe += '</small>';
+                        recipe += "</div>";
+                        recipe += "</div>";
+                        recipe += "</div>";
                     }
 
-                    $("#recipeCards").html(recipe);
+                    $(".recipeCards").html(recipe);
+
                     $('.recipe').on('click', function () {
 
 
-                        console.log(this.id + " id should be here");
+                console.log(this.id + " id should be here");
 
-                        $.ajax("https://api.spoonacular.com/recipes/" + this.id + "/information?includeNutrition=false&apiKey=0be955ec85264c56bd8649c5e1b7a666").done(function (data) {
-
-                            console.log(data);
-
-                            //Variables to show the specific recipe details
-                            let recipeTitle ="";
-                            let recipeImage="";
-                            let recipeIngredients="";
-                            let recipeInstructions="";
-                            let recipeCuisines="";
-                            let recipeSource="";
-
-                            // recipeTitle += data.title + " by " + data.creditsText;
-                            recipeTitle += data.title + " by " + '<a href="'+ data.sourceUrl + '"target=_blank>' + data.creditsText + '</a>';
+                $.ajax("https://api.spoonacular.com/recipes/" + this.id + "/information?includeNutrition=false&apiKey=0be955ec85264c56bd8649c5e1b7a666").done(function (data) {
 
 
-                            recipeImage += '<img class="img-responsive" src="' + data.image + '" alt="" />';
+                    console.log(data);
 
 
-                            //Display the categories/cuisines for the choosen recipe
+                    //Variables to show the specific recipe details
+                    let recipeTitle ="";
+                    let recipeImage="";
+                    let recipeIngredients="";
+                    let recipeInstructions="";
+                    let recipeCuisines="";
+                    let recipeSource="";
+
+                    // recipeTitle += data.title + " by " + data.creditsText;
+                    recipeTitle += data.title + " by " + '<a href="'+ data.sourceUrl + '"target=_blank>' + data.creditsText + '</a>';
+
+
+
+                    recipeImage += '<img class="img-responsive" src="' + data.image + '" alt="" />';
+
+
+
+                            //Display the categories/cuisines for the chosen recipe
                             if(data.cuisines.length == 0){
 
-                                recipeCuisines +=  '<li>' + 'Sorry, no Cuisines associated with recipe at the moment.' + '</li>';
+                        recipeCuisines +=  '<li>' + 'Sorry, no Cuisines associated with recipe at the moment.' + '</li>';
 
-                            }else{
-                                for(var j = 0; j < data.cuisines.length; j++){
+                    }else{
+                        for(var j = 0; j < data.cuisines.length; j++){
 
-                                    recipeCuisines += '<li>' + data.cuisines[j] + '</li>'
+                            recipeCuisines += '<li>' + data.cuisines[j] + '</li>'
 
-                                }
-                            }
-
-
-                            //For loop to grab the ingredients and put them in a list
-                            if(data.extendedIngredients.length == 0){
-
-                                recipeIngredients += 'Currently no available ingredients for this recipe sorry.'
-
-                            }else{
-                                for(var i = 0; i < data.extendedIngredients.length; i++){
-
-                                    recipeIngredients += '<li class="list-group-item">' +  data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].originalName + '</li>';
-
-                                }
-                            }
+                        }
+                    }
 
 
-                            //Grab the instructions from the get request of the the recipe
-                            if(data.analyzedInstructions.length == 0){
+                    //For loop to grab the ingredients and put them in a list
+                    if(data.extendedIngredients.length == 0){
 
-                                recipeInstructions += '<li class="list-group-item">' + 'Currently no available instructions for this recipe sorry.' + '</li>';
+                        recipeIngredients += 'Currently no available ingredients for this recipe sorry.'
 
-                            }else{
+                    }else{
+                        for(var i = 0; i < data.extendedIngredients.length; i++){
 
-                                for(var k = 0; k < data.analyzedInstructions[0].steps.length; k++){
+                            recipeIngredients += '<li class="list-group-item">' +  data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].originalName + '</li>';
 
-                                    recipeInstructions += '<li class="list-group-item">' + "Step " + data.analyzedInstructions[0].steps[k].number + ": " + data.analyzedInstructions[0].steps[k].step + '</li>';
-
-                                }
-
-                            }
+                        }
+                    }
 
 
-                            //External link for further recipe details
+                    //Grab the instructions from the get request of the the recipe
+                    if(data.analyzedInstructions.length == 0){
 
-                            recipeSource += '<p>' +'Click on who its by in title to see more recipe details'+ '</p>';
+                        recipeInstructions += '<li class="list-group-item">' + 'Currently no available instructions for this recipe sorry.' + '</li>';
+
+                    }else{
+
+                        for(var k = 0; k < data.analyzedInstructions[0].steps.length; k++){
+
+                            recipeInstructions += '<li class="list-group-item">' + "Step " + data.analyzedInstructions[0].steps[k].number + ": " + data.analyzedInstructions[0].steps[k].step + '</li>';
+
+                        }
+
+                    }
 
 
+                    //External link for further recipe details
+
+                    recipeSource += '<p>' +'Click on who its by in title to see more recipe details'+ '</p>';
 
                             //using jquery to display the object properties from the get request
-                            $('.modal-title').html(recipeTitle);
+                            $('.api-modal-title').html(recipeTitle);
 
-                            $('.modal-cuisine').html(recipeCuisines);
+                            $('.api-modal-cuisine').html(recipeCuisines);
 
-                            $('.modal-image').html(recipeImage);
+                            $('.api-modal-image').html(recipeImage);
 
-                            $('.ingredient-list-group').html(recipeIngredients);
+                            $('.api-ingredient-list-group').html(recipeIngredients);
 
-                            $('.instruction-list-group').html(recipeInstructions);
+                            $('.api-instruction-list-group').html(recipeInstructions);
 
-                            $('.modal-recipeSource').html(recipeSource);
+                            $('.api-modal-recipeSource').html(recipeSource);
 
                         })
                     })
-
                 });
-
             }
-        // });
-
-    // });
-
-    // });
 
 </script>
 </body>
