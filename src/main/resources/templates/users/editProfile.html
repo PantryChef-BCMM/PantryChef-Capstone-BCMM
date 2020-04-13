@@ -21,6 +21,7 @@
     <div class="row align-items-center">
         <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
             <h1 class="editprofile-text">Edit your profile</h1>
+            <p>choose which field you would like to update</p>
             <br>
             <form th:action="@{|/edit/${user.id}|}" method="POST" th:object="${user}">
                 <label for="firstName">First Name</label>
@@ -42,7 +43,7 @@
                 <!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
                 <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
 
-                <input value="Save Changes" type="submit"/>
+                <input value="Save Changes" class="shadow-sm submit-button" type="submit"/>
             </form>
         </div>
     </div>

@@ -41,11 +41,11 @@
                                          th:attr="src=@{${user.profileImageUrl}}"
                                          style="height: 16em; width: auto"/>
                                     <a th:href="@{|/edit/${user.id}|}">
-                                        <button>Edit profile</button>
+                                        <button class="shadow-sm submit-button">Edit profile</button>
                                     </a>
                                     <br>
                                     <a th:href="@{|/list|}">
-                                        <button>View Shopping List</button>
+                                        <button class="shadow-sm submit-button">View Shopping List</button>
                                     </a>
                                 </div>
                             </div>
