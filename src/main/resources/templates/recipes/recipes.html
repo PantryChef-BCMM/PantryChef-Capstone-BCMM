@@ -119,9 +119,9 @@
                                         <li class="list-group-item" th:text="${instruction.name}"></li>
                                     </div>
                                 </ul>
-<!--                                <div class="modal-recipeSource">-->
-<!--                                    <p class="sourceUrl">Click on the title to see recipe owner.</p>-->
-<!--                                </div>-->
+                                <div class="modal-recipeSource">
+                                    <p class="sourceUrl">Click on the title to see recipe owner.</p>
+                                </div>
                             </div>
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
