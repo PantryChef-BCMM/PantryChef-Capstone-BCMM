@@ -15,12 +15,12 @@
                 <p>You have been logged out.</p>
             </div>
             <form th:action="@{/login}" method="post">
-                <label for="username">Username</label><br>
-                <input id="username" name="username" type="text" class="mx-auto w-50 shadow-sm form-control"/><br>
-                <label for="password">Password</label><br>
-                <input id="password" name="password" type="password" class="mx-auto w-50 shadow-sm form-control"/><br>
+                <label class="font-weight-bold" for="username">Username</label><br>
+                <input id="username" placeholder="Enter your username..." name="username" type="text" class="mx-auto w-50 shadow-sm form-control"/><br>
+                <label class="font-weight-bold" for="password">Password</label><br>
+                <input id="password" placeholder="Enter your password..." name="password" type="password" class="mx-auto w-50 shadow-sm form-control"/><br>
                 <br>
-                <input class="shadow login-button" type="submit" value="Login"/>
+                <input class="shadow login-button font-weight-bold mb-3" type="submit" value="Login"/>
             </form>
             <p style="float: left;" class="p-1 m-0">Don't have an account?</p>
             <p style="float: left;" class="p-1 m-0"><a href="/sign-up">Register</a> to submit your recipes today!</p>

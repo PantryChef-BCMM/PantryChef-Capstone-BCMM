@@ -24,12 +24,6 @@
     cursor: pointer;
 }
 
-.login-button:hover {opacity: 1}
-
-.login-box-image {
-    /*background: url("https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?cs=srgb&dl=fruit-salads-in-plate-1640774.jpg&fm=jpg") no-repeat center center fixed;*/
-    /*-webkit-background-size: cover;*/
-    /*-moz-background-size: cover;*/
-    /*-o-background-size: cover;*/
-    /*background-size: cover;*/
+.login-button:hover {
+    opacity: 1
 }
