@@ -131,12 +131,13 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/{id}/edit")
-    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam(name = "instruction-param") List<String> instructionsStringList, @RequestParam List<Categories> categories) {
+    public String updateRecipe(@ModelAttribute Recipe recipe, @PathVariable long id, @RequestParam(name = "recipeImageUrl") String recipeImageUrl, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam(name = "instruction-param") List<String> instructionsStringList, @RequestParam List<Categories> categories) {
         Recipe recipeToEdit = recipeDao.getOne(id);
         User user = recipeDao.getOne(id).getUser();
         recipeToEdit.setTitle(recipeToEdit.getTitle());
 //        recipeToEdit.setDirections(recipeToEdit.getDirections());
-        recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
+//        recipe.setRecipeImageUrl("https://picsum.photos/200");
+        recipe.setRecipeImageUrl(recipeImageUrl);
         recipe.setCategories(categories);
 
         //////////////// Instructions ////////////////
@@ -205,11 +206,12 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/create")
-    public String createRecipe(@RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam(name = "instruction-param") List<String> instructionsStringList, @RequestParam String title, @RequestParam List<Categories> categories) {
+    public String createRecipe(@RequestParam(name = "recipeImageUrl") String recipeImageUrl, @RequestParam(name = "ingredient-param") List<String> ingredientsStringList, @RequestParam(name = "instruction-param") List<String> instructionsStringList, @RequestParam String title, @RequestParam List<Categories> categories) {
         Recipe recipe = new Recipe();
         recipe.setTitle(title);
 //        recipe.setDirections(directions);
-        recipe.setRecipeImageUrl("https://picsum.photos/200"); //@RequestParam(name = "recipeImageUrl") String recipeImageUrl,
+//        recipe.setRecipeImageUrl("https://picsum.photos/200"); //
+        recipe.setRecipeImageUrl(recipeImageUrl); //
         recipe.setCategories(categories);
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         recipe.setUser(u);
