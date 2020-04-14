@@ -95,12 +95,12 @@
 
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
-                            <div class="modal-header d-block">
+                            <div class="modal-header">
                                 <div sec:authorize="isAuthenticated()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center mt-2" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title " id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
                                 </div>
                                 <div sec:authorize="isAnonymous()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center mt-2" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title " id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -120,7 +120,7 @@
                                 <!--      Display Ingredients title         -->
                                 <h5 class="modal-instructions-title">Ingredients</h5>
                                 <!--    List displaying the ingredients    -->
-                                <ul class="ingredient-list-group">
+                                <ul class="ingredient-list-group p-0">
                                     <!--      Ingredients will display here dynamically      -->
                                     <div th:each="ingredient : ${recipe.ingredientList}">
                                         <li class="list-group-item" th:text="${ingredient.name}"></li>
@@ -129,12 +129,26 @@
                                 <!--      Display Instructions-->
                                 <h5 class="modal-instructions-title">Instructions</h5>
 
-                                <ul class="instruction-list-group">
+                                <ul class="instruction-list-group p-0">
                                     <!--      Instructions will display here dynamically      -->
                                     <div th:each="instruction : ${recipe.instructionList}">
                                         <li class="list-group-item" th:text="${instruction.name}"></li>
                                     </div>
                                 </ul>
+                                <div th:each="comment : ${recipe.comments}">
+                                    <br>
+                                    <p th:text = "${comment.commentedAt}"></p>
+                                    <p th:text = "${comment.getUser().getUsername()}"></p>
+                                    <p th:text = "${comment.comment}"></p>
+                                    <div sec:authorize = "isAuthenticated()">
+                                        <div th:if="${user.id} == ${comment.getUser().getId()} OR ${user.admin}">
+                                            <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
+                                                <button>Delete Comment</button>
+                                            </form>
+                                            <a th:href="@{|/comment/${comment.id}/edit|}"><button>Edit Comment</button></a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="modal-recipeSource">
                                     <p class="sourceUrl">Click on the title to see recipe owner.</p>
                                 </div>
@@ -187,8 +201,8 @@
         <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header d-block">
-                        <h5 class="api-modal-title mt-2 text-center" id="recipeApiModalLongTitle">Modal title</h5>
+                    <div class="modal-header">
+                        <h5 class="api-modal-title" id="recipeApiModalLongTitle">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -204,13 +218,13 @@
                         <!--      Display Ingredients title         -->
                         <h5 class="modal-instructions-title">Ingredients</h5>
                         <!--    List displaying the ingredients    -->
-                        <ul class="api-ingredient-list-group">
+                        <ul class="api-ingredient-list-group p-0">
                             <!--      Ingredients will display here dynamically      -->
                         </ul>
 
                         <!--      Display Instructions-->
                         <h5 class="modal-instructions-title">Instructions</h5>
-                        <ul class="api-instruction-list-group">
+                        <ul class="api-instruction-list-group p-0">
                                 <!--      Instructions will display here dynamically      -->
                         </ul>
                             <div class="api-modal-recipeSource">
@@ -228,7 +242,7 @@
 <!--    </main>-->
 </div>
 
-<footer th:replace="partials/footer :: footer"></footer>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <th:block th:replace="partials/scripts :: scripts"/>
 <script th:inline="javascript">
 

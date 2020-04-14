@@ -12,24 +12,26 @@
     <main class="container">
 
         <div class="row mb-5">
-            <div class="col-md-2">
+            <div class="col-md-2 p-0">
                 <div>
-                    <img alt="" class="profileImages rounded-circle mt-5" th:attr="src=@{${user.profileImageUrl}}">
+                    <img alt="" class="profileImages mt-5" th:attr="src=@{${user.profileImageUrl}}">
                 </div>
             </div>
             <div class="col-md-10 d-flex align-items-center">
-                <h1 class="mt-5 profileFromRecipeText profileFromRecipeTextV2" th:text="${user.username} + '\'s' + ' Profile'"></h1>
+                <h1 class="mt-5 profileFromRecipeText profileFromRecipeTextV2"
+                    th:text="${user.username} + '\'s' + ' Profile'"></h1>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="profileFromRecipeText" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
-            </div>
-        </div>
+                <div class="row bg-white text-center">
+                    <div class="col-md-12">
+                        <h1 class="profileFromRecipeText mb-0 mt-2" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
+                        <hr class="profileFromRecipe-hr w-75 mt-2">
+                    </div>
+                </div>
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 bg-white">
 
             <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
 
@@ -123,17 +125,17 @@
                                             <a th:href="@{|/profile/${comment.user.id}|}" class="m-0 p-0"><p
                                                     th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                                         </div>
-<!--                                        <div sec:authorize="isAuthenticated()">-->
-<!--                                            <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">-->
-<!--                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST"-->
-<!--                                                      style="display:inline">-->
-<!--                                                    <button class="mb-3">Delete Comment</button>-->
-<!--                                                </form>-->
-<!--                                                <a th:href="@{|/comment/${comment.id}/edit|}">-->
-<!--                                                    <button>Edit Comment</button>-->
-<!--                                                </a>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <!--                                        <div sec:authorize="isAuthenticated()">-->
+                                        <!--                                            <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">-->
+                                        <!--                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST"-->
+                                        <!--                                                      style="display:inline">-->
+                                        <!--                                                    <button class="mb-3">Delete Comment</button>-->
+                                        <!--                                                </form>-->
+                                        <!--                                                <a th:href="@{|/comment/${comment.id}/edit|}">-->
+                                        <!--                                                    <button>Edit Comment</button>-->
+                                        <!--                                                </a>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
                                     </div>
                                 </div>
 
@@ -144,34 +146,34 @@
                             </div>
 
                             <div class="modal-footer">
-<!--                                <div sec:authorize="isAuthenticated()">-->
-<!--                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">-->
-<!--                                        <a class="profileFromRecipeNoUnderline"-->
-<!--                                           th:href="@{|/recipe/${recipe.id}/edit|}">-->
-<!--                                            <button type="button" class="btn profileFromRecipeButton">Edit</button>-->
-<!--                                        </a>-->
-<!--                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"-->
-<!--                                              style="display:inline">-->
-<!--                                            <button type="button" class="btn profileFromRecipeButton">Delete</button>-->
-<!--                                        </form>-->
-<!--                                        <a class="profileFromRecipeNoUnderline"-->
-<!--                                           th:href="@{|/comments/post/${recipe.id}|}">-->
-<!--                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
-<!--                                        </a>-->
-<!--                                    </div>-->
-<!--                                    <div th:if="${user.id} != ${recipe.user.id}">-->
-<!--                                        <a class="profileFromRecipeNoUnderline"-->
-<!--                                           th:href="@{|/comments/post/${recipe.id}|}">-->
-<!--                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
-<!--                                        </a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div sec:authorize="isAuthenticated()">-->
-<!--                                    <a class="profileFromRecipeNoUnderline"-->
-<!--                                       th:href="@{|/comments/post/${recipe.id}|}">-->
-<!--                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
-<!--                                    </a>-->
-<!--                                </div>-->
+                                <!--                                <div sec:authorize="isAuthenticated()">-->
+                                <!--                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">-->
+                                <!--                                        <a class="profileFromRecipeNoUnderline"-->
+                                <!--                                           th:href="@{|/recipe/${recipe.id}/edit|}">-->
+                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Edit</button>-->
+                                <!--                                        </a>-->
+                                <!--                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"-->
+                                <!--                                              style="display:inline">-->
+                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Delete</button>-->
+                                <!--                                        </form>-->
+                                <!--                                        <a class="profileFromRecipeNoUnderline"-->
+                                <!--                                           th:href="@{|/comments/post/${recipe.id}|}">-->
+                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
+                                <!--                                        </a>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div th:if="${user.id} != ${recipe.user.id}">-->
+                                <!--                                        <a class="profileFromRecipeNoUnderline"-->
+                                <!--                                           th:href="@{|/comments/post/${recipe.id}|}">-->
+                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
+                                <!--                                        </a>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <!--                                <div sec:authorize="isAuthenticated()">-->
+                                <!--                                    <a class="profileFromRecipeNoUnderline"-->
+                                <!--                                       th:href="@{|/comments/post/${recipe.id}|}">-->
+                                <!--                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
+                                <!--                                    </a>-->
+                                <!--                                </div>-->
                                 <button type="button" class="btn profileFromRecipeButtonV2" data-dismiss="modal">
                                     Close
                                 </button>
@@ -188,7 +190,7 @@
     </main>
 </div>
 
-<footer th:replace="partials/footer :: footer"></footer>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <th:block th:replace="partials/scripts :: scripts"/>
 
 </body>
