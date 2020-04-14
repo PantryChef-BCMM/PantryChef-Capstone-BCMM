@@ -20,21 +20,31 @@
     color: white;
     font-weight: bold;
 }
+
 .recipe-button:hover{
     color: #0E3E4F;
 }
+
 .recipe-button-search{
     background-color:#2BA4B9 !important;
     color: white;
     font-weight: bold;
-    border: 1px solid black;
+    border: 1px solid #860806;
 }
 .recipe-card{
     height: 30em;
 }
-.button.modal-recipe-button{
-    background-color:#2BA4B9;
+
+.btn-primary{
+
+    background-color:#2BA4B9 !important;
+    border: 1px solid #860806 !important;
+    font-weight: bold;
 }
+.btn-primary:hover{
+    color: #0E3E4F !important;
+}
+
 .category-btn{
     background-color:#2BA4B9;
     text-decoration-color: #ffffff;
