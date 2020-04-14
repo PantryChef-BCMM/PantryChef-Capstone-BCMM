@@ -14,26 +14,27 @@
     <!--        </div>-->
     <!--    </header>-->
     <main class="container">
-        <div class="row">
-            <div class="col">
-                <form action="#" th:action="@{/recipes}" method="get"
-                      class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
-                    <input class="form-control" type="text" id="search" placeholder="Search" name="search"
-                           aria-label="Search"/>
-                    <div class="input-group-append">
-                        <!--                        <button class="recipe-button-search">Search</button>-->
-                        <label for="ingredient-query-input"></label>
-                        <input class="recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
-                    </div>
-                </form>
+
+
+    <!-- Search bar that looks in both            -->
+    <div class="row">
+      <div class="col">
+        <form action="#" th:action="@{/recipes}" method="get"
+            class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
+            <input class="form-control" type="text" id="search" placeholder="Search" name="search" aria-label="Search"/>
+            <div class="input-group-append">
+              <label for="ingredient-query-input"></label>
+              <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
             </div>
-        </div>
+        </form>
+      </div>
+    </div>
+
+
 
         <form action="#" th:action="@{/recipes}" method="get">
             <label for="categories">Categories:</label>
-            <select th:id="${value}" id="categories" name="categories" class="selectpicker" multiple
-                    data-live-search="true"
-                    data-flip="false">
+            <select th:id="${value}" id="categories" name="categories" class="selectpicker" multiple data-live-search="true" data-flip="false">
                 <option name="categories" id="American" value="1">American</option>
                 <option name="categories" id="Chinese" value="2">Chinese</option>
                 <option name="categories" id="Italian" value="3">Italian</option>
@@ -50,7 +51,7 @@
                 <option name="categories" id="French" value="14">French</option>
                 <option name="categories" id="Filipino" value="15">Filipino</option>
             </select>
-            <button class="navbar-btn" type="submit">Search</button>
+            <button class="btn category-btn" type="submit">Search</button>
         </form>
 
 
@@ -59,7 +60,7 @@
 
             <div th:each="recipe : ${recipes}">
                 <div class="col mb-4">
-                    <div class="card shadow bg-white rounded">
+                    <div class="card recipe-card shadow bg-white rounded">
                         <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
                         <div class="card-body">
                             <h4 class="card-title text-center" th:text="${recipe.title}"></h4>
@@ -69,8 +70,8 @@
                                 <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
                                 <!--                                    <button class="recipe-button">View Details</button>-->
                                 <!--                                </a>-->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
-                                    See Recipe Details
+                                <button type="button" class="btn modal-recipe-button" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
+                                    View Recipe
                                 </button>
                             </small>
                         </div>
@@ -145,15 +146,13 @@
             </div>
         </div>
 
+        <!--   row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 -->
+        <!--   Cards created dynamically by spoonacular api calls   -->
 
+        <div class="row recipeCards">
 
-        <!--        -->
-
-
-        <div class="recipeCards">
 
         </div>
-
 
         <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -202,6 +201,8 @@
 <script th:inline="javascript">
 
 
+    let spoon = document.querySelector('meta.sapi').content;
+
     // $('#ingredient-query-input').click(function(){
     if(document.getElementById("search") == null){
         console.log("oops, null");
@@ -220,7 +221,10 @@
         // console.log("url string" + searchString);
 
 
-        $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=100&apiKey=0be955ec85264c56bd8649c5e1b7a666").done(function (data) {
+
+            $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=4&apiKey=" + spoon + "").done(function (data) {
+
+
 
 
             console.log("inside ajax");
@@ -236,15 +240,15 @@
 
                     for (var i = 0; i < data.length; i++) {
 
-                        recipe += '<div class="col mb-4">';
-                        recipe += '<div class="card shadow bg-white rounded">';
+                        recipe += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-3">';
+                        recipe += '<div class="card recipe-card shadow bg-white rounded">';
                         recipe += '<img class="card-img-top" style="height: 16em;" src="' + data[i].image + '" alt="Recipe image" />';
                         recipe += '<div class=card-body>';
                         recipe += '<h4 class="card-title text-center">' + data[i].title + '</h4>';
                         recipe += '</div>';
                         recipe += '<div class="card-footer">';
                         recipe += '<small class="text-muted d-flex justify-content-center align-items-center">';
-                        recipe += '<button class="btn btn-primary recipe" data-toggle="modal" data-target="#recipeApiModalLong" id="' + data[i].id + '\">\n' + '  See Recipe Details\n' + '</button>';
+                        recipe += '<button class="btn btn-primary recipe" data-toggle="modal" data-target="#recipeApiModalLong" id="' + data[i].id + '\">\n' + '  View Recipe\n' + '</button>';
                         recipe += '</small>';
                         recipe += "</div>";
                         recipe += "</div>";
@@ -258,7 +262,9 @@
 
                 console.log(this.id + " id should be here");
 
-                $.ajax("https://api.spoonacular.com/recipes/" + this.id + "/information?includeNutrition=false&apiKey=0be955ec85264c56bd8649c5e1b7a666").done(function (data) {
+
+                    $.ajax("https://api.spoonacular.com/recipes/" + this.id + "/information?includeNutrition=false&apiKey=" + spoon + "").done(function (data) {
+
 
 
                     console.log(data);
