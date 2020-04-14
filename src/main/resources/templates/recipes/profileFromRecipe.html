@@ -11,12 +11,23 @@
 <div class="wrapper">
     <main class="container">
 
-        <div class="row">
-            <div class="col p-0">
-                <img alt="" class="profileImages rounded-circle mt-5" th:attr="src=@{${user.profileImageUrl}}">
+        <div class="row mb-5">
+            <div class="col-md-2">
+                <div>
+                    <img alt="" class="profileImages rounded-circle mt-5" th:attr="src=@{${user.profileImageUrl}}">
+                </div>
+            </div>
+            <div class="col-md-10 d-flex align-items-center">
                 <h1 class="m-3 profileFromRecipeText" th:text="${user.username} + '\'s' + ' Profile'"></h1>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="profileFromRecipeText" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
+            </div>
+        </div>
+
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
 
@@ -34,7 +45,7 @@
                                 <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
                                 <!--                                    <button class="recipe-button">View Details</button>-->
                                 <!--                                </a>-->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                <button type="button" class="btn profileFromRecipeButton" data-toggle="modal"
                                         data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
                                     See Recipe Details
                                 </button>
