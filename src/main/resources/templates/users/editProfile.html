@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Profile')"></head>
-<!--<style>-->
-<!--    .card-columns {-->
 
-<!--    @include media-breakpoint-only(lg) {-->
-<!--        column-count: 4;-->
-<!--    }-->
-<!--    @include media-breakpoint-only(xl) {-->
-<!--        column-count: 5;-->
-<!--    }-->
-<!--    }-->
-<!--</style>-->
+
 <body class="edit-profile-background">
+
+
+
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container">
     <br>
@@ -41,7 +35,7 @@
                 <!--    <input type="password" th:field="*{password}"/>-->
 
                 <!-- Button calls function 'pickMark()' onclick now -->
-                <!--    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
+                    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>
                 <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
 
                 <input value="Save Changes" class="shadow-sm submit-button" type="submit"/>
@@ -52,6 +46,7 @@
     <br>
     <br>
 </div>
+<footer th:replace="partials/footer :: footer"></footer>
 <th:block th:replace="partials/scripts :: scripts"/>
 
 </body>

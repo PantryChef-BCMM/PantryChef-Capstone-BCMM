@@ -8,7 +8,7 @@
 /*}*/
 
 .recipe-background-image{
-    /*background: url("../images/imagescontainer/recipe-cookbook.png") no-repeat center center fixed;*/
+    background: url("../images/imagescontainer/recipes.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -22,21 +22,36 @@
     color: white;
     font-weight: bold;
 }
+
 .recipe-button:hover{
     color: #0E3E4F;
 }
+
 .recipe-button-search{
     background-color:#2BA4B9 !important;
     color: white;
     font-weight: bold;
-    border: 1px solid black;
+    border: 1px solid #860806;
 }
 .recipe-card{
     height: 30em;
 }
-.button.modal-recipe-button{
-    background-color:#2BA4B9;
+
+.btn-primary{
+
+    background-color:#2BA4B9 !important;
+    border: 1px solid #860806 !important;
+    font-weight: bold;
 }
+.btn-primary:hover{
+    color: #0E3E4F !important;
+}
+
+.btn-secondary{
+    background: #860806 !important;
+    color: white !important;
+}
+
 .category-btn{
     background-color:#2BA4B9;
     text-decoration-color: #ffffff;
@@ -44,10 +59,9 @@
     font-weight: bold;
     border: 1px solid black;
 }
-.search-container .border{
+.search-container {
 
-    border: 1px solid #860806 !important;
-    background-color: white !important;
+    background-color: white;
 
 }
 
@@ -65,12 +79,20 @@
     border-radius: 4px;
     border-color: #860806;
 }
-
-.profileFromRecipeButtonV2 {
-    background: #860806;
-    color: white;
-}
-
 .profileFromRecipeNoUnderline:hover {
     text-decoration: none;
 }
+
+.custom-title-container {
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+.api-title-container {
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+.api-modal-title{
+    text-decoration: none;
+    color: black;
+}
+
