@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Profile')"></head>
-<body>
+
+
+<body class="edit-profile-background">
+
+
+
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container">
     <br>
@@ -24,6 +29,7 @@
                 <br>
                 <label for="email">Email</label>
                 <input th:field="*{email}"/>
+                <br>
 
                 <!--    <label for="password">Password</label>-->
                 <!--    <input type="password" th:field="*{password}"/>-->
@@ -40,7 +46,7 @@
     <br>
     <br>
 </div>
-<footer th:replace="partials/footer :: footer"></footer>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <th:block th:replace="partials/scripts :: scripts"/>
 
 </body>
