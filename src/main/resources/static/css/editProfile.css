@@ -8,3 +8,8 @@
     -o-background-size: cover;
     background-size: cover;
 }
+.submit-button {
+    font-weight: bold;
+    color: white;
+    opacity: 3;
+}

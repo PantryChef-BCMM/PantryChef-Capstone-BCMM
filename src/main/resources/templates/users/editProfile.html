@@ -24,7 +24,7 @@
             <p>choose which field you would like to update</p>
             <br>
             <form th:action="@{|/edit/${user.id}|}" method="POST" th:object="${user}">
-                <label for="firstName" >First Name</label>
+                <label for="firstName">First Name</label>
                 <input th:field="*{first_name}">
                 <br>
                 <label for="lastName">Last Name</label>
