@@ -5,24 +5,35 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container d-flex h-100">
-    <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg mh-75 mw-75">
+    <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 shoppingList-background-notepad card card-block shadow-lg mh-75 mw-75">
 
         <div sec:authorize="isAuthenticated()">
-            <h1 th:text="${user.first_name} + '\'s Shopping List'" class="login-text"></h1>
-            <a th:href="@{|/list/addItem|}"><button>Add Item</button></a>
+            <h1 th:text="${user.first_name} + '\'s Shopping List'" class="login-text pt-0"></h1>
             <hr class="shoppingList-hr">
 
 
-            <div th:each="item : ${user.getUserShoppingList()}">
-                <div>
-                    <h3 th:text="${item.getShoppingListItem()}" class="login-text"></h3>
-                    <form th:action="@{|/list/deleteItem/${item.getId()}|}" th:method="POST">
-                        <button>Delete</button>
-                    </form>
-                    <a th:href="@{|/list/edit/${item.getId()}|}"><button>Edit</button></a>
+            <div th:each="item : ${user.getUserShoppingList()}" class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <h3 th:text="${item.getShoppingListItem()}" class="text-left login-text"></h3>
+                    </div>
+                    <div class="col-2">
+                        <form th:action="@{|/list/deleteItem/${item.getId()}|}" th:method="POST">
+                            <button>Delete</button>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <a th:href="@{|/list/edit/${item.getId()}|}">
+                            <button>Edit</button>
+                        </a>
+                    </div>
+
                     <hr class="shoppingList-hr">
                 </div>
             </div>
+            <a th:href="@{|/list/addItem|}">
+                <button>Add Item</button>
+            </a>
 
         </div>
     </div>

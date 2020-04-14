@@ -1,0 +1,222 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body class="profileFromRecipe-background-image">-->
+
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+<!--&lt;!&ndash;<div sec:authorize="isAuthenticated()">&ndash;&gt;-->
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <img alt="" class="profileImages rounded-circle mt-5" th:attr="src=@{${user.profileImageUrl}}"-->
+<!--             style="height: 16em; width: auto"/>-->
+<!--        <div class="row justify-content-start mt-5">-->
+<!--            <div class="col-3 my-auto">-->
+<!--                <h1 class="m-3 profileFromRecipeText" th:text="${user.username} + '\'s' + ' Profile'"></h1>-->
+<!--                &lt;!&ndash;                        <div th:if="${user.admin}">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <a th:href="@{|/edit/${user.id}|}">&ndash;&gt;-->
+<!--                &lt;!&ndash;                                <button>Edit profile</button>&ndash;&gt;-->
+<!--                &lt;!&ndash;                            </a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="tab-content" id="myTabContent">-->
+<!--            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">-->
+<!--                <h1 class="mt-5 profileFromRecipeText text-center"-->
+<!--                    th:text="${user.username} + '\'s' + ' Recipes'"></h1>-->
+
+<!--                <div class="card-columns bg-light">-->
+
+
+<!--                    &lt;!&ndash;                        <div th:each="recipe : ${recipes}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <div th:if="${user.id} == ${recipe.user.id}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                <div class="card shadow-lg rounded">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                    <img class="card-img-top" style="height: 16em;"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                         th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                    <div class="card-body">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                                                    th:text="${recipe.title}"></h1>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        </a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        <p style="font-weight: bold">Ingredients:</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        <div th:each="ingredient : ${recipe.ingredientList}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                            <p th:text="${ingredient.name}"></p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        <p style="font-weight: bold">Instructions:</p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        <div th:each="instruction : ${recipe.instructionList}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                            <p th:text="${instruction.name}"></p>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                    <div class="card-footer">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        <div sec:authorize="isAuthenticated()">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                            <div th:if="${user.id} == ${recipe.user.id}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                <small class="text-muted"><a&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                        th:href="@{|/recipe/${recipe.id}/edit|}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                    <button>Edit Post</button>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                </a></small>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                <form th:action="@{|/recipe/${recipe.id}/delete|}"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                      th:method="POST"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                      style="display:inline">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                    <small class="text-muted">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                        <button>Delete Post</button>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                    </small>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                                </form>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </div>&ndash;&gt;-->
+
+
+
+
+<!--                    <div th:each="recipe : ${recipes}">-->
+<!--                        <div th:if="${user.id} == ${recipe.user.id}">-->
+<!--                            <div class="col mb-4">-->
+<!--                                <div class="card shadow rounded">-->
+<!--                                    <img class="card-img-top" style="height: 16em;"-->
+<!--                                         th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">-->
+<!--                                    <div class="card-body">-->
+<!--                                        <h4 class="card-title text-center" th:text="${recipe.title}"></h4>-->
+<!--                                    </div>-->
+<!--                                    <div class="card-footer">-->
+<!--                                        <small class="text-muted d-flex justify-content-center align-items-center">-->
+<!--                                            &lt;!&ndash;                                <a th:href="@{|/recipes/${recipe.id}|}">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                    <button class="recipe-button">View Details</button>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                </a>&ndash;&gt;-->
+<!--                                            <button type="button" class="btn btn-primary" data-toggle="modal"-->
+<!--                                                    data-target="#recipeModalLong"-->
+<!--                                                    th:attrappend="data-target=${recipe.id}">-->
+<!--                                                See Recipe Details-->
+<!--                                            </button>-->
+<!--                                        </small>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash;      Modal that will hold recipe details       &ndash;&gt;-->
+<!--                            <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog"-->
+<!--                                 aria-labelledby="recipeModalLongTitle" aria-hidden="true"-->
+<!--                                 th:attrappend="id=${recipe.id}">-->
+
+<!--                                <div class="modal-dialog modal-lg" role="document">-->
+<!--                                    <div class="modal-content">-->
+<!--                                        <div class="modal-header">-->
+<!--                                            <div sec:authorize="isAuthenticated()">-->
+<!--                                                <a th:href="@{|/profile/${recipe.user.id}|}"><h4-->
+<!--                                                        class="modal-title text-center" id="recipeModalLongTitle"-->
+<!--                                                        th:text="${recipe.title + ' Posted by: ' + recipe.user.username}"></h4>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                            <div sec:authorize="isAnonymous()">-->
+<!--                                                <a th:href="@{|/login|}"><h4-->
+<!--                                                        class="modal-title text-center" id="recipeModalLongTitle"-->
+<!--                                                        th:text="${recipe.title + ' Posted by: ' + recipe.user.username}"></h4>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                            <button type="button" class="close" data-dismiss="modal"-->
+<!--                                                    aria-label="Close">-->
+<!--                                                <span aria-hidden="true">&times;</span>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-image mx-auto">-->
+<!--                                            &lt;!&ndash;    Image for recipe    &ndash;&gt;-->
+<!--                                            <img style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"-->
+<!--                                                 alt="Recipe image">-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-body">-->
+<!--                                            &lt;!&ndash;    Display the recipes cuisines    &ndash;&gt;-->
+<!--                                            <ul class="modal-cuisine">-->
+<!--                                                <div th:each="category : ${recipe.categories}">-->
+<!--                                                    <li th:text="${category.name}"></li>-->
+<!--                                                </div>-->
+<!--                                            </ul>-->
+<!--                                            &lt;!&ndash;      Display Ingredients title         &ndash;&gt;-->
+<!--                                            <h5 class="modal-instructions-title">Ingredients</h5>-->
+<!--                                            &lt;!&ndash;    List displaying the ingredients    &ndash;&gt;-->
+<!--                                            <ul class="ingredient-list-group">-->
+<!--                                                &lt;!&ndash;      Ingredients will display here dynamically      &ndash;&gt;-->
+<!--                                                <div th:each="ingredient : ${recipe.ingredientList}">-->
+<!--                                                    <li class="list-group-item" th:text="${ingredient.name}"></li>-->
+<!--                                                </div>-->
+<!--                                            </ul>-->
+<!--                                            &lt;!&ndash;      Display Instructions&ndash;&gt;-->
+<!--                                            <h5 class="modal-instructions-title">Instructions</h5>-->
+
+<!--                                            <ul class="instruction-list-group">-->
+<!--                                                &lt;!&ndash;      Instructions will display here dynamically      &ndash;&gt;-->
+<!--                                                <div th:each="instruction : ${recipe.instructionList}">-->
+<!--                                                    <li class="list-group-item" th:text="${instruction.name}"></li>-->
+<!--                                                </div>-->
+<!--                                            </ul>-->
+<!--                                            <div class="modal-recipeSource">-->
+<!--                                                <p class="sourceUrl">Click on the title to see recipe owner.</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div sec:authorize="isAuthenticated()">-->
+<!--                                            <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">-->
+<!--                                                <a th:href="@{|/recipe/${recipe.id}/edit|}">-->
+<!--                                                    <button>Edit</button>-->
+<!--                                                </a>-->
+<!--                                                <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"-->
+<!--                                                      style="display:inline">-->
+<!--                                                    <button>Delete</button>-->
+<!--                                                </form>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-footer">-->
+<!--                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">-->
+<!--                                                Close-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--<br>-->
+<!--<br>-->
+
+<!--<th:block th:replace="partials/scripts :: scripts"/>-->
+
+<!--&lt;!&ndash;<script>&ndash;&gt;-->
+<!--&lt;!&ndash;    var client = filestack.init(document.querySelector('meta.fsapi').content);&ndash;&gt;-->
+
+<!--&lt;!&ndash;    //The function pickMark now will open the file picker&ndash;&gt;-->
+<!--&lt;!&ndash;    function pickMark() {&ndash;&gt;-->
+<!--&lt;!&ndash;        console.log("Uploading Photo");&ndash;&gt;-->
+<!--&lt;!&ndash;        //Opening the file picker here&ndash;&gt;-->
+<!--&lt;!&ndash;        client.pick({&ndash;&gt;-->
+<!--&lt;!&ndash;            accept: 'image/*',&ndash;&gt;-->
+<!--&lt;!&ndash;            //Only accepting at most 1 file&ndash;&gt;-->
+<!--&lt;!&ndash;            maxFiles: 1&ndash;&gt;-->
+<!--&lt;!&ndash;        }).then(function (result) {&ndash;&gt;-->
+<!--&lt;!&ndash;            // file url (plus mimetype, size and more)&ndash;&gt;-->
+<!--&lt;!&ndash;            // can be found inside the result object&ndash;&gt;-->
+<!--&lt;!&ndash;            console.log(result);&ndash;&gt;-->
+<!--&lt;!&ndash;            console.log("File url: " + result.filesUploaded[0].url);&ndash;&gt;-->
+<!--&lt;!&ndash;        });&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+
+<!--</body>-->
+<!--</html>-->
