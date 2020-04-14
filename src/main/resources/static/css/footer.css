@@ -1,5 +1,22 @@
 
-.card-footer {
+.footer {
     background-color: #0E3E4F;
-    height: 2em;
+    height: 3em;
+}
+
+.footer-a-links{
+    color: white !important;
+    /*padding-top: 2em;*/
+    /*line-height: 2em;*/
+    /*margin-top: 1.8em;*/
+}
+
+.footer-a-links:hover {
+    color:#2BA4B9 !important;
+}
+.footer-p{
+    color: white !important;
+    /*padding-top: 2em;*/
+    /*line-height: 2em;*/
+    /*margin-top: 1.8em;*/
 }
