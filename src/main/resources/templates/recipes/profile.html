@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--THIS IS THE BEGINNING OF YOUR CHANGES-->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Profile')"></head>
 <style>
@@ -16,85 +17,76 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <div class="row align-items-center">
-        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
+<!--<div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">-->
 
-            <div sec:authorize="isAuthenticated()">
+<!--    <div sec:authorize="isAuthenticated()">-->
 
-                <div class="container">
-                    <div class="row">
-                        <div class="text-center">
-                            <div sec:authorize="isAuthenticated()">
-                                <div th:if="${user.admin}">
-                                    <h1>This user is an admin</h1>
-                                </div>
-                                <h1 class="m-3"
-                                    th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>
-                                <img alt="" class="profileImages rounded-circle mt-5"
-                                     th:attr="src=@{${user.profileImageUrl}}"
-                                     style="height: 16em; width: auto"/>
-                                <div class="row justify-content-center mt-5">
-                                    <div class="col-3 my-auto">
-                                    </div>
-                                </div>
+        <div class="container">
+            <div class="row align-items-center">
+<!--                <div class="text-center">-->
+                    <div sec:authorize="isAuthenticated()">
+                        <div th:if="${user.admin}">
+                            <h1>This user is an admin</h1>
+                        </div>
+                        <h1 class="m-3"
+                            th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>
+                        <img alt="" class="profileImages rounded-circle mt-5"
+                             th:attr="src=@{${user.profileImageUrl}}"
+                             style="height: 16em; width: auto"/>
+                        <div class="row justify-content-start  mt-5">
+                            <div class="col-3 my-auto">
+                            </div>
+                        </div>
 
-                                <!--                                ===========-->
-
-                                <div class="card-columns">
-                                    <div th:each="recipe : ${recipes}">
-                                        <div th:if="${user.id} == ${recipe.user.id}">
-                                            <div class="card shadow-lg rounded">
-                                                <img class="card-img-top" style="height: 16em;"
-                                                     th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
-                                                <div class="card-body">
-                                                    <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"
-                                                                                                th:text="${recipe.title}"></h1>
-                                                    </a>
-                                                    <p style="font-weight: bold">Ingredients:</p>
-                                                    <div th:each="ingredient : ${recipe.ingredientList}">
-                                                        <p th:text="${ingredient.name}"></p>
-                                                    </div>
-                                                    <p style="font-weight: bold">Instructions:</p>
-                                                    <div th:each="instruction : ${recipe.instructionList}">
-                                                        <p th:text="${instruction.name}"></p>
-                                                    </div>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div sec:authorize="isAuthenticated()">
-                                                        <!--                                                        <div th:if="${user.id} == ${recipe.user.id}">-->
-                                                        <!--                                                            <small class="text-muted"><a-->
-                                                        <!--                                                                    th:href="@{|/recipe/${recipe.id}/edit|}">-->
-                                                        <!--                                                                <button>Edit Post</button>-->
-                                                        <!--                                                            </a></small>-->
-                                                        <!--                                                            <form th:action="@{|/recipe/${recipe.id}/delete|}"-->
-                                                        <!--                                                                  th:method="POST"-->
-                                                        <!--                                                                  style="display:inline">-->
-                                                        <!--                                                                <small class="text-muted">-->
-                                                        <!--                                                                    <button>Delete Post</button>-->
-                                                        <!--                                                                </small>-->
-                                                        <!--                                                            </form>-->
-                                                        <!--                                                        </div>-->
-                                                        <a th:href="@{|/comments/post/${recipe.id}|}">
-                                                            <button>Comment</button>
-                                                        </a>
-                                                    </div>
-                                                    <div sec:authorize="!isAuthenticated()">
-                                                        <a th:href="@{|/login|}">
-                                                            <button>Comment</button>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                        <div class="card-columns">
+                            <div th:each="recipe : ${recipes}">
+                                <div th:if="${user.id} == ${recipe.user.id}">
+                                    <div class="card shadow-lg rounded">
+                                        <img class="card-img-top" style="height: 16em;"
+                                             th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                        <div class="card-body">
+                                            <a th:href="@{|/recipes/${recipe.id}|}"><h1 class="card-title"
+                                                                                        th:text="${recipe.title}"></h1>
+                                            </a>
+                                            <p style="font-weight: bold">Ingredients:</p>
+                                            <div th:each="ingredient : ${recipe.ingredientList}">
+                                                <p th:text="${ingredient.name}"></p>
                                             </div>
-
-
-                                            <!--                                            ===========-->
-
+                                            <p style="font-weight: bold">Instructions:</p>
+                                            <div th:each="instruction : ${recipe.instructionList}">
+                                                <p th:text="${instruction.name}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div sec:authorize="isAuthenticated()">
+                                                <!--                                                        <div th:if="${user.id} == ${recipe.user.id}">-->
+                                                <!--                                                            <small class="text-muted"><a-->
+                                                <!--                                                                    th:href="@{|/recipe/${recipe.id}/edit|}">-->
+                                                <!--                                                                <button>Edit Post</button>-->
+                                                <!--                                                            </a></small>-->
+                                                <!--                                                            <form th:action="@{|/recipe/${recipe.id}/delete|}"-->
+                                                <!--                                                                  th:method="POST"-->
+                                                <!--                                                                  style="display:inline">-->
+                                                <!--                                                                <small class="text-muted">-->
+                                                <!--                                                                    <button>Delete Post</button>-->
+                                                <!--                                                                </small>-->
+                                                <!--                                                            </form>-->
+                                                <!--                                                        </div>-->
+                                                <a th:href="@{|/comments/post/${recipe.id}|}">
+                                                    <button>Comment</button>
+                                                </a>
+                                            </div>
+                                            <div sec:authorize="!isAuthenticated()">
+                                                <a th:href="@{|/login|}">
+                                                    <button>Comment</button>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
+
+
+                                    <!--                                            ===========-->
+
                                 </div>
                             </div>
                         </div>
