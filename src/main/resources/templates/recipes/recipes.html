@@ -8,6 +8,30 @@
 
 <div class="wrapper">
     <nav th:replace="partials/navbar :: navbar"></nav>
+<<<<<<< HEAD
+=======
+    <!--    <header class="container my-5">-->
+    <!--        <div class="jumbotron">-->
+    <!--            <h1 class="text-center display-1">Recipes</h1>-->
+    <!--        </div>-->
+    <!--    </header>-->
+    <main class="container">
+
+
+    <!-- Search bar that looks in both            -->
+    <div class="row">
+      <div class="col">
+        <form action="#" th:action="@{/recipes}" method="get"
+            class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
+            <input class="form-control" type="text" id="search" placeholder="Search" name="search" aria-label="Search"/>
+            <div class="input-group-append">
+              <label for="ingredient-query-input"></label>
+              <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
+            </div>
+        </form>
+      </div>
+    </div>
+>>>>>>> bf5bd15e49915f2859504fda7a34f559a61cda38
 
     <div class="container search-container shadow-lg border mt-5">
 
@@ -210,31 +234,46 @@
 <th:block th:replace="partials/scripts :: scripts"/>
 <script th:inline="javascript">
 
-            let spoon = document.querySelector('meta.sapi').content;
+
+    let spoon = document.querySelector('meta.sapi').content;
+
+    // $('#ingredient-query-input').click(function(){
+    if(document.getElementById("search") == null){
+        console.log("oops, null");
+    }else {
+        // Selecting the input element and get its value
+        // var inputVal = document.getElementById("search").value;
+        // console.log(inputVal);
+        // Displaying the value
+
+        var searchString;
+        // console.log(searchString);
+        var urlSearchString = window.location.href;
+        var url = new URL(urlSearchString);
+        var searchParam = url.searchParams.get("search");
+        searchString = searchParam.replace(/,|,\s/g, ",+");
+        // console.log("url string" + searchString);
 
 
-            if(document.getElementById("search") == null){
-                console.log("oops, null");
-            }else {
 
+            $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=4&apiKey=" + spoon + "").done(function (data) {
 
-                var searchString;
-                var urlSearchString = window.location.href;
-                var url = new URL(urlSearchString);
-                var searchParam = url.searchParams.get("search");
-                searchString = searchParam.replace(/,|,\s/g, ",+");
-
-
+<<<<<<< HEAD
                 $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=20&apiKey=" + spoon + "").done(function (data) {
+=======
+>>>>>>> bf5bd15e49915f2859504fda7a34f559a61cda38
 
-                    console.log("inside ajax");
-                    // console.log(JSON.stringify(data));
+
+
+            console.log("inside ajax");
+            // console.log(JSON.stringify(data));
 
 
 
                     //Create the cards to hold the data for the recipe
 
                     var recipe = "";
+
 
 
                     for (var i = 0; i < data.length; i++) {
@@ -259,76 +298,80 @@
                     $('.recipe').on('click', function () {
 
 
-                        console.log(this.id + " id should be here");
-
-                        $.ajax("https://api.spoonacular.com/recipes/" + this.id + "/information?includeNutrition=false&apiKey=" + spoon + "").done(function (data) {
-
-                            console.log(data);
-
-                            //Variables to show the specific recipe details
-                            let recipeTitle="";
-                            let recipeImage="";
-                            let recipeIngredients="";
-                            let recipeInstructions="";
-                            let recipeCuisines="";
-                            let recipeSource="";
+                console.log(this.id + " id should be here");
 
 
-                            recipeTitle += data.title + " by " + '<a href="'+ data.sourceUrl + '"target=_blank>' + data.creditsText + '</a>';
+                    $.ajax("https://api.spoonacular.com/recipes/" + this.id + "/information?includeNutrition=false&apiKey=" + spoon + "").done(function (data) {
 
 
-                            recipeImage += '<img class="img-responsive" src="' + data.image + '" alt="" />';
+
+                    console.log(data);
+
+
+                    //Variables to show the specific recipe details
+                    let recipeTitle ="";
+                    let recipeImage="";
+                    let recipeIngredients="";
+                    let recipeInstructions="";
+                    let recipeCuisines="";
+                    let recipeSource="";
+
+                    // recipeTitle += data.title + " by " + data.creditsText;
+                    recipeTitle += data.title + " by " + '<a href="'+ data.sourceUrl + '"target=_blank>' + data.creditsText + '</a>';
+
+
+
+                    recipeImage += '<img class="img-responsive" src="' + data.image + '" alt="" />';
+
 
 
                             //Display the categories/cuisines for the chosen recipe
                             if(data.cuisines.length == 0){
 
-                                recipeCuisines +=  '<li>' + 'Sorry, no Cuisines associated with recipe at the moment.' + '</li>';
+                        recipeCuisines +=  '<li>' + 'Sorry, no Cuisines associated with recipe at the moment.' + '</li>';
 
-                            }else{
-                                for(var j = 0; j < data.cuisines.length; j++){
+                    }else{
+                        for(var j = 0; j < data.cuisines.length; j++){
 
-                                    recipeCuisines += '<li>' + data.cuisines[j] + '</li>'
+                            recipeCuisines += '<li>' + data.cuisines[j] + '</li>'
 
-                                }
-                            }
-
-
-                            //For loop to grab the ingredients and put them in a list
-                            if(data.extendedIngredients.length == 0){
-
-                                recipeIngredients += 'Currently no available ingredients for this recipe sorry.'
-
-                            }else{
-                                for(var i = 0; i < data.extendedIngredients.length; i++){
-
-                                    recipeIngredients += '<li class="list-group-item">' +  data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].originalName + '</li>';
-
-                                }
-                            }
+                        }
+                    }
 
 
-                            //Grab the instructions from the get request of the the recipe
-                            if(data.analyzedInstructions.length == 0){
+                    //For loop to grab the ingredients and put them in a list
+                    if(data.extendedIngredients.length == 0){
 
-                                recipeInstructions += '<li class="list-group-item">' + 'Currently no available instructions for this recipe sorry.' + '</li>';
+                        recipeIngredients += 'Currently no available ingredients for this recipe sorry.'
 
-                            }else{
+                    }else{
+                        for(var i = 0; i < data.extendedIngredients.length; i++){
 
-                                for(var k = 0; k < data.analyzedInstructions[0].steps.length; k++){
+                            recipeIngredients += '<li class="list-group-item">' +  data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].originalName + '</li>';
 
-                                    recipeInstructions += '<li class="list-group-item">' + "Step " + data.analyzedInstructions[0].steps[k].number + ": " + data.analyzedInstructions[0].steps[k].step + '</li>';
-
-                                }
-
-                            }
+                        }
+                    }
 
 
-                            //External link for further recipe details
+                    //Grab the instructions from the get request of the the recipe
+                    if(data.analyzedInstructions.length == 0){
 
-                            recipeSource += '<p>' +'Click on who its by in title to see more recipe details'+ '</p>';
+                        recipeInstructions += '<li class="list-group-item">' + 'Currently no available instructions for this recipe sorry.' + '</li>';
+
+                    }else{
+
+                        for(var k = 0; k < data.analyzedInstructions[0].steps.length; k++){
+
+                            recipeInstructions += '<li class="list-group-item">' + "Step " + data.analyzedInstructions[0].steps[k].number + ": " + data.analyzedInstructions[0].steps[k].step + '</li>';
+
+                        }
+
+                    }
 
 
+                    //External link for further recipe details
+
+                    recipeSource += '<p>' +'Click on who its by in title to see more recipe details'+ '</p>';
 
                             //using jquery to display the object properties from the get request
                             $('.api-modal-title').html(recipeTitle);
@@ -347,6 +390,7 @@
                     })
                 });
             }
+
 </script>
 </body>
 </html>
