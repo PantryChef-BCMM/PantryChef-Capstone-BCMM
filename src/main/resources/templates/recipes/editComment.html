@@ -1,25 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head th:replace="partials/head :: head('View Recipe')"></head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="h-100">
+<head th:replace="partials/head :: head('Edit Comment')"></head>
+<body class="postComment-background h-100">
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-    <div sec:authorize="isAuthenticated()">
-        <form th:action="@{|/comment/${comment.getId()}/edit|}" th:method="post">
 
-            Description:
-            <input th:field="*{comment.comment}"/>
-            <br/>
-            <input type="submit"/>
-<!--        <div th:if="${user.id} == ${comment.getUser().getId()}">-->
-<!--            Description:-->
-<!--            <input th:field="*{comment.comment}"/>-->
-<!--            <br/>-->
-<!--            <input type="submit"/>-->
-<!--        </div>-->
-        </form>
+<div class="container d-flex h-100">
+    <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg">
+
+        <div sec:authorize="isAuthenticated()">
+            <h1 th:text="${comment.recipe.title}" class="login-text"></h1>
+            <h4 th:text="'Recipe posted by ' + ${comment.recipe.user.username}" class="login-text"></h4>
+            <div class="container">
+                <hr class="shoppingList-hr p-0 my-1">
+            </div>
+            <form th:action="@{|/comment/${comment.getId()}/edit|}" th:method="post">
+
+                <label for="editComment" class="font-weight-bold">Edit comment</label><br>
+                <input id="editComment" th:field="*{comment.comment}" class="w-75"/>
+                <br/>
+                <input type="submit" class="m-2"/>
+                <!--        <div th:if="${user.id} == ${comment.getUser().getId()}">-->
+                <!--            Description:-->
+                <!--            <input th:field="*{comment.comment}"/>-->
+                <!--            <br/>-->
+                <!--            <input type="submit"/>-->
+                <!--        </div>-->
+            </form>
+        </div>
     </div>
+</div>
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>
