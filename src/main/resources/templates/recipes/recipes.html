@@ -14,26 +14,26 @@
     <!--        </div>-->
     <!--    </header>-->
     <main class="container">
-        <div class="row">
-            <div class="col">
-                <form action="#" th:action="@{/recipes}" method="get"
-                      class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
-                    <input class="form-control" type="text" id="search" placeholder="Search" name="search"
-                           aria-label="Search"/>
-                    <div class="input-group-append">
-<!--                        <button class="recipe-button-search">Search</button>-->
-                        <label for="ingredient-query-input"></label>
-                        <input class="recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
-                    </div>
-                </form>
+
+            <!-- Search bar that looks in both            -->
+            <div class="row">
+                <div class="col">
+                    <form action="#" th:action="@{/recipes}" method="get"
+                          class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
+                        <input class="form-control" type="text" id="search" placeholder="Search" name="search" aria-label="Search"/>
+                        <div class="input-group-append">
+                            <label for="ingredient-query-input"></label>
+                            <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+
+
 
         <form action="#" th:action="@{/recipes}" method="get">
             <label for="categories">Categories:</label>
-            <select th:id="${value}" id="categories" name="categories" class="selectpicker" multiple
-                    data-live-search="true"
-                    data-flip="false">
+            <select th:id="${value}" id="categories" name="categories" class="selectpicker" multiple data-live-search="true" data-flip="false">
                 <option name="categories" id="American" value="1">American</option>
                 <option name="categories" id="Chinese" value="2">Chinese</option>
                 <option name="categories" id="Italian" value="3">Italian</option>
@@ -50,7 +50,7 @@
                 <option name="categories" id="French" value="14">French</option>
                 <option name="categories" id="Filipino" value="15">Filipino</option>
             </select>
-            <button class="navbar-btn" type="submit">Search</button>
+            <button class="btn category-btn" type="submit">Search</button>
         </form>
 
 
@@ -69,8 +69,8 @@
                                 <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
                                 <!--                                    <button class="recipe-button">View Details</button>-->
                                 <!--                                </a>-->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
-                                    See Recipe Details
+                                <button type="button" class="btn modal-recipe-button" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
+                                    View Recipe
                                 </button>
                             </small>
                         </div>
@@ -236,7 +236,7 @@
                         recipe += '</div>';
                         recipe += '<div class="card-footer">';
                         recipe += '<small class="text-muted d-flex justify-content-center align-items-center">';
-                        recipe += '<button class="btn btn-primary recipe" data-toggle="modal" data-target="#recipeApiModalLong" id="' + data[i].id + '\">\n' + '  See Recipe Details\n' + '</button>';
+                        recipe += '<button class="btn btn-primary recipe" data-toggle="modal" data-target="#recipeApiModalLong" id="' + data[i].id + '\">\n' + '  View Recipe\n' + '</button>';
                         recipe += '</small>';
                         recipe += "</div>";
                         recipe += "</div>";

@@ -1,3 +1,11 @@
+/*.test-color{*/
+/*color: #676672;*/
+/*#860806*/
+/*#0E3E4F*/
+/*#676672*/
+/*#2BA4B9*/
+/*}*/
+
 .recipe-button{
     background-color:#2BA4B9 !important;
     border-radius: 6px;
@@ -16,11 +24,12 @@
 .recipe-card{
     height: 30em;
 }
+.button.modal-recipe-button{
+    background-color:#2BA4B9;
+}
+.category-btn{
+    background-color:#2BA4B9;
+    text-decoration-color: #ffffff;
+}
 
-/*.test-color{*/
-/*color: #676672;*/
-/*#860806*/
-/*#0E3E4F*/
-/*#676672*/
-/*#2BA4B9*/
-/*}*/
+
