@@ -128,6 +128,20 @@
                                         <li class="list-group-item" th:text="${instruction.name}"></li>
                                     </div>
                                 </ul>
+                                <div th:each="comment : ${recipe.comments}">
+                                    <br>
+                                    <p th:text = "${comment.commentedAt}"></p>
+                                    <p th:text = "${comment.getUser().getUsername()}"></p>
+                                    <p th:text = "${comment.comment}"></p>
+                                    <div sec:authorize = "isAuthenticated()">
+                                        <div th:if="${user.id} == ${comment.getUser().getId()} OR ${user.admin}">
+                                            <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
+                                                <button>Delete Comment</button>
+                                            </form>
+                                            <a th:href="@{|/comment/${comment.id}/edit|}"><button>Edit Comment</button></a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="modal-recipeSource">
                                     <p class="sourceUrl">Click on the title to see recipe owner.</p>
                                 </div>
