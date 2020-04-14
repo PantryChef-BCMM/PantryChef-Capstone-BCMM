@@ -7,7 +7,7 @@
 /*}*/
 
 .recipe-background-image{
-    /*background: url("../images/imagescontainer/recipe-cookbook.png") no-repeat center center fixed;*/
+    background: url("../images/imagescontainer/recipes.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -57,10 +57,9 @@
     font-weight: bold;
     border: 1px solid black;
 }
-.search-container .border{
+.search-container {
 
-    border: 1px solid #860806 !important;
-    background-color: white !important;
+    background-color: white;
 
 }
 
