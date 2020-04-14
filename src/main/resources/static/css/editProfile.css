@@ -1,3 +1,10 @@
 .editprofile-text {
     font-family: 'Oleo Script Swash Caps', cursive;
 }
+.edit-profile-background {
+    background: url("../images/editimage.jpeg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

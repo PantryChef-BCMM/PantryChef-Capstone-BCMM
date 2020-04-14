@@ -12,7 +12,7 @@
 <!--    }-->
 <!--    }-->
 <!--</style>-->
-<body>
+<body class="edit-profile-background">
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container">
     <br>
@@ -24,7 +24,7 @@
             <p>choose which field you would like to update</p>
             <br>
             <form th:action="@{|/edit/${user.id}|}" method="POST" th:object="${user}">
-                <label for="firstName">First Name</label>
+                <label for="firstName" >First Name</label>
                 <input th:field="*{first_name}">
                 <br>
                 <label for="lastName">Last Name</label>
@@ -35,6 +35,7 @@
                 <br>
                 <label for="email">Email</label>
                 <input th:field="*{email}"/>
+                <br>
 
                 <!--    <label for="password">Password</label>-->
                 <!--    <input type="password" th:field="*{password}"/>-->
