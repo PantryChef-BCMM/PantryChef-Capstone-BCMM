@@ -81,3 +81,17 @@
 .profileFromRecipeNoUnderline:hover {
     text-decoration: none;
 }
+
+.custom-title-container {
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+.api-title-container {
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+.api-modal-title{
+    text-decoration: none;
+    color: black;
+}
+
