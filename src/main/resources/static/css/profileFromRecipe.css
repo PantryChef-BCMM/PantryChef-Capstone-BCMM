@@ -10,6 +10,10 @@
     font-family: 'Oleo Script Swash Caps', cursive;
 }
 
+.profileFromRecipeTextV2 {
+    margin-left: .8em;
+}
+
 .profileFromRecipeButton {
     background: #2BA4B9;
     color: white;
