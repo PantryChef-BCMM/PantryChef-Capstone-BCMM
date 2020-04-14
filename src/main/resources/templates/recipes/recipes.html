@@ -51,17 +51,24 @@
         </form>
     </div>
 
-    <div class="container d-flex justify-content-center align-items-center">
-        <h2 class="custom-title-container my-5 w-50 text-center">User Uploaded Recipes</h2>
+<!--    <div class="row bg-white text-center">-->
+<!--        <div class="col-md-12">-->
+<!--            <h1 class="profileFromRecipeText mb-0 mt-2" th:text="${user.username} + '\'s' + ' Recipes'"></h1>-->
+<!--            <hr class="profileFromRecipe-hr w-75 mt-2">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+
+    <div class="row bg-white text-center">
+        <div class="col-md-12">
+            <h2 class="custom-title-container mt-2">User Uploaded Recipes</h2>
+        </div>
     </div>
 
-
-
     <div class="container">
+
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-
-
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 bg-white ">
 
             <div th:each="recipe : ${recipes}">
                 <div class="col mb-4">
@@ -171,7 +178,7 @@
     <div class="container ">
 
         <!--   Cards created dynamically by spoonacular api calls   -->
-        <div class="row recipeCards">
+        <div class="row recipeCards bg-white">
 
 
 
@@ -267,7 +274,7 @@
 
                     for (var i = 0; i < data.length; i++) {
 
-                        recipe += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-3">';
+                        recipe += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-4">';
                         recipe += '<div class="card recipe-card shadow bg-white rounded">';
                         recipe += '<img class="card-img-top" style="height: 16em;" src="' + data[i].image + '" alt="Recipe image" />';
                         recipe += '<div class=card-body>';
