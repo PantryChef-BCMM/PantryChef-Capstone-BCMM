@@ -1,15 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head('View Recipe')"></head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="h-100">
+<head th:replace="partials/head :: head('Post Comment')"></head>
+<body class="postComment-background h-100">
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-<form th:action="@{|/comments/post/${recipe.id}|}" th:method="post" th:object="${comment}">
-    Description:
-    <input th:field="*{comment}" />
-    <br />
-    <input type="submit" />
-</form>
+
+<div class="container d-flex h-100">
+    <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg">
+
+        <h1 th:text="${recipe.title}" class="login-text"></h1>
+        <h4 th:text="'Recipe posted by ' + ${recipe.user.username}" class="login-text"></h4>
+        <!--        <div th:each="ingredient : ${recipe.ingredientList}">-->
+        <!--            <p th:text="${ingredient.name}"></p>-->
+        <!--        </div>-->
+        <!--        <div th:each="instruction :  ${recipe.instructionList}">-->
+        <!--            <p th:text="${instruction.name}"></p>-->
+        <!--        </div>-->
+        <div class="container">
+            <hr class="shoppingList-hr p-0 my-1">
+        </div>
+        <div th:each="comment : ${recipe.comments}" class="container">
+            <div class="row text-left">
+                <div class="col-8">
+                    <p th:text="${comment.comment}" class="p-0 m-0"></p>
+                </div>
+                <div class="col-4">
+                    <p th:text="${comment.commentedAt}" class="p-0 m-0 text-right"></p>
+                </div>
+                <div class="col-12">
+                    <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
+                </div>
+
+            </div>
+            <hr class="shoppingList-hr p-0 my-1">
+        </div>
+        <form th:action="@{|/comments/post/${recipe.id}|}" th:method="post" th:object="${comment}">
+            <label for="comment" class="font-weight-bold">Add a comment</label><br>
+            <input id="comment" class="mx-auto w-50 shadow-sm form-control" placeholder="Enter comment.."
+                   th:field="*{comment}"/>
+            <br/>
+            <input type="submit"/>
+        </form>
+
+    </div>
+</div>
 <th:block th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

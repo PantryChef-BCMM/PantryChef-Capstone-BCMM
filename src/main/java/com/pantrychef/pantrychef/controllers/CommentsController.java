@@ -6,7 +6,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Controller
@@ -42,10 +45,13 @@ public class CommentsController {
         } else if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", u);
-            LocalDateTime now = LocalDateTime.now();
             Comments newComment = new Comments();
+            Date now = new Date();
+            String pattern = "MM-dd-yy";
+            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+            String date = formatter.format(now);
+            newComment.setCommentedAt(date);
             newComment.setComment(comment);
-            newComment.setCommentedAt(now);
             newComment.setUser(u);
             newComment.setRecipe(recipe);
             commentsDao.save(newComment);
@@ -85,8 +91,6 @@ public class CommentsController {
         model.addAttribute("user", user);
 //        if (user.getId() == commentToEdit.getUser().getId()) {
             commentToEdit.setComment(comment);
-            LocalDateTime now = LocalDateTime.now();
-            commentToEdit.setCommentedAt(now);
             commentToEdit.setUser(user);
             commentToEdit.setRecipe(commentToEdit.getRecipe());
             commentsDao.save(commentToEdit);

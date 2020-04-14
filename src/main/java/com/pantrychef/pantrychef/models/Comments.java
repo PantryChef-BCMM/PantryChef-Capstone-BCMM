@@ -15,7 +15,7 @@ public class Comments {
     private String comment;
 
     @Column(nullable = false)
-    LocalDateTime commentedAt;
+    String commentedAt;
 
 
     @ManyToOne
@@ -45,11 +45,11 @@ public class Comments {
         this.comment = comment;
     }
 
-    public LocalDateTime getCommentedAt() {
+    public String getCommentedAt() {
         return commentedAt;
     }
 
-    public void setCommentedAt(LocalDateTime commentedAt) {
+    public void setCommentedAt(String commentedAt) {
         this.commentedAt = commentedAt;
     }
 
