@@ -9,59 +9,64 @@
 <div class="wrapper">
     <nav th:replace="partials/navbar :: navbar"></nav>
 
+    <div class="container">
+        <div class=" row bg-white text-center">
+            <div class="col-md-12">
+                <h2 class="main-title-container my-5">Find Recipes</h2>
+            </div>
+        </div>
+    </div>
 
 
-    <div class="container search-container shadow-lg border mt-5">
+    <div class="container d-flex search-container shadow-lg border mt-5">
 
         <!-- Search bar that looks in both            -->
-        <div class="row">
-            <div class="col">
-                <form action="#" th:action="@{/recipes}" method="get"
-                      class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
-                    <input class="form-control" type="text" id="search" placeholder="Search Example: apples,flour, etc..." name="search" aria-label="Search"/>
-                    <div class="input-group-append">
-                        <label for="ingredient-query-input"></label>
-                        <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Search"/>
-                    </div>
-                </form>
-            </div>
+        <div class="container my-5">
+<!--            <div class="row">-->
+<!--                <div class="col-md-6">-->
+                    <form action="#" th:action="@{/recipes}" method="get" class="input-group d-flex justify-content-center align-items-center container">
+                        <input class="form-control" type="text" id="search" placeholder="Search Example: apples,flour, etc..." name="search" aria-label="Search"/>
+                        <div class="input-group-append">
+                            <label for="ingredient-query-input"></label>
+                            <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Search"/>
+                        </div>
+                    </form>
+<!--                </div>-->
+<!--            </div>-->
         </div>
 
 
-        <form action="#" th:action="@{/recipes}" method="get">
-            <label for="categories" class="font-weight-bold">Categories:</label>
-            <select th:id="${value}" id="categories" name="categories" class="selectpicker create-recipe-select" multiple data-live-search="true" data-flip="false">
-                <option name="categories" id="American" value="1">American</option>
-                <option name="categories" id="Chinese" value="2">Chinese</option>
-                <option name="categories" id="Italian" value="3">Italian</option>
-                <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
-                <option name="categories" id="Vegan" value="5">Vegan</option>
-                <option name="categories" id="Thai" value="6">Thai</option>
-                <option name="categories" id="Indian" value="7">Indian</option>
-                <option name="categories" id="Mexican" value="8">Mexican</option>
-                <option name="categories" id="German" value="9">German</option>
-                <option name="categories" id="Greek" value="10">Greek</option>
-                <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
-                <option name="categories" id="Cajun" value="12">Cajun</option>
-                <option name="categories" id="Latin" value="13">Latin</option>
-                <option name="categories" id="French" value="14">French</option>
-                <option name="categories" id="Filipino" value="15">Filipino</option>
-            </select>
-            <button class="btn category-btn" type="submit">Search</button>
-        </form>
+        <div class="container my-5">
+            <form action="#" th:action="@{/recipes}" method="get">
+                <label for="categories" class="font-weight-bold">Categories:</label>
+                <select th:id="${value}" id="categories" name="categories" class="selectpicker create-recipe-select" multiple data-live-search="true" data-flip="false">
+                    <option name="categories" id="American" value="1">American</option>
+                    <option name="categories" id="Chinese" value="2">Chinese</option>
+                    <option name="categories" id="Italian" value="3">Italian</option>
+                    <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
+                    <option name="categories" id="Vegan" value="5">Vegan</option>
+                    <option name="categories" id="Thai" value="6">Thai</option>
+                    <option name="categories" id="Indian" value="7">Indian</option>
+                    <option name="categories" id="Mexican" value="8">Mexican</option>
+                    <option name="categories" id="German" value="9">German</option>
+                    <option name="categories" id="Greek" value="10">Greek</option>
+                    <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
+                    <option name="categories" id="Cajun" value="12">Cajun</option>
+                    <option name="categories" id="Latin" value="13">Latin</option>
+                    <option name="categories" id="French" value="14">French</option>
+                    <option name="categories" id="Filipino" value="15">Filipino</option>
+                </select>
+                <button class="btn category-btn" type="submit">Search</button>
+            </form>
+        </div>
     </div>
 
-<!--    <div class="row bg-white text-center">-->
-<!--        <div class="col-md-12">-->
-<!--            <h1 class="profileFromRecipeText mb-0 mt-2" th:text="${user.username} + '\'s' + ' Recipes'"></h1>-->
-<!--            <hr class="profileFromRecipe-hr w-75 mt-2">-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
 
-    <div class="row bg-white text-center">
-        <div class="col-md-12">
-            <h2 class="custom-title-container mt-2">User Uploaded Recipes</h2>
+    <div class="container">
+        <div class=" row bg-white text-center">
+            <div class="col-md-12">
+                <h2 class="custom-title-container mt-2">User Uploaded Recipes</h2>
+            </div>
         </div>
     </div>
 
@@ -185,8 +190,16 @@
         </div>
     </div>
 
-    <div class="container d-flex justify-content-center align-items-center">
-        <h2 class="api-title-container my-5  w-50 text-center">PantryChef API Recipes.</h2>
+<!--    <div class="container d-flex justify-content-center align-items-center">-->
+<!--        <h2 class="api-title-container my-5  w-50 text-center">PantryChef API Recipes.</h2>-->
+<!--    </div>-->
+
+    <div class="container mt-5">
+        <div class=" row bg-white text-center">
+            <div class="col-md-12">
+                <h2 class="api-title-container mt-2">PantryChef API Recipes</h2>
+            </div>
+        </div>
     </div>
 
     <div class="container ">
@@ -238,7 +251,6 @@
             </div>
         </div>
     </div>
-    <a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by kstudio - www.freepik.com</a>
 <!--    </main>-->
 </div>
 
@@ -249,7 +261,7 @@
 
     let spoon = document.querySelector('meta.sapi').content;
 
-    // $('#ingredient-query-input').click(function(){
+
     if(document.getElementById("search") == null){
         console.log("oops, null");
     }else {
@@ -265,6 +277,8 @@
         var searchParam = url.searchParams.get("search");
         searchString = searchParam.replace(/,|,\s/g, ",+");
         // console.log("url string" + searchString);
+
+
 
 
 
