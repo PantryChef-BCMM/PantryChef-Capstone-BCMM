@@ -51,7 +51,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        user.setProfileImageUrl("https://picsum.photos/200");
+//        user.setProfileImageUrl("https://picsum.photos/200");
         usersDao.save(user);
 //        ShoppingList myShoppingList = new ShoppingList();
 //        myShoppingList.setUser(user);
