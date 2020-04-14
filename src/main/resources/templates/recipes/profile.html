@@ -17,53 +17,6 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
-<div class="wrapper">
-    <main class="container">
-
-        <div class="row mb-5">
-            <div class="col-md-2">
-                <div>
-                    <img alt="" class="profileImages rounded-circle mt-5" th:attr="src=@{${user.profileImageUrl}}">
-                </div>
-            </div>
-            <div class="col-md-10 d-flex align-items-center">
-                <h1 class="m-3 profileFromRecipeText"
-                    th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name} + '!'"></h1>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="profileFromRecipeText" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
-            </div>
-        </div>
-
-        <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-
-            <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
-
-                <div class="col mb-4">
-                    <div class="card recipe-card shadow bg-white rounded">
-                        <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"
-                             alt="Recipe image">
-                        <div class="card-body">
-                            <h4 class="card-title text-center" th:text="${recipe.title}"></h4>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted d-flex justify-content-center align-items-center">
-                                <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
-                                <!--                                    <button class="recipe-button">View Details</button>-->
-                                <!--                                </a>-->
-                                <button type="button" class="btn profileFromRecipeButton" data-toggle="modal"
-                                        data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
-                                    See Recipe Details
-                                </button>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-
 
                 <!--<div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">-->
 
