@@ -16,7 +16,7 @@
             <div class="col">
                 <form action="#" th:action="@{/recipes}" method="get"
                       class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
-                    <input class="form-control" type="text" id="search" placeholder="Search" name="search" aria-label="Search"/>
+                    <input class="form-control" type="text" id="search" placeholder="Search Example: apples,flour, etc..." name="search" aria-label="Search"/>
                     <div class="input-group-append">
                         <label for="ingredient-query-input"></label>
                         <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Search"/>
@@ -24,11 +24,7 @@
                 </form>
             </div>
         </div>
-        <ul class="example-search">
-            <li>Search For Recipes By </li>
-            <li>Tea</li>
-            <li>Milk</li>
-        </ul>
+
 
         <form action="#" th:action="@{/recipes}" method="get">
             <label for="categories" class="font-weight-bold">Categories:</label>
@@ -53,8 +49,8 @@
         </form>
     </div>
 
-    <div class="container">
-        <h2 class="custom-title-container my-5 shadow-lg border border-dark">User Uploaded Recipes</h2>
+    <div class="container d-flex justify-content-center align-items-center">
+        <h2 class="custom-title-container my-5 shadow-lg border border-dark w-50 text-center">User Uploaded Recipes</h2>
     </div>
 
 
@@ -154,14 +150,15 @@
         </div>
     </div>
 
-    <div class="container">
-        <h2 class="api-title-container my-5 shadow-lg border border-dark">PantryChef API Recipes.</h2>
+    <div class="container d-flex justify-content-center align-items-center">
+        <h2 class="api-title-container my-5 shadow-lg border border-dark w-50 text-center">PantryChef API Recipes.</h2>
     </div>
 
-    <div class="container">
+    <div class="container ">
 
         <!--   Cards created dynamically by spoonacular api calls   -->
-        <div class="row recipeCards overflow-hidden">
+        <div class="row recipeCards">
+
 
 
         </div>
@@ -228,7 +225,7 @@
                 searchString = searchParam.replace(/,|,\s/g, ",+");
 
 
-                $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=4&apiKey=" + spoon + "").done(function (data) {
+                $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=20&apiKey=" + spoon + "").done(function (data) {
 
                     console.log("inside ajax");
                     // console.log(JSON.stringify(data));
