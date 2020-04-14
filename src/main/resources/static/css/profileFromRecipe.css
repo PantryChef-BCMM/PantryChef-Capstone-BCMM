@@ -29,3 +29,8 @@
 .profileFromRecipeNoUnderline:hover {
     text-decoration: none;
 }
+
+.profileFromRecipe-hr {
+    background-color: #860806;
+    margin-bottom: .8em;
+}
