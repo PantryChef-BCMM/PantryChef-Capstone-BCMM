@@ -1,3 +1,20 @@
+
+/*.test-color{*/
+/*color: #676672;*/
+/*#860806*/
+/*#0E3E4F*/
+/*#676672*/
+/*#2BA4B9*/
+/*}*/
+
+.recipe-background-image{
+    /*background: url("../images/imagescontainer/recipe-cookbook.png") no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .recipe-button{
     background-color:#2BA4B9 !important;
     border-radius: 6px;
@@ -12,14 +29,48 @@
     background-color:#2BA4B9 !important;
     color: white;
     font-weight: bold;
+    border: 1px solid black;
 }
-/*.card{*/
-/*    height: 30em;*/
-/*}*/
-/*.test-color{*/
-/*color: #676672;*/
-/*#860806*/
-/*#0E3E4F*/
-/*#676672*/
-/*#2BA4B9*/
-/*}*/
+.recipe-card{
+    height: 30em;
+}
+.button.modal-recipe-button{
+    background-color:#2BA4B9;
+}
+.category-btn{
+    background-color:#2BA4B9;
+    text-decoration-color: #ffffff;
+    color: white;
+    font-weight: bold;
+    border: 1px solid black;
+}
+.search-container .border{
+
+    border: 1px solid #860806 !important;
+    background-color: white !important;
+
+}
+
+.create-recipe-select{
+    border: slategrey solid 1px;
+    border-radius: 5px;
+}
+.example-search{
+    list-style-type: none;
+}
+
+.profileFromRecipeButton {
+    background: #2BA4B9;
+    color: white;
+    border-radius: 4px;
+    border-color: #860806;
+}
+
+.profileFromRecipeButtonV2 {
+    background: #860806;
+    color: white;
+}
+
+.profileFromRecipeNoUnderline:hover {
+    text-decoration: none;
+}
