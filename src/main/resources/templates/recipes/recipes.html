@@ -8,30 +8,8 @@
 
 <div class="wrapper">
     <nav th:replace="partials/navbar :: navbar"></nav>
-<<<<<<< HEAD
-=======
-    <!--    <header class="container my-5">-->
-    <!--        <div class="jumbotron">-->
-    <!--            <h1 class="text-center display-1">Recipes</h1>-->
-    <!--        </div>-->
-    <!--    </header>-->
-    <main class="container">
 
 
-    <!-- Search bar that looks in both            -->
-    <div class="row">
-      <div class="col">
-        <form action="#" th:action="@{/recipes}" method="get"
-            class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
-            <input class="form-control" type="text" id="search" placeholder="Search" name="search" aria-label="Search"/>
-            <div class="input-group-append">
-              <label for="ingredient-query-input"></label>
-              <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
-            </div>
-        </form>
-      </div>
-    </div>
->>>>>>> bf5bd15e49915f2859504fda7a34f559a61cda38
 
     <div class="container search-container shadow-lg border mt-5">
 
@@ -154,17 +132,38 @@
                                     <p class="sourceUrl">Click on the title to see recipe owner.</p>
                                 </div>
                             </div>
-                            <div sec:authorize="isAuthenticated()">
-                                <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
-                                    <a th:href="@{|/recipe/${recipe.id}/edit|}">
-                                        <button>Edit</button>
-                                    </a>
-                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
-                                        <button>Delete</button>
-                                    </form>
-                                </div>
-                            </div>
+<!--                            <div sec:authorize="isAuthenticated()">-->
+<!--                                <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">-->
+<!--                                    <a th:href="@{|/recipe/${recipe.id}/edit|}">-->
+<!--                                        <button>Edit</button>-->
+<!--                                    </a>-->
+<!--                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">-->
+<!--                                        <button>Delete</button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="modal-footer">
+                                <div sec:authorize="isAuthenticated()">
+                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
+                                        <a class="profileFromRecipeNoUnderline"
+                                           th:href="@{|/recipe/${recipe.id}/edit|}">
+                                                <button type="button" class="btn profileFromRecipeButton">Edit</button>
+                                        </a>
+                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+                                            <button type="button" class="btn profileFromRecipeButton">Delete</button>
+                                        </form>
+                                    </div>
+                                    <a class="profileFromRecipeNoUnderline"
+                                       th:href="@{|/comments/post/${recipe.id}|}">
+                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>
+                                    </a>
+                                </div>
+                                <div sec:authorize="!isAuthenticated()">
+                                    <a class="profileFromRecipeNoUnderline"
+                                       th:href="@{/login}">
+                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>
+                                    </a>
+                                </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -256,12 +255,10 @@
 
 
 
-            $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=4&apiKey=" + spoon + "").done(function (data) {
 
-<<<<<<< HEAD
-                $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=20&apiKey=" + spoon + "").done(function (data) {
-=======
->>>>>>> bf5bd15e49915f2859504fda7a34f559a61cda38
+
+            $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=20&apiKey=" + spoon + "").done(function (data) {
+
 
 
 
