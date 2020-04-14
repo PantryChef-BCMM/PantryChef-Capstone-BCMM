@@ -36,7 +36,7 @@
         </div>
         <form th:action="@{|/comments/post/${recipe.id}|}" th:method="post" th:object="${comment}">
             <label for="comment" class="font-weight-bold">Add a comment</label><br>
-            <input id="comment" class="mx-auto w-50 shadow-sm form-control" placeholder="Enter comment.."
+            <input id="comment" class="mx-auto w-75 shadow-sm form-control" placeholder="Enter comment.."
                    th:field="*{comment}"/>
             <br/>
             <input type="submit"/>

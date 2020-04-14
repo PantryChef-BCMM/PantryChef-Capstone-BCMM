@@ -57,7 +57,7 @@ public class CommentsController {
             commentsDao.save(newComment);
             model.addAttribute("comment", newComment);
         }
-        return "redirect:/recipes/" + id;
+        return "redirect:/recipes";
     }
 
     @PostMapping("comments/delete/{id}")
@@ -69,10 +69,10 @@ public class CommentsController {
             // delete post
             commentsDao.deleteById(id);
         } else {
-            return "redirect:/recipes/" + recipe.getId();
+            return "redirect:/recipes";
         }
 
-        return "redirect:/recipes/" + recipe.getId();
+        return "redirect:/recipes";
     }
 
     @GetMapping("/comment/{id}/edit")
@@ -95,6 +95,6 @@ public class CommentsController {
             commentToEdit.setRecipe(commentToEdit.getRecipe());
             commentsDao.save(commentToEdit);
 //        }
-        return "redirect:/recipes/" + commentToEdit.getRecipe().getId();
+        return "redirect:/recipes";
     }
 }
