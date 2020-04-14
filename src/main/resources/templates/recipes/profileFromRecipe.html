@@ -5,15 +5,10 @@
 
 </style>
 <body class="profileFromRecipe-background-image" style="margin: 0 auto">
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 
 <div class="wrapper">
-    <nav th:replace="partials/navbar :: navbar"></nav>
-    <!--    <header class="container my-5">-->
-    <!--        <div class="jumbotron">-->
-    <!--            <h1 class="text-center display-1">Recipes</h1>-->
-    <!--        </div>-->
-    <!--    </header>-->
     <main class="container">
 
         <div class="row">
@@ -22,14 +17,15 @@
                 <h1 class="m-3 profileFromRecipeText" th:text="${user.username} + '\'s' + ' Profile'"></h1>
             </div>
         </div>
-
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
 
-            <div th:each="recipe : ${recipes}">
+            <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
+
                 <div class="col mb-4">
                     <div class="card recipe-card shadow bg-white rounded">
-                        <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                        <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"
+                             alt="Recipe image">
                         <div class="card-body">
                             <h4 class="card-title text-center" th:text="${recipe.title}"></h4>
                         </div>
@@ -38,7 +34,8 @@
                                 <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
                                 <!--                                    <button class="recipe-button">View Details</button>-->
                                 <!--                                </a>-->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
                                     See Recipe Details
                                 </button>
                             </small>
@@ -47,16 +44,23 @@
                 </div>
 
                 <!--      Modal that will hold recipe details       -->
-                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
+                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog"
+                     aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
 
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div sec:authorize="isAuthenticated()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center"
+                                                                                     id="recipeModalLongTitle"
+                                                                                     th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h4>
+                                    </a>
                                 </div>
                                 <div sec:authorize="isAnonymous()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center"
+                                                                                     id="recipeModalLongTitle"
+                                                                                     th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h4>
+                                    </a>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -64,7 +68,8 @@
                             </div>
                             <div class="modal-image mx-auto">
                                 <!--    Image for recipe    -->
-                                <img style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                <img style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"
+                                     alt="Recipe image">
                             </div>
                             <div class="modal-body">
                                 <!--    Display the recipes cuisines    -->
@@ -100,7 +105,8 @@
                                     <a th:href="@{|/recipe/${recipe.id}/edit|}">
                                         <button>Edit</button>
                                     </a>
-                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
+                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"
+                                          style="display:inline">
                                         <button>Delete</button>
                                     </form>
                                 </div>
@@ -111,200 +117,15 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-        </div>
-
-        <!--   row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 -->
-        <!--   Cards created dynamically by spoonacular api calls   -->
-
-        <div class="row recipeCards">
-
 
         </div>
 
-        <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="api-modal-title" id="recipeApiModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="api-modal-image mx-auto">
-
-                    </div>
-                    <div class="modal-body">
-                        <!--    Display the recipes cuisines    -->
-                        <ul class="api-modal-cuisine">
-
-                        </ul>
-                        <!--      Display Ingredients title         -->
-                        <h5 class="modal-instructions-title">Ingredients</h5>
-                        <!--    List displaying the ingredients    -->
-                        <ul class="api-ingredient-list-group">
-                            <!--      Ingredients will display here dynamically      -->
-                        </ul>
-
-                        <!--      Display Instructions-->
-                        <h5 class="modal-instructions-title">Instructions</h5>
-                        <ul class="api-instruction-list-group">
-                            <!--      Instructions will display here dynamically      -->
-                        </ul>
-                        <div class="api-modal-recipeSource">
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 </div>
 
-
 <th:block th:replace="partials/scripts :: scripts"/>
-<script th:inline="javascript">
 
-    let spoon = document.querySelector('meta.sapi').content;
-
-
-    if(document.getElementById("search") == null){
-        console.log("oops, null");
-    }else {
-
-
-        var searchString;
-        var urlSearchString = window.location.href;
-        var url = new URL(urlSearchString);
-        var searchParam = url.searchParams.get("search");
-        searchString = searchParam.replace(/,|,\s/g, ",+");
-
-
-        $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=4&apiKey=" + spoon + "").done(function (data) {
-
-            console.log("inside ajax");
-            // console.log(JSON.stringify(data));
-
-
-
-            //Create the cards to hold the data for the recipe
-
-            var recipe = "";
-
-
-            for (var i = 0; i < data.length; i++) {
-
-                recipe += '<div class="mb-4 col-12 col-sm-6 col-md-4 col-lg-3">';
-                recipe += '<div class="card recipe-card shadow bg-white rounded">';
-                recipe += '<img class="card-img-top" style="height: 16em;" src="' + data[i].image + '" alt="Recipe image" />';
-                recipe += '<div class=card-body>';
-                recipe += '<h4 class="card-title text-center">' + data[i].title + '</h4>';
-                recipe += '</div>';
-                recipe += '<div class="card-footer">';
-                recipe += '<small class="text-muted d-flex justify-content-center align-items-center">';
-                recipe += '<button class="btn btn-primary recipe" data-toggle="modal" data-target="#recipeApiModalLong" id="' + data[i].id + '\">\n' + '  See Recipe Details\n' + '</button>';
-                recipe += '</small>';
-                recipe += "</div>";
-                recipe += "</div>";
-                recipe += "</div>";
-            }
-
-            $(".recipeCards").html(recipe);
-
-            $('.recipe').on('click', function () {
-
-
-                console.log(this.id + " id should be here");
-
-                $.ajax("https://api.spoonacular.com/recipes/" + this.id + "/information?includeNutrition=false&apiKey=" + spoon + "").done(function (data) {
-
-                    console.log(data);
-
-                    //Variables to show the specific recipe details
-                    let recipeTitle="";
-                    let recipeImage="";
-                    let recipeIngredients="";
-                    let recipeInstructions="";
-                    let recipeCuisines="";
-                    let recipeSource="";
-
-
-                    recipeTitle += data.title + " by " + '<a href="'+ data.sourceUrl + '"target=_blank>' + data.creditsText + '</a>';
-
-
-                    recipeImage += '<img class="img-responsive" src="' + data.image + '" alt="" />';
-
-
-                    //Display the categories/cuisines for the chosen recipe
-                    if(data.cuisines.length == 0){
-
-                        recipeCuisines +=  '<li>' + 'Sorry, no Cuisines associated with recipe at the moment.' + '</li>';
-
-                    }else{
-                        for(var j = 0; j < data.cuisines.length; j++){
-
-                            recipeCuisines += '<li>' + data.cuisines[j] + '</li>'
-
-                        }
-                    }
-
-
-                    //For loop to grab the ingredients and put them in a list
-                    if(data.extendedIngredients.length == 0){
-
-                        recipeIngredients += 'Currently no available ingredients for this recipe sorry.'
-
-                    }else{
-                        for(var i = 0; i < data.extendedIngredients.length; i++){
-
-                            recipeIngredients += '<li class="list-group-item">' +  data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].originalName + '</li>';
-
-                        }
-                    }
-
-
-                    //Grab the instructions from the get request of the the recipe
-                    if(data.analyzedInstructions.length == 0){
-
-                        recipeInstructions += '<li class="list-group-item">' + 'Currently no available instructions for this recipe sorry.' + '</li>';
-
-                    }else{
-
-                        for(var k = 0; k < data.analyzedInstructions[0].steps.length; k++){
-
-                            recipeInstructions += '<li class="list-group-item">' + "Step " + data.analyzedInstructions[0].steps[k].number + ": " + data.analyzedInstructions[0].steps[k].step + '</li>';
-
-                        }
-
-                    }
-
-
-                    //External link for further recipe details
-
-                    recipeSource += '<p>' +'Click on who its by in title to see more recipe details'+ '</p>';
-
-
-
-                    //using jquery to display the object properties from the get request
-                    $('.api-modal-title').html(recipeTitle);
-
-                    $('.api-modal-cuisine').html(recipeCuisines);
-
-                    $('.api-modal-image').html(recipeImage);
-
-                    $('.api-ingredient-list-group').html(recipeIngredients);
-
-                    $('.api-instruction-list-group').html(recipeInstructions);
-
-                    $('.api-modal-recipeSource').html(recipeSource);
-
-                })
-            })
-        });
-    }
-</script>
 </body>
 </html>
