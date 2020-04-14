@@ -6,7 +6,9 @@
 /*            #2BA4B9*/
 /*}*/
 
- Adjust nav links to be dynamically centered and add hover color to brand text.
+.navbar {
+    padding: 0 !important;
+}
 
 .navbar-nav{
     background-color:#0E3E4F;
@@ -18,24 +20,40 @@
 
 .navbar-a-links{
     color: white !important;
-    margin-top: .3em;
 }
 
 .navbar-a-links:hover {
     color:#2BA4B9 !important;
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
 }
 
 .navbar-brand-text {
     font-family: 'Oleo Script Swash Caps', cursive;
     color: white !important;
     font-size: 25px;
+    text-decoration: none;
     margin-left: 10px;
 }
 
+.navbar-brand-text:hover {
+    text-decoration: none;
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
 .nav-logo {
+    margin: 5px !important;
     height: 2.5em;
     width: auto;
-    margin-left: 5px;
+}
+
+.nav-logo:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
 }
 
 .navbar-btn {
