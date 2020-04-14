@@ -52,7 +52,7 @@
     </div>
 
     <div class="container d-flex justify-content-center align-items-center">
-        <h2 class="custom-title-container my-5 shadow-lg border border-dark w-50 text-center">User Uploaded Recipes</h2>
+        <h2 class="custom-title-container my-5 w-50 text-center">User Uploaded Recipes</h2>
     </div>
 
 
@@ -68,16 +68,16 @@
                     <div class="card recipe-card shadow bg-white rounded">
                         <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
                         <div class="card-body">
-                            <h4 class="card-title text-center" th:text="${recipe.title}"></h4>
+                            <h5 class="card-title text-center" th:text="${recipe.title}"></h5>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted d-flex justify-content-center align-items-center">
-                                <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
-                                <!--                                    <button class="recipe-button">View Details</button>-->
-                                <!--                                </a>-->
-                                <button type="button" class="btn modal-recipe-button" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
+
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
                                     View Recipe
                                 </button>
+
                             </small>
                         </div>
                     </div>
@@ -88,12 +88,12 @@
 
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header d-block">
                                 <div sec:authorize="isAuthenticated()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center mt-2" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
                                 </div>
                                 <div sec:authorize="isAnonymous()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center mt-2" id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4></a>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -132,16 +132,7 @@
                                     <p class="sourceUrl">Click on the title to see recipe owner.</p>
                                 </div>
                             </div>
-<!--                            <div sec:authorize="isAuthenticated()">-->
-<!--                                <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">-->
-<!--                                    <a th:href="@{|/recipe/${recipe.id}/edit|}">-->
-<!--                                        <button>Edit</button>-->
-<!--                                    </a>-->
-<!--                                    <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">-->
-<!--                                        <button>Delete</button>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
+
                             <div class="modal-footer">
                                 <div sec:authorize="isAuthenticated()">
                                     <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
@@ -174,7 +165,7 @@
     </div>
 
     <div class="container d-flex justify-content-center align-items-center">
-        <h2 class="api-title-container my-5 shadow-lg border border-dark w-50 text-center">PantryChef API Recipes.</h2>
+        <h2 class="api-title-container my-5  w-50 text-center">PantryChef API Recipes.</h2>
     </div>
 
     <div class="container ">
@@ -189,8 +180,8 @@
         <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="api-modal-title" id="recipeApiModalLongTitle">Modal title</h5>
+                    <div class="modal-header d-block">
+                        <h5 class="api-modal-title mt-2 text-center" id="recipeApiModalLongTitle">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -226,6 +217,7 @@
             </div>
         </div>
     </div>
+    <a href="https://www.freepik.com/free-photos-vectors/background">Background photo created by kstudio - www.freepik.com</a>
 <!--    </main>-->
 </div>
 
@@ -318,7 +310,7 @@
 
 
 
-                    recipeImage += '<img class="img-responsive" src="' + data.image + '" alt="" />';
+                    recipeImage += '<img class="img-fluid" src="' + data.image + '" alt="" />';
 
 
 
