@@ -3,37 +3,36 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/head :: head('Recipes')"></head>
 
-<body style="margin: 0 auto">
+<body class="recipe-background-image h-100">
 
 
 <div class="wrapper">
     <nav th:replace="partials/navbar :: navbar"></nav>
-    <!--    <header class="container my-5">-->
-    <!--        <div class="jumbotron">-->
-    <!--            <h1 class="text-center display-1">Recipes</h1>-->
-    <!--        </div>-->
-    <!--    </header>-->
-    <main class="container">
 
-            <!-- Search bar that looks in both            -->
-            <div class="row">
-                <div class="col">
-                    <form action="#" th:action="@{/recipes}" method="get"
-                          class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
-                        <input class="form-control" type="text" id="search" placeholder="Search" name="search" aria-label="Search"/>
-                        <div class="input-group-append">
-                            <label for="ingredient-query-input"></label>
-                            <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Add Ingredient"/>
-                        </div>
-                    </form>
-                </div>
+    <div class="container search-container shadow-lg border mt-5">
+
+        <!-- Search bar that looks in both            -->
+        <div class="row">
+            <div class="col">
+                <form action="#" th:action="@{/recipes}" method="get"
+                      class="p-0 mt-5 input-group d-flex justify-content-center align-items-center container">
+                    <input class="form-control" type="text" id="search" placeholder="Search" name="search" aria-label="Search"/>
+                    <div class="input-group-append">
+                        <label for="ingredient-query-input"></label>
+                        <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Search"/>
+                    </div>
+                </form>
             </div>
-
-
+        </div>
+        <ul class="example-search">
+            <li>Search For Recipes By </li>
+            <li>Tea</li>
+            <li>Milk</li>
+        </ul>
 
         <form action="#" th:action="@{/recipes}" method="get">
-            <label for="categories">Categories:</label>
-            <select th:id="${value}" id="categories" name="categories" class="selectpicker" multiple data-live-search="true" data-flip="false">
+            <label for="categories" class="font-weight-bold">Categories:</label>
+            <select th:id="${value}" id="categories" name="categories" class="selectpicker create-recipe-select" multiple data-live-search="true" data-flip="false">
                 <option name="categories" id="American" value="1">American</option>
                 <option name="categories" id="Chinese" value="2">Chinese</option>
                 <option name="categories" id="Italian" value="3">Italian</option>
@@ -52,10 +51,19 @@
             </select>
             <button class="btn category-btn" type="submit">Search</button>
         </form>
+    </div>
+
+    <div class="container">
+        <h2 class="custom-title-container my-5 shadow-lg border border-dark">User Uploaded Recipes</h2>
+    </div>
 
 
+
+    <div class="container">
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+
+
 
             <div th:each="recipe : ${recipes}">
                 <div class="col mb-4">
@@ -144,11 +152,16 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!--   row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 -->
+    <div class="container">
+        <h2 class="api-title-container my-5 shadow-lg border border-dark">PantryChef API Recipes.</h2>
+    </div>
+
+    <div class="container">
+
         <!--   Cards created dynamically by spoonacular api calls   -->
-
-        <div class="row recipeCards">
+        <div class="row recipeCards overflow-hidden">
 
 
         </div>
@@ -192,7 +205,8 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+<!--    </main>-->
 </div>
 
 
