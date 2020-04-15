@@ -9,16 +9,17 @@
 <div class="wrapper">
     <nav th:replace="partials/navbar :: navbar"></nav>
 
-    <div class="container">
+    <div class="container mt-5">
         <div class=" row bg-white text-center">
             <div class="col-md-12">
-                <h2 class="main-title-container my-5">Find Recipes</h2>
+                <h1 class="main-title-container mt-5">Find Recipes</h1>
+                <h5 class="main-title-text">Search for recipes by ingredients or filter user recipes by categories</h5>
             </div>
         </div>
     </div>
 
 
-    <div class="container d-flex search-container shadow-lg border mt-5">
+    <div class="container d-flex search-container shadow-lg bg-white">
 
         <!-- Search bar that looks in both            -->
         <div class="container my-5">
@@ -65,10 +66,12 @@
     <div class="container">
         <div class=" row bg-white text-center">
             <div class="col-md-12">
-                <h2 class="custom-title-container mt-2">User Uploaded Recipes</h2>
+                <h2 class="custom-title-container mt-5">User Uploaded Recipes</h2>
+                <hr class="profileFromRecipe-hr w-75 mb-4">
             </div>
         </div>
     </div>
+
 
     <div class="container">
 
@@ -190,22 +193,11 @@
         </div>
     </div>
 
-<!--    <div class="container d-flex justify-content-center align-items-center">-->
-<!--        <h2 class="api-title-container my-5  w-50 text-center">PantryChef API Recipes.</h2>-->
-<!--    </div>-->
-
-    <div class="container mt-5">
-        <div class=" row bg-white text-center">
-            <div class="col-md-12">
-                <h2 class="api-title-container mt-2">PantryChef API Recipes</h2>
-            </div>
-        </div>
-    </div>
 
     <div class="container ">
 
         <!--   Cards created dynamically by spoonacular api calls   -->
-        <div class="row recipeCards bg-white">
+        <div class="row recipeCards bg-white mt-5">
 
 
 
@@ -290,7 +282,6 @@
 
 
             console.log("inside ajax");
-            // console.log(JSON.stringify(data));
 
 
 
@@ -299,6 +290,14 @@
                     var recipe = "";
 
 
+                        recipe += '<div class="container">';
+                        recipe += '<div class=" row bg-white text-center">';
+                        recipe += '<div class="col-md-12">';
+                        recipe += '<h2 class="api-title-container mt-5">' + 'PantryChef API Recipes' + '</h2>';
+                        recipe += '<hr class="profileFromRecipe-hr w-75 mb-4">';
+                        recipe += '</div>';
+                        recipe += '</div>';
+                        recipe += '</div>';
 
                     for (var i = 0; i < data.length; i++) {
 

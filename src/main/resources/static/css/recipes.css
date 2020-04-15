@@ -37,6 +37,18 @@
     height: 30em;
 }
 
+.bg-white{
+    background-color: #2BA4B9 !important;
+}
+
+.card-body{
+    background-color: white;
+}
+
+.card-footer{
+    background-color: #F7F7F7;
+}
+
 .btn-primary{
 
     background-color:#2BA4B9 !important;
@@ -59,10 +71,9 @@
     font-weight: bold;
     border: 1px solid black;
 }
+
 .search-container {
-
     background-color: white;
-
 }
 
 .create-recipe-select{
@@ -85,14 +96,26 @@
 
 .custom-title-container {
     font-family: 'Oleo Script Swash Caps', cursive;
+    color: white;
 }
 
 .api-title-container {
     font-family: 'Oleo Script Swash Caps', cursive;
+    color: white;
 }
 
 .api-modal-title{
     text-decoration: none;
     color: black;
+}
+
+.main-title-container{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: white;
+}
+
+.main-title-text{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: white;
 }
 
