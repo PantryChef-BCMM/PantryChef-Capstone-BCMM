@@ -12,16 +12,13 @@
 
 .login-button {
     background: #2BA4B9;
+    font-size: 20px;
     color: white;
-    border-radius: 4px;
-    border-color: #860806;
-    width: 8em;
+    width: 6em;
     height: auto;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #860806 !important;
+    transition: transform .2s;
 }
 
 .login-button:hover {
