@@ -30,7 +30,7 @@ public class Recipe {
     private User user;
 
     //Many to many annotation to Recipe model
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
 
             name = "recipes_categories",

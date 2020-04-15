@@ -51,3 +51,16 @@
 .profileFromRecipeBackgroundColor {
     background: white !important;
 }
+
+.profileFromRecipeAnchorTags {
+    color: #2BA4B9;
+}
+
+.profileFromRecipeAnchorTags:hover {
+    text-decoration: underline #860806;
+    color: #2BA4B9;
+}
+
+.profileFromRecipeCategoryList {
+    list-style-type: none;
+}
