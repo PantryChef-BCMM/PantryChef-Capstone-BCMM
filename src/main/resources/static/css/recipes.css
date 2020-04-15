@@ -118,4 +118,13 @@
     font-family: 'Oleo Script Swash Caps', cursive;
     color: white;
 }
+.modal-cuisine{
+    list-style-type: none;
+}
+.api-modal-title{
+    color: #2BA4B9;
+}
+.api-modal-cuisine{
+    list-style-type: none;
+}
 

@@ -84,117 +84,140 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 bg-white ">
 
             <div th:each="recipe : ${recipes}">
+
                 <div class="col mb-4">
                     <div class="card recipe-card shadow bg-white rounded">
                         <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"
                              alt="Recipe image">
                         <div class="card-body">
-                            <h5 class="card-title text-center" th:text="${recipe.title}"></h5>
+                            <h4 class="card-title text-center" th:text="${recipe.title}"></h4>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted d-flex justify-content-center align-items-center">
-
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
+                                <!--                                    <button class="recipe-button">View Details</button>-->
+                                <!--                                </a>-->
+                                <button type="button" class="btn profileFromRecipeButton" data-toggle="modal"
                                         data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
-                                    View Recipe
+                                    See Recipe Details
                                 </button>
-
                             </small>
                         </div>
                     </div>
                 </div>
 
                 <!--      Modal that will hold recipe details       -->
-                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog"
-                     aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
+                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
 
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title " id="recipeModalLongTitle" th:text="${recipe.title + 'Posted by: ' + recipe.user.username}"></h4>
-                                </a>
+                                <div sec:authorize="isAuthenticated()">
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
+                                    </a>
+                                </div>
+                                <div sec:authorize="isAnonymous()">
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
+                                    </a>
+                                </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-image mx-auto">
                                 <!--    Image for recipe    -->
-                                <img style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                <img class="profileFromRecipeModuleImage" th:attr="src=@{${recipe.recipeImageUrl}}"
+                                     alt="Recipe image">
                             </div>
                             <div class="modal-body">
                                 <!--    Display the recipes cuisines    -->
-                                <ul class="modal-cuisine">
+                                <h5 class="modal-instructions-title profileFromRecipeText">Category</h5>
+                                <ul class="modal-cuisine d-flex p-0">
                                     <div th:each="category : ${recipe.categories}">
-                                        <li th:text="${category.name}"></li>
+                                        <li class="mr-2" th:text="${category.name}"></li>
                                     </div>
                                 </ul>
                                 <!--      Display Ingredients title         -->
-                                <h5 class="modal-instructions-title">Ingredients</h5>
+                                <h5 class="modal-instructions-title profileFromRecipeText">Ingredients</h5>
                                 <!--    List displaying the ingredients    -->
                                 <ul class="ingredient-list-group p-0">
                                     <!--      Ingredients will display here dynamically      -->
                                     <div th:each="ingredient : ${recipe.ingredientList}">
-                                        <li class="list-group-item" th:text="${ingredient.name}"></li>
+                                        <li class="list-group-item mt-1 mb-1" th:text="${ingredient.name}"></li>
                                     </div>
                                 </ul>
                                 <!--      Display Instructions-->
-                                <h5 class="modal-instructions-title">Instructions</h5>
+                                <h5 class="modal-instructions-title profileFromRecipeText">Directions</h5>
 
                                 <ul class="instruction-list-group p-0">
                                     <!--      Instructions will display here dynamically      -->
                                     <div th:each="instruction : ${recipe.instructionList}">
-                                        <li class="list-group-item" th:text="${instruction.name}"></li>
+                                        <li class="list-group-item mt-1 mb-1" th:text="${instruction.name}"></li>
                                     </div>
                                 </ul>
-                                <div th:each="comment : ${recipe.comments}">
-                                    <br>
-                                    <p th:text="${comment.commentedAt}"></p>
-                                    <p th:text="${comment.getUser().getUsername()}"></p>
-                                    <p th:text="${comment.comment}"></p>
-                                    <div sec:authorize="isAuthenticated()">
-                                        <div th:if="${user.id} == ${comment.getUser().getId()} OR ${user.admin}">
-                                            <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST"
-                                                  class="mt-2 p-0 m-0" style="display:inline">
-                                                <button class="button fas fa-trash fa-lg"></button>
-                                            </form>
-                                            <a th:href="@{|/comment/${comment.id}/edit|}">
-                                                <button class="button fas fa-edit fa-lg"></button>
-                                            </a>
+
+                                <h5 class="modal-instructions-title profileFromRecipeText">Comments</h5>
+
+                                <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
+
+                                <div th:each="comment : ${recipe.comments}" class="container">
+                                    <div class="row text-left">
+                                        <div class="col-8 p-0">
+                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0 profileFromRecipeAnchorTags"><p
+                                                    th:text="${comment.user.username}" class="m-0 p-0"></p></a>
+                                        </div>
+                                        <div class="col-4 p-0">
+                                            <p th:text="${comment.commentedAt}"
+                                               class="p-0 m-0 text-muted text-right"></p>
+                                        </div>
+                                        <div class="col-12 p-0">
+                                            <p th:text="${comment.comment}" class="p-0 m-0"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row text-left">
+                                        <div sec:authorize="isAuthenticated()">
+                                            <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">
+                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
+<!--                                                    <button class="mb-3">Delete Comment</button>-->
+                                                    <button class="button fas fa-trash fa-lg"></button>
+                                                </form>
+                                                <a th:href="@{|/comment/${comment.id}/edit|}">
+                                                    <button class="button fas fa-edit fa-lg"></button>
+<!--                                                    <button>Edit Comment</button>-->
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 p-0">
+                                            <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-recipeSource">
-                                    <p class="sourceUrl">Click on the title to see recipe owner.</p>
-                                </div>
-                                <form th:action="@{|/recipes/${recipe.id}|}" th:method="POST" style="display:inline" class="mt-2 p-0 m-0">
 
-                                </form>
+                                <div class="modal-recipeSource">
+                                    <p class="sourceUrl mt-3">Click on the title to see recipe owner.</p>
+                                </div>
                             </div>
 
                             <div class="modal-footer">
                                 <div sec:authorize="isAuthenticated()">
-                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
-                                        <a class="profileFromRecipeNoUnderline"
+                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}" class="w-75 d-inline text-left">
+                                        <a class="profileFromRecipeNoUnderline d-inline"
                                            th:href="@{|/recipe/${recipe.id}/edit|}">
                                             <button class="button fas fa-edit fa-2x"></button>
                                         </a>
-                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="mt-2 p-0 m-0">
+                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="d-inline mt-2 p-0 m-0">
                                             <button class="button fas fa-trash fa-2x"></button>
                                         </form>
                                     </div>
-                                    <a class="profileFromRecipeNoUnderline"
+                                    <a class="profileFromRecipeNoUnderline d-inline"
                                        th:href="@{|/comments/post/${recipe.id}|}">
                                         <button class="button fas fa-comment fa-2x"></button>
-
-                                        <!--                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
                                     </a>
                                 </div>
                                 <div sec:authorize="!isAuthenticated()">
-                                    <a class="profileFromRecipeNoUnderline"
+                                    <a class="profileFromRecipeNoUnderline d-inline"
                                        th:href="@{/login}">
                                         <button class="button fas fa-comment fa-2x"></button>
-
-                                        <!--                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
                                     </a>
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -207,7 +230,6 @@
     </div>
 
 
-
     <div class="container ">
 
         <!--   Cards created dynamically by spoonacular api calls   -->
@@ -216,12 +238,12 @@
 
         </div>
 
-        <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog"
-             aria-labelledby="recipeModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
+
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="api-modal-title" id="recipeApiModalLongTitle">Modal title</h5>
+                        <h5 class="api-modal-title profileFromRecipeAnchorTags" id="recipeApiModalLongTitle">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -231,18 +253,19 @@
                     </div>
                     <div class="modal-body">
                         <!--    Display the recipes cuisines    -->
-                        <ul class="api-modal-cuisine">
+                        <h5 class="modal-instructions-title profileFromRecipeText">Category</h5>
+                        <ul class="api-modal-cuisine d-flex p-0">
 
                         </ul>
                         <!--      Display Ingredients title         -->
-                        <h5 class="modal-instructions-title">Ingredients</h5>
+                        <h5 class="modal-instructions-title profileFromRecipeText">Ingredients</h5>
                         <!--    List displaying the ingredients    -->
                         <ul class="api-ingredient-list-group p-0">
                             <!--      Ingredients will display here dynamically      -->
                         </ul>
 
                         <!--      Display Instructions-->
-                        <h5 class="modal-instructions-title">Instructions</h5>
+                        <h5 class="modal-instructions-title profileFromRecipeText">Directions</h5>
                         <ul class="api-instruction-list-group p-0">
                             <!--      Instructions will display here dynamically      -->
                         </ul>
@@ -345,7 +368,7 @@
                     let recipeSource = "";
 
                     // recipeTitle += data.title + " by " + data.creditsText;
-                    recipeTitle += data.title + " by " + '<a href="' + data.sourceUrl + '"target=_blank>' + data.creditsText + '</a>';
+                    recipeTitle += data.title + " by " + '<a class="profileFromRecipeAnchorTags" href="' + data.sourceUrl + '"target=_blank>' + data.creditsText + '</a>';
 
 
                     recipeImage += '<img class="img-fluid" src="' + data.image + '" alt="" />';
@@ -354,12 +377,12 @@
                     //Display the categories/cuisines for the chosen recipe
                     if (data.cuisines.length == 0) {
 
-                        recipeCuisines += '<li>' + 'Sorry, no Cuisines associated with recipe at the moment.' + '</li>';
+                        recipeCuisines += '<li class="mr-2">' + 'Sorry, no Cuisines associated with recipe at the moment.' + '</li>';
 
                     } else {
                         for (var j = 0; j < data.cuisines.length; j++) {
 
-                            recipeCuisines += '<li>' + data.cuisines[j] + '</li>'
+                            recipeCuisines += '<li class="mr-2">' + data.cuisines[j] + '</li>'
 
                         }
                     }
@@ -373,7 +396,7 @@
                     } else {
                         for (var i = 0; i < data.extendedIngredients.length; i++) {
 
-                            recipeIngredients += '<li class="list-group-item">' + data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].originalName + '</li>';
+                            recipeIngredients += '<li class="list-group-item mt-1 mb-1">' + data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].originalName + '</li>';
 
                         }
                     }
@@ -388,7 +411,7 @@
 
                         for (var k = 0; k < data.analyzedInstructions[0].steps.length; k++) {
 
-                            recipeInstructions += '<li class="list-group-item">' + "Step " + data.analyzedInstructions[0].steps[k].number + ": " + data.analyzedInstructions[0].steps[k].step + '</li>';
+                            recipeInstructions += '<li class="list-group-item mt-1 mb-1">' + "Step " + data.analyzedInstructions[0].steps[k].number + ": " + data.analyzedInstructions[0].steps[k].step + '</li>';
 
                         }
 
@@ -397,7 +420,7 @@
 
                     //External link for further recipe details
 
-                    recipeSource += '<p>' + 'Click on who its by in title to see more recipe details' + '</p>';
+                    recipeSource += '<p class="sourceUrl mt-3">' + 'Click on who its by in title to see more recipe details' + '</p>';
 
                     //using jquery to display the object properties from the get request
                     $('.api-modal-title').html(recipeTitle);

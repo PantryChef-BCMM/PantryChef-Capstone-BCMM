@@ -20,7 +20,7 @@
             <div class="flex-column d-flex ml-3">
                 <h1 class="profileFromRecipeText profileFromRecipeTextV2 profileFromRecipeTextMargin"
                     th:text="${user.username} + '\'s' + ' Profile'"></h1>
-                <h1 class="profileFromRecipeText profileFromRecipeTextV2" th:text="${user.email}"></h1>
+                <h1 class="profileFromRecipeTextV2" th:text="${user.email}"></h1>
             </div>
         </div>
 
@@ -115,11 +115,9 @@
                                 </ul>
 
                                 <h5 class="modal-instructions-title profileFromRecipeText">Comments</h5>
-                                <!--                                <div class="row text-left">-->
-                                <!--                                    <div class="col-12 p-0">-->
+
                                 <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
+
                                 <div th:each="comment : ${recipe.comments}" class="container">
                                     <div class="row text-left">
                                         <div class="col-8 p-0">
@@ -145,7 +143,6 @@
                                 <div class="modal-recipeSource">
                                     <p class="sourceUrl mt-3">Click on the title to see recipe owner.</p>
                                 </div>
-
                             </div>
 
                             <div class="modal-footer">

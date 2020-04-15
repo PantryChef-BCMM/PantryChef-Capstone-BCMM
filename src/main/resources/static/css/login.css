@@ -22,5 +22,8 @@
 }
 
 .main-styling-for-buttons:hover {
-    opacity: 1
+    color:#860806 !important;
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
 }

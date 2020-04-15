@@ -22,7 +22,7 @@
         <div th:each="comment : ${recipe.comments}" class="container">
             <div class="row text-left">
                 <div class="col-8">
-                    <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
+                    <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0 profileFromRecipeAnchorTags"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                 </div>
                 <div class="col-4">
                     <p th:text="${comment.commentedAt}" class="p-0 m-0 text-muted text-right"></p>
@@ -39,7 +39,7 @@
             <input id="comment" class="mx-auto w-75 shadow-sm form-control" placeholder="Enter comment.."
                    th:field="*{comment}"/>
             <br/>
-            <input type="submit"/>
+            <input type="submit" class="editComment-button"/>
         </form>
 
     </div>
