@@ -79,10 +79,9 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-image mx-auto">
+                            <div class="modal-image">
                                 <!--    Image for recipe    -->
-                                <img style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"
-                                     alt="Recipe image">
+                                <img style="width: 100%; height: 75%;" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
                             </div>
                             <div class="modal-body">
                                 <!--    Display the recipes cuisines    -->
@@ -98,7 +97,7 @@
                                 <ul class="ingredient-list-group p-0">
                                     <!--      Ingredients will display here dynamically      -->
                                     <div th:each="ingredient : ${recipe.ingredientList}">
-                                        <li class="list-group-item" th:text="${ingredient.name}"></li>
+                                        <li class="list-group-item mt-1 mb-1" th:text="${ingredient.name}"></li>
                                     </div>
                                 </ul>
                                 <!--      Display Instructions-->
@@ -107,25 +106,33 @@
                                 <ul class="instruction-list-group p-0">
                                     <!--      Instructions will display here dynamically      -->
                                     <div th:each="instruction : ${recipe.instructionList}">
-                                        <li class="list-group-item" th:text="${instruction.name}"></li>
+                                        <li class="list-group-item mt-1 mb-1" th:text="${instruction.name}"></li>
                                     </div>
                                 </ul>
 
                                 <h5 class="modal-instructions-title profileFromRecipeText">Comments</h5>
-
+<!--                                <div class="row text-left">-->
+<!--                                    <div class="col-12 p-0">-->
+                                        <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div th:each="comment : ${recipe.comments}" class="container">
                                     <div class="row text-left">
-                                        <div class="col-8">
+                                        <div class="col-8 p-0">
                                             <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-4 p-0">
                                             <p th:text="${comment.commentedAt}" class="p-0 m-0 text-muted text-right"></p>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12 p-0">
                                             <p th:text="${comment.comment}" class="p-0 m-0"></p>
                                         </div>
                                     </div>
-                                    <hr class="shoppingList-hr p-0 my-1">
+                                    <div class="row text-left">
+                                        <div class="col-12 p-0">
+                                        <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="modal-recipeSource">
