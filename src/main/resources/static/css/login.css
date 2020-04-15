@@ -10,7 +10,7 @@
     font-family: 'Oleo Script Swash Caps', cursive;
 }
 
-.mainButton {
+.main-styling-for-buttons {
     background: #2BA4B9;
     font-size: 20px;
     color: white;
@@ -21,6 +21,6 @@
     transition: transform .2s;
 }
 
-.mainButton:hover {
+.main-styling-for-buttons:hover {
     opacity: 1
 }
