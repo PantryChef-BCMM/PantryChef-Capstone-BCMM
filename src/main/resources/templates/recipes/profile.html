@@ -15,23 +15,18 @@
         <div class="row mb-5 mt-3 pt-3 pb-3 bg-white">
             <div class="col-md-2">
                 <div>
-                    <img alt="" class="shadow-lg" th:attr="src=@{${user.profileImageUrl}}">
+                    <img alt="profile image" style="width: 16em; height: 16em;" class="shadow-lg" th:attr="src=@{${user.profileImageUrl}}">
                 </div>
             </div>
-            <div class="p-3"></div>
+            <div class="p-5"></div>
             <div class="col-md-8 d-flex text-left p-0">
 
                 <div class="flex-column d-flex ml-3">
                     <h1 th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name}"></h1>
-
-                    <h4 th:text="${user.username}">
-
-                    </h4>
-                    <h4 th:text="${user.email}">
-
-                    </h4>
-                    <a th:href="@{|/edit/${user.id}|}">
-                        <button>Edit profile</button>
+                    <h4 th:text="${user.username}" class="pt-4"></h4>
+                    <h4 th:text="${user.email}" class="pt-4"></h4>
+                    <a th:href="@{|/edit/${user.id}|}" class="pt-4">
+                        <button class="button fas fa-user-edit fa-3x"></button>
                     </a>
                 </div>
 
@@ -47,13 +42,14 @@
                 <h1 class="login-text text-center pt-2">My Recipes</h1>
             </div>
             <div class="col-2 text-right">
-                <a th:href="@{|/list|}" class="text-right">
-                    <button>123</button>
+                <a th:href="@{|/list|}" class="text-right profileFromRecipeNoUnderline">
+                    <button class="button fas fa-file-alt fa-2x pt-3"></button>
                 </a>
                 <!--                </div>-->
                 <!--                <div class="col-2 p-0">-->
-                <a th:href="@{|/recipe/create|}" class="text-right">
-                    <button>123</button>
+                <a th:href="@{|/recipe/create|}" class="text-right profileFromRecipeNoUnderline">
+                    <button class="button fas fa-shopping-basket fa-2x pt-3"></button>
+<!--                    <button>123</button>-->
                 </a>
             </div>
         </div>
