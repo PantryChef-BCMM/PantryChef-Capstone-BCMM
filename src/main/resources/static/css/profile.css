@@ -13,3 +13,8 @@
 .profile-background-color {
     background: white !important;
 }
+
+.profile-hr {
+    background-color: #860806;
+    margin-bottom: 1.5em;
+}
