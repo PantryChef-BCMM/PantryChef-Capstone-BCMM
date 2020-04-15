@@ -6,7 +6,7 @@ const attachAddSkillEventListener = function() {
             e.preventDefault();
             let newDiv = document.createElement("div");
             // and give it some content
-            newDiv.innerHTML = `<input class="m-1 shadow-sm form-control" type="text" id="ingredients-param-${i}" name="ingredient-param" placeholder="Please enter ingredient.">`
+            newDiv.innerHTML = `<input class="mx-auto m-1 shadow-sm form-control" type="text" id="ingredients-param-${i}" name="ingredient-param" placeholder="Please enter ingredient.">`
             // add the text node to the newly created div
             document.querySelector("#ingredient-div").appendChild(newDiv);
             i++;

@@ -9,30 +9,28 @@
 
         <div sec:authorize="isAuthenticated()">
             <h1 th:text="${user.first_name} + '\'s Shopping List'" class="login-text pt-0"></h1>
-            <hr class="shoppingList-hr">
-
 
             <div th:each="item : ${user.getUserShoppingList()}" class="container">
-                <div class="row">
+                <hr class="shoppingList-hr">
+                <div class="row justify-content-center align-self-center">
                     <div class="col-8">
                         <h3 th:text="${item.getShoppingListItem()}" class="text-left login-text"></h3>
                     </div>
                     <div class="col-2">
-                        <form th:action="@{|/list/deleteItem/${item.getId()}|}" th:method="POST">
-                            <button>Delete</button>
-                        </form>
-                    </div>
-                    <div class="col-2">
                         <a th:href="@{|/list/edit/${item.getId()}|}">
-                            <button>Edit</button>
+                            <button class="button fas fa-edit fa-lg"></button>
                         </a>
                     </div>
-
-                    <hr class="shoppingList-hr">
+                    <div class="col-2">
+                        <form th:action="@{|/list/deleteItem/${item.getId()}|}" th:method="POST" class="mt-2 p-0 m-0">
+                            <button class="button fas fa-trash fa-lg"></button>
+                        </form>
+                    </div>
                 </div>
+<!--                <hr class="shoppingList-hr">-->
             </div>
             <a th:href="@{|/list/addItem|}">
-                <button>Add Item</button>
+                <button class="button fas fa-plus fa-lg"></button>
             </a>
 
         </div>

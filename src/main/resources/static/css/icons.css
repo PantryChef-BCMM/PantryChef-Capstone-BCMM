@@ -1,3 +1,20 @@
+.fas{
+    transition: transform .2s;
+    color: #2BA4B9 !important;
+}
+.fas:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.2);
+    color: #860806;
+}
+/*.fa-trash {*/
+/*    color: #2BA4B9 !important;*/
+/*}*/
+.button{
+    background: transparent;
+    border: none;
+}
 .fa-file-alt {
     height: 40px;
     width: 40px
@@ -9,13 +26,7 @@
 }
 
 .fa-plus-square {
-    height: 40px;
-    width: 40px
-}
 
-.fa-trash {
-    height: 40px;
-    width: 40px
 }
 
 .fa-search {

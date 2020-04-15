@@ -22,13 +22,13 @@
         <div th:each="comment : ${recipe.comments}" class="container">
             <div class="row text-left">
                 <div class="col-8">
-                    <p th:text="${comment.comment}" class="p-0 m-0"></p>
+                    <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                 </div>
                 <div class="col-4">
-                    <p th:text="${comment.commentedAt}" class="p-0 m-0 text-right"></p>
+                    <p th:text="${comment.commentedAt}" class="p-0 m-0 text-muted text-right"></p>
                 </div>
                 <div class="col-12">
-                    <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
+                    <p th:text="${comment.comment}" class="p-0 m-0"></p>
                 </div>
 
             </div>

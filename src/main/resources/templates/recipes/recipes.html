@@ -9,7 +9,7 @@
 <div class="wrapper">
     <nav th:replace="partials/navbar :: navbar"></nav>
 
-    <div class="container mt-5">
+    <div class="container mt-5 bg-white">
         <div class=" row bg-white text-center">
             <div class="col-md-12">
                 <h1 class="main-title-container mt-5">Find Recipes</h1>
@@ -19,7 +19,7 @@
     </div>
 
 
-    <div class="container d-flex search-container shadow-lg bg-white">
+    <div class="container d-flex search-container shadow-lg">
 
         <!-- Search bar that looks in both            -->
         <div class="container my-5">
@@ -29,7 +29,9 @@
                         <input class="form-control" type="text" id="search" placeholder="Search Example: apples,flour, etc..." name="search" aria-label="Search"/>
                         <div class="input-group-append">
                             <label for="ingredient-query-input"></label>
-                            <input class="btn recipe-button-search" type="submit" id="ingredient-query-input" value="Search"/>
+                            <button type="submit" class="button fas fa-search fa-lg" id="ingredient-query-input">
+                            </button>
+<!--                            <input class="button fas fa-search fa-lg" type="submit" id="ingredient-query-input"/>-->
                         </div>
                     </form>
 <!--                </div>-->
@@ -57,7 +59,7 @@
                     <option name="categories" id="French" value="14">French</option>
                     <option name="categories" id="Filipino" value="15">Filipino</option>
                 </select>
-                <button class="btn category-btn" type="submit">Search</button>
+                <button class="button fas fa-search fa-lg" type="submit"></button>
             </form>
         </div>
     </div>
@@ -150,10 +152,12 @@
                                     <p th:text = "${comment.comment}"></p>
                                     <div sec:authorize = "isAuthenticated()">
                                         <div th:if="${user.id} == ${comment.getUser().getId()} OR ${user.admin}">
-                                            <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
-                                                <button>Delete Comment</button>
+                                            <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" class="mt-2 p-0 m-0" style="display:inline">
+                                                <button class="button fas fa-trash fa-lg"></button>
                                             </form>
-                                            <a th:href="@{|/comment/${comment.id}/edit|}"><button>Edit Comment</button></a>
+                                            <a th:href="@{|/comment/${comment.id}/edit|}">
+                                                <button class="button fas fa-edit fa-lg"></button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -167,21 +171,27 @@
                                     <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
                                         <a class="profileFromRecipeNoUnderline"
                                            th:href="@{|/recipe/${recipe.id}/edit|}">
-                                                <button type="button" class="btn profileFromRecipeButton">Edit</button>
+                                            <button class="button fas fa-edit fa-2x"></button>
                                         </a>
-                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline">
-                                            <button type="button" class="btn profileFromRecipeButton">Delete</button>
+                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="mt-2 p-0 m-0">
+
+
+                                            <button type="button" class="button fas fa-trash fa-2x"></button>
                                         </form>
                                     </div>
                                     <a class="profileFromRecipeNoUnderline"
                                        th:href="@{|/comments/post/${recipe.id}|}">
-                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>
+                                        <button class="button fas fa-comment fa-2x"></button>
+
+<!--                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
                                     </a>
                                 </div>
                                 <div sec:authorize="!isAuthenticated()">
                                     <a class="profileFromRecipeNoUnderline"
                                        th:href="@{/login}">
-                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>
+                                        <button class="button fas fa-comment fa-2x"></button>
+
+<!--                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
                                     </a>
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
