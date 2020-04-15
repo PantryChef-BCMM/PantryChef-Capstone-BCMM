@@ -15,29 +15,35 @@
     <div class="row align-items-center">
         <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
             <h1 class="editprofile-text">Edit your profile</h1>
-            <p>choose which field you would like to update</p>
+            <br>
+            <p>Choose which field you would like to update</p>
             <br>
             <form th:action="@{|/edit/${user.id}|}" method="POST" th:object="${user}">
-                <label for="firstName">First Name</label>
-                <input th:field="*{first_name}">
+                <label for="firstName" class="font-weight-bold">First Name</label>
                 <br>
-                <label for="lastName">Last Name</label>
-                <input th:field="*{last_name}">
+                <input th:field="*{first_name}" class="mx-auto w-50 shadow-sm form-control">
                 <br>
-                <label for="username">Username</label>
-                <input th:field="*{username}"/>
+                <label for="lastName" class="font-weight-bold">Last Name</label>
                 <br>
-                <label for="email">Email</label>
-                <input th:field="*{email}"/>
+                <input th:field="*{last_name}" class="mx-auto w-50 shadow-sm form-control">
                 <br>
-
+                <label for="username" class="font-weight-bold">Username</label>
+                <br>
+                <input th:field="*{username}" class="mx-auto w-50 shadow-sm form-control">
+                <br>
+                <label for="email" class="font-weight-bold">Email</label>
+                <br>
+                <input th:field="*{email}" class="mx-auto w-50 shadow-sm form-control">
+                <br>
                 <!--    <label for="password">Password</label>-->
                 <!--    <input type="password" th:field="*{password}"/>-->
 
                 <!-- Button calls function 'pickMark()' onclick now -->
-                    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>
+                <br>
+                    <input type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()">
+                <br>
+                <br>
                 <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
-
                 <input value="Save Changes" class="shadow-sm submit-button" type="submit"/>
             </form>
         </div>
