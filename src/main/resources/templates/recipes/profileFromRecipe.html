@@ -11,19 +11,19 @@
 <div class="wrapper">
     <main class="container">
 
-        <div class="row mb-5">
+        <div class="row mb-5 profileFromRecipeBackgroundColor">
             <div class="col-md-2 p-0">
                 <div>
-                    <img alt="" class="profileImages mt-5" th:attr="src=@{${user.profileImageUrl}}">
+                    <img alt="" class="profileImages p-3" th:attr="src=@{${user.profileImageUrl}}">
                 </div>
             </div>
-            <div class="col-md-10 d-flex align-items-center">
-                <h1 class="mt-5 profileFromRecipeText profileFromRecipeTextV2"
-                    th:text="${user.username} + '\'s' + ' Profile'"></h1>
+            <div class="flex-column d-flex ml-3">
+                <h1 class="profileFromRecipeText profileFromRecipeTextV2 profileFromRecipeTextMargin" th:text="${user.username} + '\'s' + ' Profile'"></h1>
+                <h1 class="profileFromRecipeText profileFromRecipeTextV2" th:text="${user.email}"></h1>
             </div>
         </div>
 
-        <div class="row bg-white text-center">
+        <div class="row profileFromRecipeBackgroundColor text-center">
             <div class="col-md-12">
                 <h1 class="profileFromRecipeText mb-0 mt-2" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
                 <hr class="profileFromRecipe-hr w-75 mt-2">
@@ -31,7 +31,7 @@
         </div>
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 bg-white">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 profileFromRecipeBackgroundColor">
 
             <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
 
@@ -81,7 +81,8 @@
                             </div>
                             <div class="modal-image mx-auto">
                                 <!--    Image for recipe    -->
-                                <img class="profileFromRecipeModuleImage" th:attr="src=@{${recipe.recipeImageUrl}}" alt="Recipe image">
+                                <img class="profileFromRecipeModuleImage" th:attr="src=@{${recipe.recipeImageUrl}}"
+                                     alt="Recipe image">
                             </div>
                             <div class="modal-body">
                                 <!--    Display the recipes cuisines    -->
@@ -111,18 +112,20 @@
                                 </ul>
 
                                 <h5 class="modal-instructions-title profileFromRecipeText">Comments</h5>
-<!--                                <div class="row text-left">-->
-<!--                                    <div class="col-12 p-0">-->
-                                        <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <!--                                <div class="row text-left">-->
+                                <!--                                    <div class="col-12 p-0">-->
+                                <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                                 <div th:each="comment : ${recipe.comments}" class="container">
                                     <div class="row text-left">
                                         <div class="col-8 p-0">
-                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
+                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p
+                                                    th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                                         </div>
                                         <div class="col-4 p-0">
-                                            <p th:text="${comment.commentedAt}" class="p-0 m-0 text-muted text-right"></p>
+                                            <p th:text="${comment.commentedAt}"
+                                               class="p-0 m-0 text-muted text-right"></p>
                                         </div>
                                         <div class="col-12 p-0">
                                             <p th:text="${comment.comment}" class="p-0 m-0"></p>
@@ -130,7 +133,7 @@
                                     </div>
                                     <div class="row text-left">
                                         <div class="col-12 p-0">
-                                        <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
+                                            <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
                                         </div>
                                     </div>
                                 </div>

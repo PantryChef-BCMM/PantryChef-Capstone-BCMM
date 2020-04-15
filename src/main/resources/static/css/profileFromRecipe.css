@@ -43,3 +43,11 @@
     width: 34.75em;
     height: 23.125em;
 }
+
+.profileFromRecipeTextMargin {
+    padding-top: 1.6em;
+}
+
+.profileFromRecipeBackgroundColor {
+    background: white !important;
+}
