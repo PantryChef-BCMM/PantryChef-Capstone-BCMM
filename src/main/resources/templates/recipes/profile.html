@@ -3,6 +3,7 @@
 <head th:replace="partials/head :: head('Profile')"></head>
 <style>
 
+
 </style>
 <body class="profile-background" style="margin: 0 auto">
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -92,152 +93,17 @@
                 </div>
 
                 <!--      Modal that will hold recipe details       -->
-<!--                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog"-->
-<!--                     aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">-->
-
-<!--                    <div class="modal-dialog modal-lg" role="document">-->
-<!--                        <div class="modal-content">-->
-<!--                            <div class="modal-header">-->
-<!--                                <div sec:authorize="isAuthenticated()">-->
-<!--                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center"-->
-<!--                                                                                     id="recipeModalLongTitle"-->
-<!--                                                                                     th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h4>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                                <div sec:authorize="isAnonymous()">-->
-<!--                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center"-->
-<!--                                                                                     id="recipeModalLongTitle"-->
-<!--                                                                                     th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h4>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                                    <span aria-hidden="true">&times;</span>-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                            <div class="modal-image mx-auto">-->
-<!--                                &lt;!&ndash;    Image for recipe    &ndash;&gt;-->
-<!--                                <img style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"-->
-<!--                                     alt="Recipe image">-->
-<!--                            </div>-->
-<!--                            <div class="modal-body">-->
-<!--                                &lt;!&ndash;    Display the recipes cuisines    &ndash;&gt;-->
-<!--                                <h5 class="modal-instructions-title">Category</h5>-->
-<!--                                <ul class="modal-cuisine p-3">-->
-<!--                                    <div th:each="category : ${recipe.categories}">-->
-<!--                                        <li th:text="${category.name}"></li>-->
-<!--                                    </div>-->
-<!--                                </ul>-->
-<!--                                &lt;!&ndash;      Display Ingredients title         &ndash;&gt;-->
-<!--                                <h5 class="modal-instructions-title">Ingredients</h5>-->
-<!--                                &lt;!&ndash;    List displaying the ingredients    &ndash;&gt;-->
-<!--                                <ul class="ingredient-list-group p-0">-->
-<!--                                    &lt;!&ndash;      Ingredients will display here dynamically      &ndash;&gt;-->
-<!--                                    <div th:each="ingredient : ${recipe.ingredientList}">-->
-<!--                                        <li class="list-group-item" th:text="${ingredient.name}"></li>-->
-<!--                                    </div>-->
-<!--                                </ul>-->
-<!--                                &lt;!&ndash;      Display Instructions&ndash;&gt;-->
-<!--                                <h5 class="modal-instructions-title">Instructions</h5>-->
-
-<!--                                <ul class="instruction-list-group p-0">-->
-<!--                                    &lt;!&ndash;      Instructions will display here dynamically      &ndash;&gt;-->
-<!--                                    <div th:each="instruction : ${recipe.instructionList}">-->
-<!--                                        <li class="list-group-item" th:text="${instruction.name}"></li>-->
-<!--                                    </div>-->
-<!--                                </ul>-->
-
-<!--                                <h5 class="modal-instructions-title">Comments</h5>-->
-
-<!--                                <div th:each="comment : ${recipe.comments}" class="container">-->
-<!--                                    <div class="row text-left">-->
-<!--                                        <div class="col-8">-->
-<!--                                            <p th:text="${comment.comment}" class="p-0 m-0"></p>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-4">-->
-<!--                                            <p th:text="${comment.commentedAt}" class="p-0 m-0 text-right"></p>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-12">-->
-<!--                                            <a th:href="@{|/profile/${comment.user.id}|}" class="m-0 p-0"><p-->
-<!--                                                    th:text="${comment.user.username}" class="m-0 p-0"></p></a>-->
-<!--                                        </div>-->
-<!--                                        &lt;!&ndash;                                        <div sec:authorize="isAuthenticated()">&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                            <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST"&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                                      style="display:inline">&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                                    <button class="mb-3">Delete Comment</button>&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                                </form>&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                                <a th:href="@{|/comment/${comment.id}/edit|}">&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                                    <button>Edit Comment</button>&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                                </a>&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--                                        &lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                <div class="modal-recipeSource">-->
-<!--                                    <p class="sourceUrl mt-3">Click on the title to see recipe owner.</p>-->
-<!--                                </div>-->
-
-<!--                            </div>-->
-
-<!--                            <div class="modal-footer">-->
-<!--                                &lt;!&ndash;                                <div sec:authorize="isAuthenticated()">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <a class="profileFromRecipeNoUnderline"&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                           th:href="@{|/recipe/${recipe.id}/edit|}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            <button type="button" class="btn profileFromRecipeButton">Edit</button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        </a>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                              style="display:inline">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            <button type="button" class="btn profileFromRecipeButton">Delete</button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        </form>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <a class="profileFromRecipeNoUnderline"&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                           th:href="@{|/comments/post/${recipe.id}|}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        </a>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <div th:if="${user.id} != ${recipe.user.id}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <a class="profileFromRecipeNoUnderline"&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                           th:href="@{|/comments/post/${recipe.id}|}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        </a>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                <div sec:authorize="isAuthenticated()">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    <a class="profileFromRecipeNoUnderline"&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                       th:href="@{|/comments/post/${recipe.id}|}">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </a>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--                                <button type="button" class="btn profileFromRecipeButtonV2" data-dismiss="modal">-->
-<!--                                    Close-->
-<!--                                </button>-->
-<!--                            </div>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
-
-
-
-                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog"
-                     aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
+                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
 
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div sec:authorize="isAuthenticated()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center"
-                                                                                     id="recipeModalLongTitle"
-                                                                                     th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h4>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
                                     </a>
                                 </div>
                                 <div sec:authorize="isAnonymous()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h4 class="modal-title text-center"
-                                                                                     id="recipeModalLongTitle"
-                                                                                     th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h4>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
                                     </a>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -252,9 +118,9 @@
                             <div class="modal-body">
                                 <!--    Display the recipes cuisines    -->
                                 <h5 class="modal-instructions-title profileFromRecipeText">Category</h5>
-                                <ul class="modal-cuisine p-3">
+                                <ul class="modal-cuisine d-flex p-0">
                                     <div th:each="category : ${recipe.categories}">
-                                        <li th:text="${category.name}"></li>
+                                        <li class="mr-2" th:text="${category.name}"></li>
                                     </div>
                                 </ul>
                                 <!--      Display Ingredients title         -->
@@ -277,15 +143,13 @@
                                 </ul>
 
                                 <h5 class="modal-instructions-title profileFromRecipeText">Comments</h5>
-                                <!--                                <div class="row text-left">-->
-                                <!--                                    <div class="col-12 p-0">-->
+
                                 <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
+
                                 <div th:each="comment : ${recipe.comments}" class="container">
                                     <div class="row text-left">
                                         <div class="col-8 p-0">
-                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p
+                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0 profileFromRecipeAnchorTags"><p
                                                     th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                                         </div>
                                         <div class="col-4 p-0">
@@ -297,6 +161,18 @@
                                         </div>
                                     </div>
                                     <div class="row text-left">
+                                        <div sec:authorize="isAuthenticated()">
+                                            <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">
+                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
+                                                    <!--                                                    <button class="mb-3">Delete Comment</button>-->
+                                                    <button class="button fas fa-trash fa-lg"></button>
+                                                </form>
+                                                <a th:href="@{|/comment/${comment.id}/edit|}">
+                                                    <button class="button fas fa-edit fa-lg"></button>
+                                                    <!--                                                    <button>Edit Comment</button>-->
+                                                </a>
+                                            </div>
+                                        </div>
                                         <div class="col-12 p-0">
                                             <hr class="profileFromRecipe-hr-v2 w-100 p-0 my-1">
                                         </div>
@@ -306,66 +182,35 @@
                                 <div class="modal-recipeSource">
                                     <p class="sourceUrl mt-3">Click on the title to see recipe owner.</p>
                                 </div>
-
                             </div>
 
                             <div class="modal-footer">
-                                <!--                                <div sec:authorize="isAuthenticated()">-->
-                                <!--                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">-->
-                                <!--                                        <a class="profileFromRecipeNoUnderline"-->
-                                <!--                                           th:href="@{|/recipe/${recipe.id}/edit|}">-->
-                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Edit</button>-->
-                                <!--                                        </a>-->
-                                <!--                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"-->
-                                <!--                                              style="display:inline">-->
-                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Delete</button>-->
-                                <!--                                        </form>-->
-                                <!--                                        <a class="profileFromRecipeNoUnderline"-->
-                                <!--                                           th:href="@{|/comments/post/${recipe.id}|}">-->
-                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
-                                <!--                                        </a>-->
-                                <!--                                    </div>-->
-                                <!--                                    <div th:if="${user.id} != ${recipe.user.id}">-->
-                                <!--                                        <a class="profileFromRecipeNoUnderline"-->
-                                <!--                                           th:href="@{|/comments/post/${recipe.id}|}">-->
-                                <!--                                            <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
-                                <!--                                        </a>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
-                                <!--                                <div sec:authorize="isAuthenticated()">-->
-                                <!--                                    <a class="profileFromRecipeNoUnderline"-->
-                                <!--                                       th:href="@{|/comments/post/${recipe.id}|}">-->
-                                <!--                                        <button type="button" class="btn profileFromRecipeButton">Comment</button>-->
-                                <!--                                    </a>-->
-                                <!--                                </div>-->
-                                <button type="button" class="btn profileFromRecipeButtonV2" data-dismiss="modal">
-                                    Close
-                                </button>
+                                <div sec:authorize="isAuthenticated()">
+                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}" class="w-75 d-inline text-left">
+                                        <a class="profileFromRecipeNoUnderline d-inline"
+                                           th:href="@{|/recipe/${recipe.id}/edit|}">
+                                            <button class="button fas fa-edit fa-2x"></button>
+                                        </a>
+                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="d-inline mt-2 p-0 m-0">
+                                            <button class="button fas fa-trash fa-2x"></button>
+                                        </form>
+                                    </div>
+                                    <a class="profileFromRecipeNoUnderline d-inline"
+                                       th:href="@{|/comments/post/${recipe.id}|}">
+                                        <button class="button fas fa-comment fa-2x"></button>
+                                    </a>
+                                </div>
+                                <div sec:authorize="!isAuthenticated()">
+                                    <a class="profileFromRecipeNoUnderline d-inline"
+                                       th:href="@{/login}">
+                                        <button class="button fas fa-comment fa-2x"></button>
+                                    </a>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             </div>
 
