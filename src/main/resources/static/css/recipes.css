@@ -37,9 +37,9 @@
     height: 30em;
 }
 
-.bg-white{
-    background-color: #2BA4B9 !important;
-}
+/*.bg-white{*/
+/*    background-color: #2BA4B9 !important;*/
+/*}*/
 
 .card-body{
     background-color: white;
@@ -96,12 +96,12 @@
 
 .custom-title-container {
     font-family: 'Oleo Script Swash Caps', cursive;
-    color: white;
+    /*color: white;*/
 }
 
 .api-title-container {
     font-family: 'Oleo Script Swash Caps', cursive;
-    color: white;
+    /*color: white;*/
 }
 
 .api-modal-title{
@@ -111,18 +111,18 @@
 
 .main-title-container{
     font-family: 'Oleo Script Swash Caps', cursive;
-    color: white;
+    /*color: white;*/
 }
 
 .main-title-text{
     font-family: 'Oleo Script Swash Caps', cursive;
-    color: white;
+    /*color: white;*/
 }
 .modal-cuisine{
     list-style-type: none;
 }
 .api-modal-title{
-    color: #2BA4B9;
+    /*color: #2BA4B9;*/
 }
 .api-modal-cuisine{
     list-style-type: none;
