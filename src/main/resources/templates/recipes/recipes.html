@@ -22,12 +22,12 @@
     <div class="container d-flex search-container shadow-lg">
 
         <!-- Search bar that looks in both            -->
-        <div class="container my-5">
+        <div class="container my-5 p-0">
             <!--            <div class="row">-->
             <!--                <div class="col-md-6">-->
             <form action="#" th:action="@{/recipes}" method="get"
                   class="input-group d-flex justify-content-center align-items-center container">
-                <input class="form-control" type="text" id="search" placeholder="Search Example: apples,flour, etc..."
+                <input class="form-control rounded" type="text" id="search" placeholder="Search Example: apples,flour, etc..."
                        name="search" aria-label="Search"/>
                 <div class="input-group-append">
                     <label for="ingredient-query-input"></label>
@@ -41,11 +41,10 @@
         </div>
 
 
-        <div class="container my-5">
+        <div class="container my-5 p-0">
             <form action="#" th:action="@{/recipes}" method="get">
                 <label for="categories" class="font-weight-bold">Categories:</label>
-                <select th:id="${value}" id="categories" name="categories" class="selectpicker create-recipe-select"
-                        multiple data-live-search="true" data-flip="false">
+                <select th:id="${value}" id="categories" name="categories" class="w-75 selectpicker create-recipe-select" multiple data-live-search="true" data-flip="false">
                     <option name="categories" id="American" value="1">American</option>
                     <option name="categories" id="Chinese" value="2">Chinese</option>
                     <option name="categories" id="Italian" value="3">Italian</option>
