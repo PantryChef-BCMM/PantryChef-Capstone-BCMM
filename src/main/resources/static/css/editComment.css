@@ -1,0 +1,14 @@
+.editComment-button {
+    background: #2BA4B9;
+    font-size: 20px;
+    color: white;
+    /*width: 10em;*/
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #860806 !important;
+    transition: transform .2s;
+}
+
+.editComment-button:hover {
+    text-decoration: none;
+}

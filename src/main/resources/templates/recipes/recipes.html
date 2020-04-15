@@ -173,16 +173,16 @@
 
                             <div class="modal-footer">
                                 <div sec:authorize="isAuthenticated()">
-                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}">
-                                        <a class="profileFromRecipeNoUnderline"
+                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}" class="w-75 d-inline text-left">
+                                        <a class="profileFromRecipeNoUnderline d-inline"
                                            th:href="@{|/recipe/${recipe.id}/edit|}">
                                             <button class="button fas fa-edit fa-2x"></button>
                                         </a>
-                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="mt-2 p-0 m-0">
+                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="d-inline mt-2 p-0 m-0">
                                             <button class="button fas fa-trash fa-2x"></button>
                                         </form>
                                     </div>
-                                    <a class="profileFromRecipeNoUnderline"
+                                    <a class="profileFromRecipeNoUnderline d-inline"
                                        th:href="@{|/comments/post/${recipe.id}|}">
                                         <button class="button fas fa-comment fa-2x"></button>
 
@@ -190,7 +190,7 @@
                                     </a>
                                 </div>
                                 <div sec:authorize="!isAuthenticated()">
-                                    <a class="profileFromRecipeNoUnderline"
+                                    <a class="profileFromRecipeNoUnderline d-inline"
                                        th:href="@{/login}">
                                         <button class="button fas fa-comment fa-2x"></button>
 
