@@ -38,11 +38,13 @@
                        class="mx-auto w-50 shadow-sm form-control"/>
                 <br>
                 <!-- Button calls function 'pickMark()' onclick now -->
-                    <input class="shadow main-styling-for-buttons font-weight-bold" type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>
+
+
+<!--                    <input class="shadow signup-add-image-button font-weight-bold" type="BUTTON" value="Add Profile Image" id="pickWatermark" onclick="pickMark()"><br><br>-->
+                <button type="button" class="button mx-auto fas fa-file-image fa-3x" id="pickWatermark" onclick="pickMark()"></button>
                 <input type="hidden" name="profileImageUrl" id="profileImageUrl" th:field="*{profileImageUrl}">
                 <br>
 
-                <input class="shadow main-styling-for-buttons mb-2" type="submit" value="Sign me up!"/>
 
             </form>
         </div>
