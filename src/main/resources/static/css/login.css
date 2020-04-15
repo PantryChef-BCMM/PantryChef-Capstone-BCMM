@@ -10,7 +10,7 @@
     font-family: 'Oleo Script Swash Caps', cursive;
 }
 
-.login-button {
+.main-styling-for-buttons {
     background: #2BA4B9;
     font-size: 20px;
     color: white;
@@ -21,6 +21,6 @@
     transition: transform .2s;
 }
 
-.login-button:hover {
+.main-styling-for-buttons:hover {
     opacity: 1
 }
