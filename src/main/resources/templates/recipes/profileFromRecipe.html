@@ -23,12 +23,12 @@
             </div>
         </div>
 
-                <div class="row bg-white text-center">
-                    <div class="col-md-12">
-                        <h1 class="profileFromRecipeText mb-0 mt-2" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
-                        <hr class="profileFromRecipe-hr w-75 mt-2">
-                    </div>
-                </div>
+        <div class="row bg-white text-center">
+            <div class="col-md-12">
+                <h1 class="profileFromRecipeText mb-0 mt-2" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
+                <hr class="profileFromRecipe-hr w-75 mt-2">
+            </div>
+        </div>
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 bg-white">
@@ -86,14 +86,14 @@
                             </div>
                             <div class="modal-body">
                                 <!--    Display the recipes cuisines    -->
-                                <h5 class="modal-instructions-title">Category</h5>
+                                <h5 class="modal-instructions-title profileFromRecipeText">Category</h5>
                                 <ul class="modal-cuisine p-3">
                                     <div th:each="category : ${recipe.categories}">
                                         <li th:text="${category.name}"></li>
                                     </div>
                                 </ul>
                                 <!--      Display Ingredients title         -->
-                                <h5 class="modal-instructions-title">Ingredients</h5>
+                                <h5 class="modal-instructions-title profileFromRecipeText">Ingredients</h5>
                                 <!--    List displaying the ingredients    -->
                                 <ul class="ingredient-list-group p-0">
                                     <!--      Ingredients will display here dynamically      -->
@@ -102,7 +102,7 @@
                                     </div>
                                 </ul>
                                 <!--      Display Instructions-->
-                                <h5 class="modal-instructions-title">Instructions</h5>
+                                <h5 class="modal-instructions-title profileFromRecipeText">Directions</h5>
 
                                 <ul class="instruction-list-group p-0">
                                     <!--      Instructions will display here dynamically      -->
@@ -111,32 +111,21 @@
                                     </div>
                                 </ul>
 
-                                <h5 class="modal-instructions-title">Comments</h5>
+                                <h5 class="modal-instructions-title profileFromRecipeText">Comments</h5>
 
                                 <div th:each="comment : ${recipe.comments}" class="container">
                                     <div class="row text-left">
                                         <div class="col-8">
-                                            <p th:text="${comment.comment}" class="p-0 m-0"></p>
+                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0"><p th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                                         </div>
                                         <div class="col-4">
-                                            <p th:text="${comment.commentedAt}" class="p-0 m-0 text-right"></p>
+                                            <p th:text="${comment.commentedAt}" class="p-0 m-0 text-muted text-right"></p>
                                         </div>
                                         <div class="col-12">
-                                            <a th:href="@{|/profile/${comment.user.id}|}" class="m-0 p-0"><p
-                                                    th:text="${comment.user.username}" class="m-0 p-0"></p></a>
+                                            <p th:text="${comment.comment}" class="p-0 m-0"></p>
                                         </div>
-                                        <!--                                        <div sec:authorize="isAuthenticated()">-->
-                                        <!--                                            <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">-->
-                                        <!--                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST"-->
-                                        <!--                                                      style="display:inline">-->
-                                        <!--                                                    <button class="mb-3">Delete Comment</button>-->
-                                        <!--                                                </form>-->
-                                        <!--                                                <a th:href="@{|/comment/${comment.id}/edit|}">-->
-                                        <!--                                                    <button>Edit Comment</button>-->
-                                        <!--                                                </a>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </div>-->
                                     </div>
+                                    <hr class="shoppingList-hr p-0 my-1">
                                 </div>
 
                                 <div class="modal-recipeSource">
