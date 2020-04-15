@@ -11,16 +11,20 @@
 <div class="wrapper">
     <main class="container">
 
-        <div class="row mb-5 profileFromRecipeBackgroundColor">
-            <div class="col-md-2 p-0">
+        <div class="row mb-5 profile-background-color mt-3 pt-3 pb-3">
+            <div class="col-md-2">
                 <div>
-                    <img alt="" class="profileImages p-3" th:attr="src=@{${user.profileImageUrl}}">
+                    <img alt="profile image" style="width: 16em; height: 16em;" class="shadow-lg"
+                         th:attr="src=@{${user.profileImageUrl}}">
                 </div>
             </div>
-            <div class="flex-column d-flex ml-3">
-                <h1 class="profileFromRecipeText profileFromRecipeTextV2 profileFromRecipeTextMargin"
-                    th:text="${user.username} + '\'s' + ' Profile'"></h1>
-                <h1 class="profileFromRecipeTextV2" th:text="${user.email}"></h1>
+            <div class="p-5"></div>
+            <div class="col-md-8 d-flex text-left p-0">
+                <div class="flex-column d-flex ml-3">
+                    <h1 class="welcome-text" th:text="${user.username}"></h1>
+<!--                    <h4 th:text="${user.username}" class="pt-4"></h4>-->
+                    <h4 th:text="${user.email}" class="pt-4"></h4>
+                </div>
             </div>
         </div>
 
