@@ -12,7 +12,7 @@
     <main class="container">
 
 
-        <div class="row mb-5 mt-3 pt-3 pb-3 bg-white">
+        <div class="row mb-5 profile-background-color mt-3 pt-3 pb-3">
             <div class="col-md-2">
                 <div>
                     <img alt="" class="shadow-lg" th:attr="src=@{${user.profileImageUrl}}">
@@ -41,10 +41,11 @@
         <!--        This is the end of the profile image and profile info section-->
 
 <!--this is the 123 buttons-->
-        <div class="row bg-white">
+        <div class="row profile-background-color">
             <div class="col-2"></div>
             <div class="col-8 text-left">
                 <h1 class="login-text text-center pt-2">My Recipes</h1>
+                <hr class="profileFromRecipe-hr w-75 mt-2">
             </div>
             <div class="col-2 text-right">
                 <a th:href="@{|/list|}" class="text-right">
@@ -64,8 +65,9 @@
 <!--            </div>-->
 <!--        </div>-->
 
+
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0 bg-white">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0 profile-background-color">
 
             <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
 
