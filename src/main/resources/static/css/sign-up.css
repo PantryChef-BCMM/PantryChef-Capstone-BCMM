@@ -10,38 +10,38 @@
     font-family: 'Oleo Script Swash Caps', cursive;
 }
 
-.submit-button {
-    background: #2BA4B9;
-    color: white;
-    border-radius: 4px;
-    border-color: #860806;
-    width: 8em;
-    height: auto;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-}
+/*.submit-button {*/
+/*    background: #2BA4B9;*/
+/*    color: white;*/
+/*    border-radius: 4px;*/
+/*    border-color: #860806;*/
+/*    width: 8em;*/
+/*    height: auto;*/
+/*    opacity: 0.6;*/
+/*    transition: 0.3s;*/
+/*    display: inline-block;*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.submit-button:hover {
-    opacity: 1
-}
+/*.submit-button:hover {*/
+/*    opacity: 1*/
+/*}*/
 
-.signup-add-image-button {
-    background: #2BA4B9;
-    color: white;
-    border-radius: 4px;
-    border-color: #860806;
-    width: 10em;
-    height: auto;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-}
+/*.signup-add-image-button {*/
+/*    background: #2BA4B9;*/
+/*    color: white;*/
+/*    border-radius: 4px;*/
+/*    border-color: #860806;*/
+/*    width: 10em;*/
+/*    height: auto;*/
+/*    opacity: 0.6;*/
+/*    transition: 0.3s;*/
+/*    display: inline-block;*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.signup-add-image-button:hover {
-    opacity: 1
-}
+/*.signup-add-image-button:hover {*/
+/*    opacity: 1*/
+/*}*/
