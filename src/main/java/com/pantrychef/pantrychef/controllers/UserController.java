@@ -16,10 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -108,14 +105,14 @@ public class UserController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateUser(@ModelAttribute User user, @PathVariable long id, Model model) {
+    public String updateUser(@RequestParam(name = "profileImageUrl") String profileImageUrl, @ModelAttribute User user, @PathVariable long id, Model model) {
         User updatedUser = usersDao.getOne(id);
         updatedUser.setEmail(user.getEmail());
         updatedUser.setFirst_name(user.getFirst_name());
         updatedUser.setLast_name(user.getLast_name());
         updatedUser.setUsername(user.getUsername());
 //        updatedUser.setProfileImageUrl(u.getProfileImageUrl());
-        updatedUser.setProfileImageUrl("https://picsum.photos/200");
+        updatedUser.setProfileImageUrl(profileImageUrl);
 //        String hash = passwordEncoder.encode(user.getPassword());
         User admin = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", admin);
@@ -125,6 +122,5 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/profile";
     }
-
 
 }
