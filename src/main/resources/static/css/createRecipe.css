@@ -8,19 +8,20 @@
 
 .create-recipe-button {
     background: #2BA4B9;
-    color: white;
+    color: #0E3E4F !important;
+    height: auto;
+    border: 1px solid #860806 !important;
     border-radius: 4px;
     transition: 0.4s;
-    display: inline-block;
     font-weight: bold;
-    /*text-decoration: none;*/
-    cursor: pointer;
+    display: inline-block;
 }
+
 .create-recipe-button:hover {
     font-weight: bold;
-    color: #0E3E4F;
-    /*border: #860806 2px solid;*/
+    color:#860806 !important;
 }
+
 .bootstrap-select .dropdown-toggle .filter-option {
     position: absolute;
     top: 0;
