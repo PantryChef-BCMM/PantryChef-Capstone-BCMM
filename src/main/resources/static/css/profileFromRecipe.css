@@ -37,5 +37,9 @@
 
 .profileFromRecipe-hr-v2 {
     background-color: #860806;
-    width: 100%;
+}
+
+.profileFromRecipeModuleImage {
+    width: 34.75em;
+    height: 23.125em;
 }
