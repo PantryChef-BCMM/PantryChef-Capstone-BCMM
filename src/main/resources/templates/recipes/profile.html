@@ -5,7 +5,7 @@
 
 
 </style>
-<body class="profile-background" style="margin: 0 auto">
+<body class="profile-background">
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="wrapper">
@@ -55,7 +55,7 @@
         </div>
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0 mb-4 profile-background-color">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0 mb-5 profile-background-color">
 
             <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
 

@@ -4,66 +4,121 @@
 
 <body>
 
-<nav th:fragment="navbar">
-    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
 
-        <a th:href="@{/}" class="pull-left"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>
+
+<!--NAVBAR START-->
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-xl sticky-top">
+        <a th:href="@{/}" class="pull-left pl-2 my-1"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>
         <a th:href="@{/}" class="navbar-brand-text">PantryChef</a>
-
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler my-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="custom-toggler navbar-toggler-icon"><i class="fas fa-bars"></i></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto text-right pr-2">
+                <th:block sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>
 
-        <div class="collapse navbar-collapse" id="collapse_target">
-
-            <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
-
-<!--                <li class="nav-item ">-->
-<!--                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>-->
-<!--                </li>-->
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/list}">My List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{/logout}" th:method="post">
-                        <button class="nav-link navbar-a-links navbar-btn">Logout</button>
-                    </form>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto" sec:authorize="isAnonymous()">
-<!--                <li class="nav-item ">-->
-<!--                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>-->
-<!--                </li>-->
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/sign-up}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/login}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
-                </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-a-links" th:href="@{/list}">My List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/logout}" th:method="post" class="pull-right">
+                                <button class="nav-link navbar-a-links navbar-btn">Logout</button>
+                            </form>
+                        </li>
+                </th:block>
+                <th:block sec:authorize="isAnonymous()">
+                    <li class="nav-item">
+                        <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-a-links" th:href="@{/sign-up}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-a-links" th:href="@{/login}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>
+                    </li>
+                </th:block>
             </ul>
         </div>
     </nav>
-</nav>
+</th:block>
+
+<!--<nav th:fragment="navbar">-->
+<!--    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">-->
+
+<!--        <a th:href="@{/}" class="pull-left"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>-->
+<!--        <a th:href="@{/}" class="navbar-brand-text">PantryChef</a>-->
+
+<!--        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        <div class="collapse navbar-collapse" id="collapse_target">-->
+
+<!--            <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">-->
+
+<!--&lt;!&ndash;                <li class="nav-item ">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/recipe/create}">Create Recipe</a>-->
+
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/list}">My List</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/profile}">Profile</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <form th:action="@{/logout}" th:method="post">-->
+<!--                        <button class="nav-link navbar-a-links navbar-btn">Logout</button>-->
+<!--                    </form>-->
+<!--                </li>-->
+<!--            </ul>-->
+
+<!--            <ul class="navbar-nav ml-auto" sec:authorize="isAnonymous()">-->
+<!--&lt;!&ndash;                <li class="nav-item ">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="nav-link navbar-a-links" th:href="@{/pantrychef}">Pantry Search</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/recipes}">Recipes</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/sign-up}">Register</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/login}">Login</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link navbar-a-links" th:href="@{/aboutUs}">About Us</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</nav>-->
 
 </body>
 </html>

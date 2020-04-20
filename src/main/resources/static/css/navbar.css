@@ -9,7 +9,9 @@
 .navbar {
     padding: 0 !important;
 }
-
+.navbar-toggler-icon {
+    height: auto!important;
+}
 .navbar-nav{
     background-color:#0E3E4F;
 }
@@ -24,9 +26,9 @@
 
 .navbar-a-links:hover {
     color:#2BA4B9 !important;
-    -ms-transform: scale(1.1); /* IE 9 */
-    -webkit-transform: scale(1.1); /* Safari 3-8 */
-    transform: scale(1.1);
+    /*-ms-transform: scale(1.1); !* IE 9 *!*/
+    /*-webkit-transform: scale(1.1); !* Safari 3-8 *!*/
+    /*transform: scale(1.1);*/
 }
 
 .navbar-brand-text {
@@ -45,7 +47,6 @@
 }
 
 .nav-logo {
-    margin: 5px !important;
     height: 2.5em;
     width: auto;
 }
@@ -58,17 +59,6 @@
 
 .navbar-btn {
     outline: none;
-    border: 0px;
-    box-sizing: none;
+    border: 0;
     background: #0E3E4F;
 }
-
-/*.collapse.in{*/
-/*    display:block !important;*/
-/*    float: left;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.navbar-collapse.in {*/
-/*    display: block !important;*/
-/*}*/
