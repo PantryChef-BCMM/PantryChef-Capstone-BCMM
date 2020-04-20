@@ -5,7 +5,7 @@
 
 
 </style>
-<body class="profile-background" style="margin: 0 auto">
+<body class="profile-background">
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="wrapper">
@@ -13,33 +13,31 @@
     <main class="container">
 
 
-        <div class="row mb-5 profile-background-color mt-3 pt-3 pb-3">
-            <div class="col-md-2">
-                <div>
-                    <img alt="profile image" style="width: 16em; height: 16em;" class="shadow-lg" th:attr="src=@{${user.profileImageUrl}}">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0">
+
+        <div class="col m-4 mx-auto">
+                <div class="card shadow bg-white rounded">
+                    <img alt="card-image-top" class="card-image-top mx-auto img-fluid" th:attr="src=@{${user.profileImageUrl}}">
+
+                    <div class="card-body">
+                        <h1 class="welcome-text card-title text-center">Welcome,</h1>
+                        <h1 class="welcome-text card-title text-center" th:text="${user.first_name} + ' ' + ${user.last_name}"></h1>
+                        <h3 th:text="${user.username}" class="text-center"></h3>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted d-flex justify-content-center align-items-center">
+                            <a th:href="@{|/edit/${user.id}|}" class="d-flex justify-content-center align-items-center profileFromRecipeNoUnderline">
+                                <button class="button fas fa-user-edit fa-3x"></button>
+                            </a>
+                        </small>
+                    </div>
                 </div>
             </div>
-            <div class="p-5"></div>
-            <div class="col-md-8 d-flex text-left p-0">
 
-                <div class="flex-column d-flex ml-3">
-
-                    <h1 class="welcome-text" th:text="'Welcome, ' + ${user.first_name} + ' ' + ${user.last_name}"></h1>
-                    <h4 th:text="${user.username}" class="pt-4"></h4>
-                    <h4 th:text="${user.email}" class="pt-4"></h4>
-                    <a th:href="@{|/edit/${user.id}|}" class="pt-4">
-                        <button class="button fas fa-user-edit fa-3x"></button>
-
-                    </a>
-                </div>
-
-
-            </div>
         </div>
         <!--        This is the end of the profile image and profile info section-->
 
-<!--this is the 123 buttons-->
-        <div class="row profile-background-color">
+        <div class="row profile-background-color rounded">
             <div class="col-2"></div>
             <div class="col-8 text-left">
                 <h1 class="login-text text-center pt-2">My Recipes</h1>
@@ -49,25 +47,15 @@
                 <a th:href="@{|/list|}" class="text-right profileFromRecipeNoUnderline">
                     <button class="button fas fa-shopping-basket fa-2x pt-3"></button>
                 </a>
-                <!--                </div>-->
-                <!--                <div class="col-2 p-0">-->
                 <a th:href="@{|/recipe/create|}" class="text-right profileFromRecipeNoUnderline">
                     <button class="button fas fa-file-alt fa-2x pt-3"></button>
 
-<!--                    <button>123</button>-->
                 </a>
             </div>
         </div>
-        <!--Recipes on top of the recipe cards-->
-<!--        <div class="row bg-white text-center">-->
-<!--            <div class="col-md-12">-->
-<!--&lt;!&ndash;                <h1 class="login-text text-center pt-2">My Recipes</h1>&ndash;&gt;-->
-<!--            </div>-->
-<!--        </div>-->
-
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0 profile-background-color">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0 mb-5 profile-background-color">
 
             <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
 
@@ -80,9 +68,7 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted d-flex justify-content-center align-items-center">
-                                <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
-                                <!--                                    <button class="recipe-button">View Details</button>-->
-                                <!--                                </a>-->
+
                                 <button type="button" class="btn profileFromRecipeButton" data-toggle="modal"
                                         data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
                                     See Recipe Details
@@ -164,12 +150,10 @@
                                         <div sec:authorize="isAuthenticated()">
                                             <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">
                                                 <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
-                                                    <!--                                                    <button class="mb-3">Delete Comment</button>-->
                                                     <button class="button fas fa-trash fa-lg"></button>
                                                 </form>
                                                 <a th:href="@{|/comment/${comment.id}/edit|}">
                                                     <button class="button fas fa-edit fa-lg"></button>
-                                                    <!--                                                    <button>Edit Comment</button>-->
                                                 </a>
                                             </div>
                                         </div>
@@ -215,12 +199,10 @@
             </div>
 
         </div>
-        <!--        </div>-->
     </main>
 
 </div>
 
-<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <th:block th:replace="partials/scripts :: scripts"/>
 
 </body>
