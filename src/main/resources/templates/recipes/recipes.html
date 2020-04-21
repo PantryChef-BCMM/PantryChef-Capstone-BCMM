@@ -293,10 +293,6 @@
     if (document.getElementById("search") == null) {
         console.log("oops, null");
     } else {
-        // Selecting the input element and get its value
-        // var inputVal = document.getElementById("search").value;
-        // console.log(inputVal);
-        // Displaying the value
 
         var searchString;
         // console.log(searchString);
@@ -307,7 +303,7 @@
         // console.log("url string" + searchString);
 
 
-        $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=20&apiKey=" + spoon + "").done(function (data) {
+        $.ajax("https://api.spoonacular.com/recipes/findByIngredients" + "?ingredients=" + searchString + "&number=100&apiKey=" + spoon + "").done(function (data) {
 
 
             console.log("inside ajax");
