@@ -23,8 +23,6 @@
 
         <!-- Search bar that looks in both            -->
         <div class="container my-5 p-0">
-            <!--            <div class="row">-->
-            <!--                <div class="col-md-6">-->
             <form action="#" th:action="@{/recipes}" method="get"
                   class="input-group d-flex justify-content-center align-items-center container">
                 <input class="form-control rounded" type="text" id="search" placeholder="Search Example: apples,flour, etc..."
@@ -33,11 +31,8 @@
                     <label for="ingredient-query-input"></label>
                     <button type="submit" class="button fas fa-search fa-lg" id="ingredient-query-input">
                     </button>
-                    <!--                            <input class="button fas fa-search fa-lg" type="submit" id="ingredient-query-input"/>-->
                 </div>
             </form>
-            <!--                </div>-->
-            <!--            </div>-->
         </div>
 
 
@@ -93,9 +88,6 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted d-flex justify-content-center align-items-center">
-                                <!--                                <a th:href="@{|/recipes/${recipe.id}|}">-->
-                                <!--                                    <button class="recipe-button">View Details</button>-->
-                                <!--                                </a>-->
                                 <button type="button" class="btn profileFromRecipeButton" data-toggle="modal"
                                         data-target="#recipeModalLong" th:attrappend="data-target=${recipe.id}">
                                     See Recipe Details
