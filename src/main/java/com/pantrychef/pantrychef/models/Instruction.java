@@ -11,7 +11,7 @@ public class Instruction {
     @Column(nullable = false, columnDefinition = ("INT(11) UNSIGNED"))
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition="text")
     private String name;
 
     @ManyToMany(mappedBy = "instructionList")
