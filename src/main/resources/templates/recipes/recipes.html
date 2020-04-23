@@ -27,7 +27,7 @@
                 <div class="mt-4 col-sm-12 col-md-8 col-lg-8">
                     <form action="#" th:action="@{/recipes}" method="get" class="input-group">
                         <input class="form-control rounded" type="text" id="search"
-                               placeholder="Search Example: apples,flour, etc..."
+                               placeholder="Search: apples, flour, etc..."
                                name="search" aria-label="Search"/>
                         <div class="input-group-append">
                             <label for="ingredient-query-input"></label>
@@ -92,7 +92,7 @@
 
                 <div class="col mb-4">
                     <div class="card recipe-card shadow bg-white rounded">
-                        <img class="card-img-top" style="height: 16em;" th:attr="src=@{${recipe.recipeImageUrl}}"
+                        <img class="card-img-top" th:attr="src=@{${recipe.recipeImageUrl}}"
                              alt="Recipe image">
                         <div class="card-body">
                             <h4 class="card-title text-center" th:text="${recipe.title}"></h4>
@@ -138,7 +138,7 @@
                             </div>
                             <div class="modal-image mx-auto">
                                 <!--    Image for recipe    -->
-                                <img class="profileFromRecipeModuleImage" th:attr="src=@{${recipe.recipeImageUrl}}"
+                                <img class="profileFromRecipeModuleImage w-100" th:attr="src=@{${recipe.recipeImageUrl}}"
                                      alt="Recipe image">
                             </div>
                             <div class="modal-body">
