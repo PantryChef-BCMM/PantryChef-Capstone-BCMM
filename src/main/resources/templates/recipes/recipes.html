@@ -22,47 +22,53 @@
     <div class="container d-flex search-container shadow-lg">
 
         <!-- Search bar that looks in both            -->
-        <div class="container my-5 p-0">
-            <!--            <div class="row">-->
-            <!--                <div class="col-md-6">-->
-            <form action="#" th:action="@{/recipes}" method="get"
-                  class="input-group d-flex justify-content-center align-items-center container">
-                <input class="form-control rounded" type="text" id="search" placeholder="Search Example: apples,flour, etc..."
-                       name="search" aria-label="Search"/>
-                <div class="input-group-append">
-                    <label for="ingredient-query-input"></label>
-                    <button type="submit" class="button fas fa-search fa-lg" id="ingredient-query-input">
-                    </button>
-                    <!--                            <input class="button fas fa-search fa-lg" type="submit" id="ingredient-query-input"/>-->
+        <div class="container">
+            <div class="row">
+                <div class="mt-4 col-sm-12 col-md-8 col-lg-8">
+                    <form action="#" th:action="@{/recipes}" method="get" class="input-group">
+                        <input class="form-control rounded" type="text" id="search"
+                               placeholder="Search Example: apples,flour, etc..."
+                               name="search" aria-label="Search"/>
+                        <div class="input-group-append">
+                            <label for="ingredient-query-input"></label>
+                            <button type="submit" class="button fas fa-search fa-lg" id="ingredient-query-input">
+                            </button>
+                            <!--                            <input class="button fas fa-search fa-lg" type="submit" id="ingredient-query-input"/>-->
+                        </div>
+                    </form>
                 </div>
-            </form>
-            <!--                </div>-->
-            <!--            </div>-->
-        </div>
+<!--            </div>-->
+            <!--        </div>-->
 
 
-        <div class="container my-5 p-0">
-            <form action="#" th:action="@{/recipes}" method="get">
-                <label for="categories" class="font-weight-bold">Categories:</label>
-                <select th:id="${value}" id="categories" name="categories" class="w-75 selectpicker create-recipe-select" multiple data-live-search="true" data-flip="false">
-                    <option name="categories" id="American" value="1">American</option>
-                    <option name="categories" id="Chinese" value="2">Chinese</option>
-                    <option name="categories" id="Italian" value="3">Italian</option>
-                    <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
-                    <option name="categories" id="Vegan" value="5">Vegan</option>
-                    <option name="categories" id="Thai" value="6">Thai</option>
-                    <option name="categories" id="Indian" value="7">Indian</option>
-                    <option name="categories" id="Mexican" value="8">Mexican</option>
-                    <option name="categories" id="German" value="9">German</option>
-                    <option name="categories" id="Greek" value="10">Greek</option>
-                    <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
-                    <option name="categories" id="Cajun" value="12">Cajun</option>
-                    <option name="categories" id="Latin" value="13">Latin</option>
-                    <option name="categories" id="French" value="14">French</option>
-                    <option name="categories" id="Filipino" value="15">Filipino</option>
-                </select>
-                <button class="button fas fa-search fa-lg" type="submit"></button>
-            </form>
+            <!--        <div class="container my-5 p-0">-->
+<!--            <div class="row">-->
+                <div class="mt-4 col-sm-12 col-md-4 col-lg-4">
+                    <form action="#" th:action="@{/recipes}" method="get" class="input-group">
+<!--                        <label for="categories" class="font-weight-bold">Categories:</label>-->
+                        <select th:id="${value}" id="categories" name="categories"
+                                class="selectpicker create-recipe-select" multiple data-live-search="true" data-max-options="1"
+                                data-flip="false" title="Select Category">
+                            <option name="categories" id="American" value="1">American</option>
+                            <option name="categories" id="Chinese" value="2">Chinese</option>
+                            <option name="categories" id="Italian" value="3">Italian</option>
+                            <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
+                            <option name="categories" id="Vegan" value="5">Vegan</option>
+                            <option name="categories" id="Thai" value="6">Thai</option>
+                            <option name="categories" id="Indian" value="7">Indian</option>
+                            <option name="categories" id="Mexican" value="8">Mexican</option>
+                            <option name="categories" id="German" value="9">German</option>
+                            <option name="categories" id="Greek" value="10">Greek</option>
+                            <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
+                            <option name="categories" id="Cajun" value="12">Cajun</option>
+                            <option name="categories" id="Latin" value="13">Latin</option>
+                            <option name="categories" id="French" value="14">French</option>
+                            <option name="categories" id="Filipino" value="15">Filipino</option>
+                        </select>
+                        <button class="button fas fa-search fa-lg" type="submit"></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -106,17 +112,24 @@
                 </div>
 
                 <!--      Modal that will hold recipe details       -->
-                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
+                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog"
+                     aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
 
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div sec:authorize="isAuthenticated()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5
+                                            class="modal-title text-center profileFromRecipeAnchorTags"
+                                            id="recipeModalLongTitle"
+                                            th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
                                     </a>
                                 </div>
                                 <div sec:authorize="isAnonymous()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5
+                                            class="modal-title text-center profileFromRecipeAnchorTags"
+                                            id="recipeModalLongTitle"
+                                            th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
                                     </a>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -162,7 +175,8 @@
                                 <div th:each="comment : ${recipe.comments}" class="container">
                                     <div class="row text-left">
                                         <div class="col-8 p-0">
-                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0 profileFromRecipeAnchorTags"><p
+                                            <a th:href="@{|/profile/${recipe.user.id}|}"
+                                               class="m-0 p-0 profileFromRecipeAnchorTags"><p
                                                     th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                                         </div>
                                         <div class="col-4 p-0">
@@ -176,13 +190,14 @@
                                     <div class="row text-left">
                                         <div sec:authorize="isAuthenticated()">
                                             <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">
-                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
-<!--                                                    <button class="mb-3">Delete Comment</button>-->
+                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST"
+                                                      style="display:inline">
+                                                    <!--                                                    <button class="mb-3">Delete Comment</button>-->
                                                     <button class="button fas fa-trash fa-lg"></button>
                                                 </form>
                                                 <a th:href="@{|/comment/${comment.id}/edit|}">
                                                     <button class="button fas fa-edit fa-lg"></button>
-<!--                                                    <button>Edit Comment</button>-->
+                                                    <!--                                                    <button>Edit Comment</button>-->
                                                 </a>
                                             </div>
                                         </div>
@@ -199,12 +214,14 @@
 
                             <div class="modal-footer">
                                 <div sec:authorize="isAuthenticated()">
-                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}" class="w-75 d-inline text-left">
+                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}"
+                                         class="w-75 d-inline text-left">
                                         <a class="profileFromRecipeNoUnderline d-inline"
                                            th:href="@{|/recipe/${recipe.id}/edit|}">
                                             <button class="button fas fa-edit fa-2x"></button>
                                         </a>
-                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="d-inline mt-2 p-0 m-0">
+                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"
+                                              style="display:inline" class="d-inline mt-2 p-0 m-0">
                                             <button class="button fas fa-trash fa-2x"></button>
                                         </form>
                                     </div>
@@ -237,12 +254,14 @@
 
         </div>
 
-        <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="recipeApiModalLong" tabindex="-1" role="dialog"
+             aria-labelledby="recipeModalLongTitle" aria-hidden="true">
 
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="api-modal-title profileFromRecipeAnchorTags" id="recipeApiModalLongTitle">Modal title</h5>
+                        <h5 class="api-modal-title profileFromRecipeAnchorTags" id="recipeApiModalLongTitle">Modal
+                            title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
