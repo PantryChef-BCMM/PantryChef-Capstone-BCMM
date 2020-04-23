@@ -7,35 +7,36 @@
     <br>
     <br>
     <br>
-    <div class="row align-items-center">
-        <div class="col-6 mx-auto text-center p-3 card card-block shadow-lg">
+<!--    <div class="row align-items-center">-->
+        <div class="row col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
+<!--        <div class="col-sm-12 col-md-6 mx-auto text-center p-3 card card-block shadow-lg">-->
             <h1 class="signup-text">Create an account</h1>
             <br>
             <form th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <label for="firstName" class="font-weight-bold">First Name</label>
                 <br>
                 <input placeholder="Enter your first name..." th:field="*{first_name}"
-                       class="mx-auto w-50 shadow-sm form-control">
+                       class="mx-auto w-75 shadow-sm form-control">
                 <br>
                 <label for="lastName" class="font-weight-bold">Last Name</label>
                 <br>
                 <input placeholder="Enter your last name..." th:field="*{last_name}"
-                       class="mx-auto w-50 shadow-sm form-control">
+                       class="mx-auto w-75 shadow-sm form-control">
                 <br>
                 <label for="username" class="font-weight-bold">Username</label>
                 <br>
                 <input placeholder="Enter your username..." th:field="*{username}"
-                       class="mx-auto w-50 shadow-sm form-control"/>
+                       class="mx-auto w-75 shadow-sm form-control"/>
                 <br>
                 <label for="email" class="font-weight-bold">E-mail</label>
                 <br>
                 <input placeholder="Enter your e-mail..." th:field="*{email}"
-                       class="mx-auto w-50 shadow-sm form-control"/>
+                       class="mx-auto w-75 shadow-sm form-control"/>
                 <br>
                 <label for="password" class="font-weight-bold">Password</label>
                 <br>
                 <input type="password" placeholder="Enter your password..." th:field="*{password}"
-                       class="mx-auto w-50 shadow-sm form-control"/>
+                       class="mx-auto w-75 shadow-sm form-control"/>
                 <br>
                 <!-- Button calls function 'pickMark()' onclick now -->
 
@@ -53,7 +54,7 @@
     <br>
     <br>
     <br>
-</div>
+<!--</div>-->
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <th:block th:replace="partials/scripts :: scripts"/>
 <script th:inline="javascript">
