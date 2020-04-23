@@ -5,7 +5,7 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container d-flex h-100">
-    <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 shoppingList-background-notepad card card-block shadow-lg mh-75 mw-75">
+    <div class="row col-md-6 col-sm-12 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg mh-75 mw-75">
 
         <div sec:authorize="isAuthenticated()">
             <h1 th:text="${user.first_name} + '\'s Shopping List'" class="login-text pt-0"></h1>
@@ -16,13 +16,13 @@
                     <div class="col-8">
                         <h3 th:text="${item.getShoppingListItem()}" class="text-left login-text"></h3>
                     </div>
-                    <div class="col-2">
-                        <a th:href="@{|/list/edit/${item.getId()}|}">
-                            <button class="button fas fa-edit fa-lg"></button>
+                    <div class="col-2 mt-2">
+                        <a th:href="@{|/list/edit/${item.getId()}|}" class="">
+                            <button class="button fas fa-edit fa-lg p-0 m-0"></button>
                         </a>
                     </div>
-                    <div class="col-2">
-                        <form th:action="@{|/list/deleteItem/${item.getId()}|}" th:method="POST" class="mt-2 p-0 m-0">
+                    <div class="col-2 mt-2">
+                        <form th:action="@{|/list/deleteItem/${item.getId()}|}" th:method="POST" class="p-0 m-0">
                             <button class="button fas fa-trash fa-lg"></button>
                         </form>
                     </div>

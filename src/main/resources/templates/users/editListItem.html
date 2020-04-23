@@ -6,7 +6,8 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="container d-flex h-100">
-    <div class="row col-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg mh-75 mw-75">
+<!--    <div class="row col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">        -->
+    <div class="row col-md-6 col-sm-12 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg mh-75 mw-75">
 
         <div sec:authorize="isAuthenticated()">
             <h1 th:text="${user.first_name} + '\'s Shopping List'" class="login-text"></h1>
@@ -14,7 +15,7 @@
 
             <form th:action="@{|/list/edit/${shoppingList.getId()}|}" th:method="post">
                 <label for="shoppingList">Edit</label><br>
-                    <input id="shoppingList" class="mx-auto w-50 shadow-sm form-control" th:field="*{shoppingList.shoppingListItem}"/>
+                    <input id="shoppingList" class="mx-auto w-50 shadow-sm form-control text-center" th:field="*{shoppingList.shoppingListItem}"/>
 
                 <br/>
                 <hr class="shoppingList-hr">
