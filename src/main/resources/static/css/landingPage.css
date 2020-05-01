@@ -49,3 +49,39 @@
     -webkit-transform: scale(1.1); /* Safari 3-8 */
     transform: scale(1.1);
 }
+
+
+@media only screen and (min-width: 320px)
+{
+    .display-2{
+        font-size: 3.1em !important;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .display-2{
+        font-size: 4em !important;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .display-2{
+        font-size: 5em !important;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .display-2{
+        font-size: 8em !important;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .display-2{
+        font-size: 10em !important;
+    }
+}
