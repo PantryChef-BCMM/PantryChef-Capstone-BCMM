@@ -8,16 +8,15 @@
 
 .fancy-cards{
     text-align: center;
-    margin: 10px auto;
-
 }
 
 .fancy-cards .fancy-card{
     display: inline-block;
     position: relative;
-    top: 115px;
-    left: 45px;
+    /*top: 115px;*/
+    /*left: 45px;*/
     box-sizing: border-box;
+    margin: 2em;
 }
 
 .fancy-card .top,
@@ -26,8 +25,8 @@
     position: relative;
     border-radius: 3px;
     overflow: hidden;
-    width: 250px;
-    height: 250px;
+    width: 15em;
+    height: 15em;
     transition: transform 300ms;
 }
 
@@ -134,23 +133,26 @@
     margin-left: -3.5% !important;
 }
 
-/*.aboutus-header{*/
-/*    margin-top: 4%;*/
-/*    margin-left: 45%;*/
-/*}*/
+.aboutus-header{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: #2BA4B9;
+    margin-top: 1em;
+}
 
 
 /*------ media break ------ */
 
-@media only screen and (max-width: 600px) {
+/*@media only screen and (max-width: 600px) {*/
 
-    #aboutus{
+    /*#aboutus{*/
         /*margin-top: 13% !important;*/
-        margin-left: 30%;
-    }
-    .aboutusRow{
-        margin-top: -193px !important;
-        margin-right: 14px !important;
-    }
+        /*margin-left: 30%;*/
+    /*}*/
+    /*.aboutusRow{*/
+    /*    margin-top: -193px !important;*/
+    /*    margin-right: 14px !important;*/
+    /*}*/
 
-}
+/*}*/
+
+
