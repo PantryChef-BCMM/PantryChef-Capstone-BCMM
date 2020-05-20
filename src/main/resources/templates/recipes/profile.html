@@ -12,35 +12,49 @@
 
     <main class="container">
 
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="img">
+                    <div class="img-border"></div>
+                    <img alt="profile image" style="width: 16em; height: 16em;" class="shadow-lg img-profile"
+                         th:attr="src=@{${user.profileImageUrl}}">
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0">
+                </div>
+                <div class="profile-background-color">
+                    <h3 class="welcome-text card-title text-center pt-3" th:text="'Welcome ,' + ${user.first_name} + ' ' + ${user.last_name}"></h3>
+                    <h4 th:text="${user.username}" class="text-muted text-center username m-0"></h4>
 
-        <div class="col m-4 mx-auto">
-                <div class="card shadow bg-white rounded">
-                    <img alt="card-image-top" class="card-image-top mx-auto img-fluid" th:attr="src=@{${user.profileImageUrl}}">
-
-                    <div class="card-body">
-                        <h1 class="welcome-text card-title text-center">Welcome,</h1>
-                        <h1 class="welcome-text card-title text-center" th:text="${user.first_name} + ' ' + ${user.last_name}"></h1>
-                        <h3 th:text="${user.username}" class="text-center"></h3>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted d-flex justify-content-center align-items-center">
-                            <a th:href="@{|/edit/${user.id}|}" class="d-flex justify-content-center align-items-center profileFromRecipeNoUnderline">
-                                <button class="button fas fa-user-edit fa-3x"></button>
-                            </a>
-                        </small>
-                    </div>
                 </div>
             </div>
-
         </div>
+        <!--        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mt-0">-->
+
+        <!--        <div class="col m-4 mx-auto">-->
+        <!--                <div class="card shadow bg-white rounded">-->
+        <!--                    <img alt="card-image-top" class="card-image-top mx-auto img-fluid" th:attr="src=@{${user.profileImageUrl}}">-->
+
+        <!--                    <div class="card-body">-->
+        <!--                        <h1 class="welcome-text card-title text-center">Welcome,</h1>-->
+        <!--                        <h1 class="welcome-text card-title text-center" th:text="${user.first_name} + ' ' + ${user.last_name}"></h1>-->
+        <!--                        <h3 th:text="${user.username}" class="text-center"></h3>-->
+        <!--                    </div>-->
+        <!--                    <div class="card-footer">-->
+<!--                                <small class="text-muted d-flex justify-content-center align-items-center">-->
+<!--                                    <a th:href="@{|/edit/${user.id}|}" class="d-flex justify-content-center align-items-center profileFromRecipeNoUnderline">-->
+<!--                                        <button class="button fas fa-user-edit fa-3x"></button>-->
+<!--                                    </a>-->
+<!--                                </small>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+        <!--        </div>-->
         <!--        This is the end of the profile image and profile info section-->
 
         <div class="row profile-background-color rounded">
             <div class="col-md-2"></div>
             <div class="col-md-8 col-sm-12 text-left">
-                <h1 class="login-text text-center pt-2">My Recipes</h1>
+                <h1 class="login-text text-center pt-3">My Recipes</h1>
                 <hr class="w-75 mt-2 profile-hr">
             </div>
             <div class="col-md-2 col-sm-12 text-center pt-1 pb-5">
@@ -50,6 +64,9 @@
                 <a th:href="@{|/recipe/create|}" class="text-right profileFromRecipeNoUnderline">
                     <button class="button fas fa-file-alt fa-2x pt-3"></button>
 
+                </a>
+                <a th:href="@{|/edit/${user.id}|}" class="text-right profileFromRecipeNoUnderline">
+                    <button class="button fas fa-user-edit fa-2x"></button>
                 </a>
             </div>
         </div>
@@ -79,17 +96,24 @@
                 </div>
 
                 <!--      Modal that will hold recipe details       -->
-                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog" aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
+                <div class="modal fade" id="recipeModalLong" tabindex="-1" role="dialog"
+                     aria-labelledby="recipeModalLongTitle" aria-hidden="true" th:attrappend="id=${recipe.id}">
 
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div sec:authorize="isAuthenticated()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5
+                                            class="modal-title text-center profileFromRecipeAnchorTags"
+                                            id="recipeModalLongTitle"
+                                            th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
                                     </a>
                                 </div>
                                 <div sec:authorize="isAnonymous()">
-                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5 class="modal-title text-center profileFromRecipeAnchorTags" id="recipeModalLongTitle" th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
+                                    <a th:href="@{|/profile/${recipe.user.id}|}"><h5
+                                            class="modal-title text-center profileFromRecipeAnchorTags"
+                                            id="recipeModalLongTitle"
+                                            th:text="${recipe.title + ' | Posted by: ' + recipe.user.username}"></h5>
                                     </a>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -135,7 +159,8 @@
                                 <div th:each="comment : ${recipe.comments}" class="container">
                                     <div class="row text-left">
                                         <div class="col-8 p-0">
-                                            <a th:href="@{|/profile/${recipe.user.id}|}" class="m-0 p-0 profileFromRecipeAnchorTags"><p
+                                            <a th:href="@{|/profile/${recipe.user.id}|}"
+                                               class="m-0 p-0 profileFromRecipeAnchorTags"><p
                                                     th:text="${comment.user.username}" class="m-0 p-0"></p></a>
                                         </div>
                                         <div class="col-4 p-0">
@@ -149,7 +174,8 @@
                                     <div class="row text-left">
                                         <div sec:authorize="isAuthenticated()">
                                             <div th:if="${user.id} == ${comment.user.id} OR ${user.admin}">
-                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST" style="display:inline">
+                                                <form th:action="@{|/comments/delete/${comment.id}|}" th:method="POST"
+                                                      style="display:inline">
                                                     <button class="button fas fa-trash fa-lg"></button>
                                                 </form>
                                                 <a th:href="@{|/comment/${comment.id}/edit|}">
@@ -170,12 +196,14 @@
 
                             <div class="modal-footer">
                                 <div sec:authorize="isAuthenticated()">
-                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}" class="w-75 d-inline text-left">
+                                    <div th:if="${user.admin} OR ${user.id} == ${recipe.user.id}"
+                                         class="w-75 d-inline text-left">
                                         <a class="profileFromRecipeNoUnderline d-inline"
                                            th:href="@{|/recipe/${recipe.id}/edit|}">
                                             <button class="button fas fa-edit fa-2x"></button>
                                         </a>
-                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST" style="display:inline" class="d-inline mt-2 p-0 m-0">
+                                        <form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"
+                                              style="display:inline" class="d-inline mt-2 p-0 m-0">
                                             <button class="button fas fa-trash fa-2x"></button>
                                         </form>
                                     </div>

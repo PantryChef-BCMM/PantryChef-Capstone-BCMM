@@ -10,25 +10,33 @@
 
 <div class="wrapper">
     <main class="container">
-
-        <div class="row mb-5 profile-background-color mt-3 pt-3 pb-3">
-            <div class="col-md-2">
-                <div>
-                    <img alt="profile image" style="width: 16em; height: 16em;" class="shadow-lg"
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="img">
+                    <div class="img-border"></div>
+                    <img alt="profile image" style="width: 16em; height: 16em;" class="shadow-lg img-profile"
                          th:attr="src=@{${user.profileImageUrl}}">
                 </div>
             </div>
-            <div class="p-5"></div>
-            <div class="col-md-8 d-flex text-left p-0">
-                <div class="flex-column d-flex ml-3">
-                    <h1 class="welcome-text" th:text="${user.username}"></h1>
-<!--                    <h4 th:text="${user.username}" class="pt-4"></h4>-->
-                    <h4 th:text="${user.email}" class="pt-4"></h4>
-                </div>
-            </div>
         </div>
+        <!--        <div class="row mb-5 profile-background-color mt-3 pt-3 pb-3">-->
+        <!--            <div class="col-md-2">-->
+        <!--                <div>-->
+        <!--                    <img alt="profile image" style="width: 16em; height: 16em;" class="shadow-lg"-->
+        <!--                         th:attr="src=@{${user.profileImageUrl}}">-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div class="p-5"></div>-->
+        <!--            <div class="col-md-8 d-flex text-left p-0">-->
+        <!--                <div class="flex-column d-flex ml-3">-->
+        <!--                    <h1 class="welcome-text" th:text="${user.username}"></h1>-->
+        <!--&lt;!&ndash;                    <h4 th:text="${user.username}" class="pt-4"></h4>&ndash;&gt;-->
+        <!--                    <h4 th:text="${user.email}" class="pt-4"></h4>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
-        <div class="row profileFromRecipeBackgroundColor text-center">
+        <div class="row profileFromRecipeBackgroundColor text-center shadow-none">
             <div class="col-md-12">
                 <h1 class="profileFromRecipeText mb-0 mt-2" th:text="${user.username} + '\'s' + ' Recipes'"></h1>
                 <hr class="profile-hr w-75 mt-2">
@@ -36,7 +44,7 @@
         </div>
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 profileFromRecipeBackgroundColor">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mb-5 profileFromRecipeBackgroundColor">
 
             <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
 

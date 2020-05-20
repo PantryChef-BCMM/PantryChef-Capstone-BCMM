@@ -6,6 +6,18 @@
     background-size: cover;
 }
 
+.img {
+    background: linear-gradient(180deg, transparent 50%, white 50%);
+    margin-top: 75px;
+    text-align: center;
+}
+
+.img-profile {
+    z-index: 1;
+    border-radius: 50%;
+    /*max-height: 100px;;*/
+}
+
 .profileFromRecipeText {
     font-family: 'Oleo Script Swash Caps', cursive;
 }
