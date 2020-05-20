@@ -44,7 +44,7 @@
         </div>
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 profileFromRecipeBackgroundColor">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mb-5 profileFromRecipeBackgroundColor">
 
             <div th:each="recipe : ${recipes}" th:if="${user.id} == ${recipe.user.id}">
 
