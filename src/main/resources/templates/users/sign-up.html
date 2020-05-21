@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head th:replace="partials/head :: head('Sign Up')"></head>
-<body class="signup-background">
+<body class="signup-background h-100">
 <nav th:replace="partials/navbar :: navbar"></nav>
-<div class="container">
-    <br>
-    <br>
-    <br>
+<div class="container d-flex h-100">
+<!--    <br>-->
+<!--    <br>-->
+<!--    <br>-->
 <!--    <div class="row align-items-center">-->
         <div class="row col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
 <!--        <div class="col-sm-12 col-md-6 mx-auto text-center p-3 card card-block shadow-lg">-->
-            <h1 class="signup-text">Create an account</h1>
+            <h1 class="signup-text">Create account</h1>
             <br>
             <form th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <label for="firstName" class="font-weight-bold">First Name</label>
@@ -51,9 +51,8 @@
             </form>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
+<!--
+-->
 <!--</div>-->
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <th:block th:replace="partials/scripts :: scripts"/>

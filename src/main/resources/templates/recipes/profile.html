@@ -50,25 +50,31 @@
 
         <!--        </div>-->
         <!--        This is the end of the profile image and profile info section-->
+        <div class="row">
+
+        <div class="col-sm-12 text-center pt-1 pb-1 profile-background-color">
+
+            <a th:href="@{|/list|}" class="text-right profileFromRecipeNoUnderline">
+                <button class="button fas fa-shopping-basket fa-2x pt-3"></button>
+            </a>
+            <a th:href="@{|/recipe/create|}" class="text-right profileFromRecipeNoUnderline">
+                <button class="button fas fa-file-alt fa-2x pt-3"></button>
+
+            </a>
+            <a th:href="@{|/edit/${user.id}|}" class="text-right profileFromRecipeNoUnderline">
+                <button class="button fas fa-user-edit fa-2x"></button>
+            </a>
+        </div>
+        </div>
 
         <div class="row profile-background-color rounded">
             <div class="col-md-2"></div>
             <div class="col-md-8 col-sm-12 text-left">
-                <h1 class="login-text text-center pt-3">My Recipes</h1>
-                <hr class="w-75 mt-2 profile-hr">
+                <hr class="w-75 profile-hr">
+                <h1 class="login-text text-center mb-0">My Recipes</h1>
+                <hr class="w-75 profile-hr">
             </div>
-            <div class="col-md-2 col-sm-12 text-center pt-1 pb-5">
-                <a th:href="@{|/list|}" class="text-right profileFromRecipeNoUnderline">
-                    <button class="button fas fa-shopping-basket fa-2x pt-3"></button>
-                </a>
-                <a th:href="@{|/recipe/create|}" class="text-right profileFromRecipeNoUnderline">
-                    <button class="button fas fa-file-alt fa-2x pt-3"></button>
 
-                </a>
-                <a th:href="@{|/edit/${user.id}|}" class="text-right profileFromRecipeNoUnderline">
-                    <button class="button fas fa-user-edit fa-2x"></button>
-                </a>
-            </div>
         </div>
 
         <!--   Create cards that hold the recipes image and button to show create a modal that will show more in formation.     -->
